@@ -1,4 +1,4 @@
-namespace atmBanking
+namespace backend
 {
     public class WeatherForecast
     {

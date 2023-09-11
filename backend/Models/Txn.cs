@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace atmBanking.Models;
+namespace backend.Models;
 
 public partial class Txn
 {

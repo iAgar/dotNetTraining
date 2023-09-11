@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace atmBanking.Controllers
+namespace backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
