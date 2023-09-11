@@ -13,9 +13,9 @@ namespace backend.Controllers
     [ApiController]
     public class RegisteredUsersController : ControllerBase
     {
-        private readonly backendContext _context;
+        private readonly BackendContext _context;
 
-        public RegisteredUsersController(backendContext context)
+        public RegisteredUsersController(BackendContext context)
         {
             _context = context;
         }

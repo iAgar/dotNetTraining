@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Models;
 
-public partial class backendContext : DbContext
+public partial class BackendContext : DbContext
 {
-    public backendContext()
+    public BackendContext()
     {
     }
 
-    public backendContext(DbContextOptions<backendContext> options)
+    public BackendContext(DbContextOptions<BackendContext> options)
         : base(options)
     {
     }
