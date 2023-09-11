@@ -1,75 +1,77 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
+import axios from 'axios';
 
 const SignUp = ()=>{
-    const [username, setusername] = useState(' ');
-    const [email, setemail] = useState(' ');
-    const [pin, setpin] = useState(' ');
-    const [contact, setcontact] = useState(' ');
-    const [address, setaddress] = useState(' ');
-    const [dob, setdob] = useState(' ');
-    const [password, setpassword] = useState(' ');
 
-    const handleUsername = (event) =>{
-        setusername(event.target.value);
-
-    }
-    const handledob = (event) =>{
-        setdob(event.target.value);
-
-    }
-    const handlepin = (event) =>{
-        setpin(event.target.value);
-
-    }
-    const handleemail = (event) =>{
-        setemail(event.target.value);
-
-    }
-    const handlepassword = (event) =>{
-        setpassword(event.target.value);
-
-    }
-    const handleaddress = (event) =>{
-        setaddress(event.target.value);
-
-    }
-    const handlecontact = (event) =>{
-        setcontact(event.target.value);
-
+    
+    const [userDetails,setUserDetails] = useState({
+        'username': '',
+        'email': '',
+        'dob': '',
+        'pin': '',
+        'contact': '',
+        'address': '',
+        'password': ''
+    });
+    
+    const [error,setError] = useState('')
+    const handleChange = (event) => {
+        setUserDetails({...userDetails, [event.target.name] : event.target.value})
+        // console.log(userDetails)
     }
     
+    const handlesubmit = async(event) => {
+        console.log(userDetails)
+        event.preventDefault();
+
+        try {
+            axios.post('https://dummy.restapiexample.com/api/v1/create', userDetails).then((response) => {
+                console.log(response);
+                const{status ,message} = response.data;
+                if(status == 'success'){
+                    alert("successful signup");
+                }
+                else{
+                    alert("unsuccessful signup");
+                }
+            })
+        }
+        catch (error){
+            setError(error.Message);
+        }
+    }
     return (
         <div>
-            <form >
-                <br/><br/>
+            <h1>Sign Up page</h1>
+            <form onSubmit={handlesubmit}>
                 <div>
-                    username: <input type = 'text' value = {username} onChange={handleUsername} /> 
+                    username: <br/><input name ='username' type = 'text' value = {userDetails.username} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    email: <input type = 'email' value = {email} onChange={handleemail}/> 
+                    email: <br/><input name='email' type = 'email' value = {userDetails.email} onChange={handleChange}/> 
                 </div>
                 <br/>
                 <div>
-                    dob: <input type = 'date' value = {dob} onChange={handledob} /> 
+                    dob: <br/><input name = 'dob' type = 'date' value = {userDetails.dob} onChange={handleChange} /> 
                 </div>
                 <br/> 
                 <div>
-                    contact: <input type = 'text' value = {contact} onChange={handlecontact} /> 
+                    contact: <br/><input name = 'contact' type = 'text' value = {userDetails.contact} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    pin: <input type = 'number' value = {pin} onChange={handlepin}/> 
+                    pin: <br/><input name = 'pin' type = 'number' value = {userDetails.pin} onChange={handleChange}/> 
                 </div>   
                 <br/>            
                 <div>
-                    address: <input type = 'text' value = {address} onChange={handleaddress} /> 
+                    address: <br/><input name = 'address' type = 'text' value = {userDetails.address} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    password: <input type = 'alphanum' value = {password} onChange={handlepassword} ></input> 
+                    password: <br/><input name = 'password' type = 'alphanum' value = {userDetails.password} onChange={handleChange} ></input> 
                 </div>
                 <br/>
                 <div>
@@ -82,4 +84,3 @@ const SignUp = ()=>{
     )
 } 
 export default SignUp;
-
