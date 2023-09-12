@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Models;
 
-public partial class BackendContext : DbContext
+public partial class AtmBankingContext : DbContext
 {
-    public BackendContext()
+    public AtmBankingContext()
     {
     }
 
-    public BackendContext(DbContextOptions<BackendContext> options)
+    public AtmBankingContext(DbContextOptions<AtmBankingContext> options)
         : base(options)
     {
     }
@@ -28,7 +28,7 @@ public partial class BackendContext : DbContext
     {
         modelBuilder.Entity<Account>(entity =>
         {
-            entity.HasKey(e => e.Aid).HasName("PK__account__DE508E2EDC5B1482");
+            entity.HasKey(e => e.Aid).HasName("PK__account__DE508E2E84703BEB");
 
             entity.ToTable("account");
 
@@ -51,7 +51,7 @@ public partial class BackendContext : DbContext
 
         modelBuilder.Entity<RegisteredUser>(entity =>
         {
-            entity.HasKey(e => e.Userid).HasName("PK__Register__CBA1B257BA693183");
+            entity.HasKey(e => e.Userid).HasName("PK__Register__CBA1B2575212F635");
 
             entity.ToTable("RegisteredUser");
 
@@ -64,6 +64,11 @@ public partial class BackendContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("email");
+            entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
+            entity.Property(e => e.Pass)
+                .HasMaxLength(128)
+                .IsUnicode(false)
+                .HasColumnName("pass");
             entity.Property(e => e.Proof)
                 .HasMaxLength(12)
                 .IsUnicode(false)
@@ -76,7 +81,7 @@ public partial class BackendContext : DbContext
 
         modelBuilder.Entity<Txn>(entity =>
         {
-            entity.HasKey(e => e.Tid).HasName("PK__txn__DC105B0F7915C617");
+            entity.HasKey(e => e.Tid).HasName("PK__txn__DC105B0FF1A5E1D3");
 
             entity.ToTable("txn");
 
