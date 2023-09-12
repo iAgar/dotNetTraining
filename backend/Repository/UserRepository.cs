@@ -1,5 +1,7 @@
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using backend.Services;
 
 namespace backend.Repository
 {
@@ -34,7 +36,7 @@ namespace backend.Repository
         public int AddRegisteredUser(RegisteredUser userEntity)
         {
             int result = -1;
-            if (userEntity != null && userEntity.Email != null && GetRegisteredUserByEmail(userEntity.Email) == null)
+            if (userEntity != null && userEntity.Email != null && GetRegisteredUserByEmail(userEntity.Email) == null && userEntity.Pass != null)
             {
                 _context.RegisteredUsers.Add(userEntity);
                 _context.SaveChanges();
