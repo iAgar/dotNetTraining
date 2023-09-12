@@ -13,9 +13,9 @@ namespace backend.Controllers
     [ApiController]
     public class RegisteredUsersController : ControllerBase
     {
-        private readonly BackendContext _context;
+        private readonly AtmBankingContext _context;
 
-        public RegisteredUsersController(BackendContext context)
+        public RegisteredUsersController(AtmBankingContext context)
         {
             _context = context;
         }
@@ -27,7 +27,7 @@ namespace backend.Controllers
         {
             if (_context.RegisteredUsers == null || registeredUser == null)
             {
-                return Problem("Entity set 'backendContext.RegisteredUsers'  is null.");
+                return Problem("Entity set 'AtmBankingContext.RegisteredUsers'  is null.");
             }
             else
             {

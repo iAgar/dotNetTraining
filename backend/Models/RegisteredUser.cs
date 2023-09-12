@@ -15,5 +15,9 @@ public partial class RegisteredUser
 
     public string? Proof { get; set; }
 
+    public bool? IsAdmin { get; set; }
+
+    public string? Pass { get; set; }
+
     public virtual ICollection<Account> Accounts { get; set; } = new List<Account>();
 }
