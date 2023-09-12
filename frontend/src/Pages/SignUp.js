@@ -61,10 +61,6 @@ const SignUp = ()=>{
                 <div>
                     contact: <br/><input name = 'contact' type = 'text' value = {userDetails.contact} onChange={handleChange} /> 
                 </div>
-                <br/>
-                <div>
-                    pin: <br/><input name = 'pin' type = 'number' value = {userDetails.pin} onChange={handleChange}/> 
-                </div>   
                 <br/>            
                 <div>
                     address: <br/><input name = 'address' type = 'text' value = {userDetails.address} onChange={handleChange} /> 
@@ -78,7 +74,6 @@ const SignUp = ()=>{
                     <button type = 'submit'>Sign Up</button>
                 </div>
                 <br/>
-                <div>Already a user ? <a href="">Sign In</a></div>
             </form>
         </div>
     )
