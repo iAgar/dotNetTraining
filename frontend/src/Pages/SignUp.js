@@ -1,19 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+// import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import SignIn from './SignIn';
 
 const SignUp = ()=>{
 
     
     const [userDetails,setUserDetails] = useState({
-        'username': '',
+        'userid': 0,
         'email': '',
         'dob': '',
-        'pin': '',
-        'contact': '',
-        'address': '',
-        'password': ''
+        'uname': '',
+        'proof': '',
+        'pass': ''
     });
     
     const [error,setError] = useState('')
@@ -43,11 +44,12 @@ const SignUp = ()=>{
         }
     }
     return (
+        // <Router>
         <div>
             <h1>Sign Up page</h1>
             <form onSubmit={handlesubmit}>
                 <div>
-                    username: <br/><input name ='username' type = 'text' value = {userDetails.username} onChange={handleChange} /> 
+                    username: <br/><input name ='uname' type = 'text' value = {userDetails.uname} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
@@ -59,23 +61,31 @@ const SignUp = ()=>{
                 </div>
                 <br/> 
                 <div>
-                    contact: <br/><input name = 'contact' type = 'text' value = {userDetails.contact} onChange={handleChange} /> 
-                </div>
-                <br/>            
-                <div>
-                    address: <br/><input name = 'address' type = 'text' value = {userDetails.address} onChange={handleChange} /> 
+                    PAN: <br/><input name = 'proof' type = 'text' value = {userDetails.proof} onChange={handleChange} /> 
                 </div>
                 <br/>
+             
                 <div>
-                    password: <br/><input name = 'password' type = 'alphanum' value = {userDetails.password} onChange={handleChange} ></input> 
+                    password: <br/><input name = 'pass' type = 'alphanum' value = {userDetails.pass} onChange={handleChange} ></input> 
                 </div>
                 <br/>
                 <div>
                     <button type = 'submit'>Sign Up</button>
                 </div>
                 <br/>
+                
+                <div>
+                    <ul>
+                        <li>
+                            Already a user ? 
+                            <Link to='/SignIn'>Sign In</Link>
+                        </li>
+                    </ul>
+                   
+                </div>
             </form>
         </div>
+        // </Router>
     )
 } 
 export default SignUp;
