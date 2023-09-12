@@ -6,8 +6,8 @@ import axios from 'axios';
 const SignIn = () =>{
 
     const [userDetails, setUserDetails] = useState({
-        'username': '',
-        'password': ''
+        'uname': '',
+        'pass': '',
     });
   
     const handleChange = (event) => {
@@ -20,7 +20,7 @@ const SignIn = () =>{
         event.preventDefault();
         try{
             axios
-            .post('',userDetails)
+            .post('https://dummy.restapiexample.com/api/v1/create',userDetails)
             .then((response)=>{
                 console.log(response);
                 const{status ,message} = response.data;
@@ -41,11 +41,11 @@ const SignIn = () =>{
             <form onSubmit={handleSubmit}>
                 <br/><br/>
                 <div>
-                    username: <input type = 'text' value = {userDetails.username} onChange={handleChange} /> 
+                    username: <input name='uname' type = 'text' value = {userDetails.uname} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    password: <input type = 'alphanum' value = {userDetails.password} onChange={handleChange} ></input> 
+                    password: <input name='pass' type = 'alphanum' value = {userDetails.pass} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
