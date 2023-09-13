@@ -4,12 +4,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useContext } from 'react';
 import { UserContext } from './userContext.js';
-import PostSignIn from './PostSignIn.js';
+import CreateAccount from './CreateAccount.js';
+import UserProfile from './UserProfile.js';
 
 const SignIn = () =>{
 
     const [userDetails, setUserDetails] = useState({
-        'uname': '',
+        'email': '',
         'pass': '',
     });
   
@@ -26,17 +27,16 @@ const SignIn = () =>{
             .post('https://localhost:7180/api/RegisteredUsers/login',userDetails)
             .then((response)=>{
                 console.log(response);
-                const{status ,message} = response.data;
-                if(status == 'success'){
+                if(response.data.success){
                     alert("successful signin")
                     //send signed in user details using context and route to post-signin
-                    if(response.data.unmae=='admin'){
+                    if(response.data.user.isAdmin){
                         <UserContext.Provider value='admin'>
-                            {PostSignIn}
+                            {CreateAccount}
                         </UserContext.Provider>
                     }else{
                         <UserContext.Provider value='user'>
-                            {PostSignIn}
+                            {UserProfile}
                         </UserContext.Provider>
                     }
                 }
@@ -54,7 +54,7 @@ const SignIn = () =>{
             <form onSubmit={handleSubmit}>
                 <br/><br/>
                 <div>
-                    username: <input name='uname' type = 'text' value = {userDetails.uname} onChange={handleChange} /> 
+                    email: <input name='email' type = 'email' value = {userDetails.email} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
