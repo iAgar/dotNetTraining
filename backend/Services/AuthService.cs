@@ -6,11 +6,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace backend.Services
 {
-    public class AuthService: IAuthService
-    { 
+    public class AuthService : IAuthService
+    {
         private IUserRepository _userRepository;
 
         private readonly IConfiguration _configuration;
@@ -82,7 +83,7 @@ namespace backend.Services
 
         public int Register(RegisteredUser user)
         {
-            if(user.Pass == null)
+            if (user.Pass == null)
             {
                 return -1;
             }
@@ -103,18 +104,21 @@ namespace backend.Services
 
             RegisteredUser? user1 = _userRepository.GetRegisteredUserByEmail(user.Email);
 
-            if(user1 == null || user1.Pass == null) {
+            if (user1 == null || user1.Pass == null)
+            {
                 return result_wrong;
             }
 
-            if(!VerifyHashedPasswordV2(user1.Pass, user.Pass)) {
+            if (!VerifyHashedPasswordV2(user1.Pass, user.Pass))
+            {
                 return result_wrong;
             }
             else
             {
                 user1.Pass = null;
                 var token = CreateToken(user);
-                if(token == null) {
+                if (token == null)
+                {
                     return result_wrong;
                 }
                 var result_right = new Tuple<RegisteredUser?, string>(user1, token);
@@ -124,17 +128,19 @@ namespace backend.Services
 
         public string? CreateToken(RegisteredUser user)
         {
-            if(user.Email == null)
+            if (user.Email == null)
             {
                 return null;
             }
 
-            List<Claim> claims = new List<Claim>
+            List<Claim> claims = new()
             {
-                new Claim(ClaimTypes.Email, user.Email)
+                new(ClaimTypes.Email, user.Email),
+                new Claim("id", user.Userid.ToString()),
+                new Claim("isAdmin", user.IsAdmin.ToString()!),
             };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value!));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -146,6 +152,40 @@ namespace backend.Services
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
+        }
+
+
+        public int? ValidateToken(string? token)
+        {
+            if (token == null)
+                return null;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("AppSettings:Token").Value!);
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken);
+
+                var jwtToken = (JwtSecurityToken)validatedToken;
+                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+
+                // return user id from JWT token if validation successful
+                return userId;
+            }
+            catch
+            {
+                // return null if validation fails
+                return null;
+            }
+
         }
     }
 }

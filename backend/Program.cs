@@ -1,7 +1,9 @@
+using backend.Authorisation;
 using backend.Models;
 using backend.Repository;
 using backend.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.UseAuthorization();
 

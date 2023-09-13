@@ -9,7 +9,7 @@ namespace backend.Services
         bool VerifyHashedPasswordV2(string hashedPassword, string password);
         Tuple<RegisteredUser?, string> Login(RegisteredUser user);
         int Register(RegisteredUser user);
-
         string? CreateToken(RegisteredUser user);
+        int? ValidateToken(string? token);
     }
 }

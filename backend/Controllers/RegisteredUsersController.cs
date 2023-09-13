@@ -12,11 +12,13 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using backend.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
+using backend.Authorisation;
 
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RegisteredUsersController : ControllerBase
     {
 
@@ -32,19 +34,21 @@ namespace backend.Controllers
         public async Task<ActionResult> Register(RegisteredUser request)
         {
             var result = _authService.Register(request);
-            return Ok(result != -1 ? new { success = true, message = "User registration successful", id = result}  : new { success = false, message = "User registration not successful" });
+            return Ok(result != -1 ? new { success = true, message = "User registration successful", id = result } : new { success = false, message = "User registration not successful" });
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<ActionResult> Login(RegisteredUser request)
         {
             var result = _authService.Login(request);
 
-            if(result.Item1 == null)
+            if (result.Item1 == null)
             {
                 return Ok(new { success = false, message = result.Item2 })
-;           }
-            return Ok(new {success = true, message = "Login successful", token = result.Item2, user = result.Item1});
+;
+            }
+            return Ok(new { success = true, message = "Login successful", token = result.Item2, user = result.Item1 });
         }
     }
 }
