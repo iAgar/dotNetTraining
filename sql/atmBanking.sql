@@ -1,4 +1,6 @@
-/*create database atmBanking;*/
+drop database atmBanking;
+
+create database atmBanking;
 
 use atmBanking;
 
