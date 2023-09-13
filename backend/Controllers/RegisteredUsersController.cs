@@ -1,29 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using backend.Models;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
 using backend.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
 using backend.Authorisation;
 
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class RegisteredUsersController : ControllerBase
     {
 
         private IAuthService _authService;
-        //public static RegisteredUser user = new RegisteredUser();
 
         public RegisteredUsersController(IAuthService authService)
         {
@@ -31,7 +18,8 @@ namespace backend.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisteredUser request)
+        [AdminAuthorize]
+        public ActionResult Register(RegisteredUser request)
         {
             var result = _authService.Register(request);
             return Ok(result != -1 ? new { success = true, message = "User registration successful", id = result } : new { success = false, message = "User registration not successful" });
@@ -39,7 +27,7 @@ namespace backend.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<ActionResult> Login(RegisteredUser request)
+        public ActionResult Login(RegisteredUser request)
         {
             var result = _authService.Login(request);
 
