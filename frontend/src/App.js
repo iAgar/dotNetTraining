@@ -4,6 +4,7 @@ import SignIn from './Pages/SignIn';
 import { BrowserRouter as Router,Route,Routes, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import CreateAccount from './Pages/CreateAccount';
 import UserProfile from './Pages/UserProfile';
+// import userType from React.createContext('none');
 
 
 function App() {
@@ -23,5 +24,6 @@ function App() {
    
   );
 }
+
 
 export default App;
