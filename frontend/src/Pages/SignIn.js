@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
 import axios from 'axios';
+import { useContext } from 'react';
+import { UserContext } from './userContext.js';
+import PostSignIn from './PostSignIn.js';
 
 const SignIn = () =>{
 
@@ -25,10 +28,20 @@ const SignIn = () =>{
                 console.log(response);
                 const{status ,message} = response.data;
                 if(status == 'success'){
-                    alert("successful signup");
+                    alert("successful signin")
+                    //send signed in user details using context and route to post-signin
+                    if(response.data.unmae=='admin'){
+                        <UserContext.Provider value='admin'>
+                            {PostSignIn}
+                        </UserContext.Provider>
+                    }else{
+                        <UserContext.Provider value='user'>
+                            {PostSignIn}
+                        </UserContext.Provider>
+                    }
                 }
                 else{
-                    alert("unsuccessful signup");
+                    alert("unsuccessful signin");
                 }
             })
         }catch(err){
