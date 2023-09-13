@@ -29,13 +29,7 @@ const SignUp = ()=>{
         try {
             axios.post('https://localhost:7180/api/RegisteredUsers/register', userDetails).then((response) => {
                 console.log(response);
-                const{status ,message} = response.data;
-                if(status == 'success'){
-                    alert("successful signup");
-                }
-                else{
-                    alert("unsuccessful signup");
-                }
+                alert(response.data.message);
             })
         }
         catch (error){
