@@ -8,7 +8,7 @@ const SignUp = ()=>{
 
     
     const [userDetails,setUserDetails] = useState({
-        'userid': 0,
+        
         'email': '',
         'dob': '',
         'uname': '',

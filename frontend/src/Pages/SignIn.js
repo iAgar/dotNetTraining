@@ -1,11 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
 import axios from 'axios';
-import { useContext } from 'react';
 import { UserContext } from './userContext.js';
-import CreateAccount from './CreateAccount.js';
-import UserProfile from './UserProfile.js';
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () =>{
 
@@ -13,7 +10,7 @@ const SignIn = () =>{
         'email': '',
         'pass': '',
     });
-  
+    const Navigation = useNavigate();
     const handleChange = (event) => {
         setUserDetails({...userDetails, [event.target.name] : event.target.value})
 
@@ -28,17 +25,14 @@ const SignIn = () =>{
             .then((response)=>{
                 console.log(response);
                 if(response.data.success){
-                    alert("successful signin")
+                    alert("successful signin");
                     //send signed in user details using context and route to post-signin
-                    if(response.data.user.isAdmin){
-                        <UserContext.Provider value='admin'>
-                            {CreateAccount}
-                        </UserContext.Provider>
-                    }else{
-                        <UserContext.Provider value='user'>
-                            {UserProfile}
-                        </UserContext.Provider>
-                    }
+                    <UserContext.Provider value='user'>
+                        {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
+                            {Navigation("/UserProfile")}
+                           
+                    </UserContext.Provider>
+                    
                 }
                 else{
                     alert("unsuccessful signin");
