@@ -89,8 +89,8 @@ namespace backend.Services
             }
 
             user.Pass = HashPasswordV2(user.Pass, _rng);
+            user.IsAdmin = false;
             return _userRepository.AddRegisteredUser(user);
-
         }
 
         public Tuple<RegisteredUser?, string> Login(RegisteredUser user)
@@ -116,7 +116,7 @@ namespace backend.Services
             else
             {
                 user1.Pass = null;
-                var token = CreateToken(user);
+                var token = CreateToken(user1);
                 if (token == null)
                 {
                     return result_wrong;
