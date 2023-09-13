@@ -92,25 +92,33 @@ namespace backend.Services
 
         }
 
-        public string? Login(RegisteredUser user)
+        public Tuple<RegisteredUser?, string> Login(RegisteredUser user)
         {
+            var result_wrong = new Tuple<RegisteredUser?, string>(null, "Invalid credentials");
+
             if (user == null || user.Pass == null || user.Email == null)
             {
-                return null;
+                return result_wrong;
             }
 
             RegisteredUser? user1 = _userRepository.GetRegisteredUserByEmail(user.Email);
 
             if(user1 == null || user1.Pass == null) {
-                return null;
+                return result_wrong;
             }
 
             if(!VerifyHashedPasswordV2(user1.Pass, user.Pass)) {
-                return null;
+                return result_wrong;
             }
             else
             {
-                return CreateToken(user);
+                user1.Pass = null;
+                var token = CreateToken(user);
+                if(token == null) {
+                    return result_wrong;
+                }
+                var result_right = new Tuple<RegisteredUser?, string>(user1, token);
+                return result_right;
             }
         }
 
