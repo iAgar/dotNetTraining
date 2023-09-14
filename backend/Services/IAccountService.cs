@@ -4,10 +4,10 @@ namespace backend.Services
 {
     public interface IAccountService
     {
-        int? CreateAccount(Account a);
+        bool CreateAccount(Account a);
         bool DeleteAccount(int? aid);
-        int? PerformTransaction(Txn t);
-        List<Txn> GetTxns();
+        bool PerformTransaction(Txn t);
+        List<Txn> GetTxns(int aid);
     }
 
 }

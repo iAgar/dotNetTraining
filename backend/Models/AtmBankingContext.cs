@@ -22,7 +22,7 @@ public partial class AtmBankingContext : DbContext
     public virtual DbSet<Txn> Txns { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection");
+=> optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,6 +42,9 @@ public partial class AtmBankingContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("homeBranch");
+            entity.Property(e => e.IsDeleted)
+                .HasDefaultValueSql("((0))")
+                .HasColumnName("isDeleted");
             entity.Property(e => e.Userid).HasColumnName("userid");
 
             entity.HasOne(d => d.User).WithMany(p => p.Accounts)
@@ -88,6 +91,9 @@ public partial class AtmBankingContext : DbContext
             entity.Property(e => e.Tid).HasColumnName("tid");
             entity.Property(e => e.Aid).HasColumnName("aid");
             entity.Property(e => e.Amount).HasColumnName("amount");
+            entity.Property(e => e.IsDebit)
+                .HasDefaultValueSql("((1))")
+                .HasColumnName("isDebit");
             entity.Property(e => e.Loc)
                 .HasMaxLength(6)
                 .IsUnicode(false)

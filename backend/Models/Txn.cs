@@ -17,5 +17,7 @@ public partial class Txn
 
     public string? TxnType { get; set; }
 
+    public bool? IsDebit { get; set; }
+
     public virtual Account? AidNavigation { get; set; }
 }
