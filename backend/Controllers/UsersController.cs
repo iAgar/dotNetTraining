@@ -7,12 +7,12 @@ namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegisteredUsersController : ControllerBase
+    public class UsersController : ControllerBase
     {
 
         private IAuthService _authService;
 
-        public RegisteredUsersController(IAuthService authService)
+        public UsersController(IAuthService authService)
         {
             _authService = authService;
         }
