@@ -15,6 +15,7 @@ namespace backend.Services
         private IUserRepository _userRepository;
 
         private readonly IConfiguration _configuration;
+        private readonly RandomNumberGenerator _rng = RandomNumberGenerator.Create();
 
 
         public AuthService(IUserRepository userRepository, IConfiguration configuration)
@@ -24,7 +25,6 @@ namespace backend.Services
         }
 
 
-        private readonly RandomNumberGenerator _rng = RandomNumberGenerator.Create();
         public string HashPasswordV2(string password, RandomNumberGenerator rng)
         {
             const KeyDerivationPrf Pbkdf2Prf = KeyDerivationPrf.HMACSHA1; // default for Rfc2898DeriveBytes
@@ -93,7 +93,7 @@ namespace backend.Services
             return _userRepository.AddRegisteredUser(user);
         }
 
-        public Tuple<RegisteredUser?, string> Login(RegisteredUser user)
+        public Tuple<RegisteredUser?, string> Login(UserDto user)
         {
             var result_wrong = new Tuple<RegisteredUser?, string>(null, "Invalid credentials");
 
