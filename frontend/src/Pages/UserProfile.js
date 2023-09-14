@@ -26,7 +26,7 @@ const UserProfile = () =>{
     }
 
     const user = useContext(UserContext);
-
+    console.log(user);
 
     return(
         <div>
@@ -37,9 +37,9 @@ const UserProfile = () =>{
              
             <div>Name: {user?.uname}</div>
             <br/>
-            <div> DOB: {user.dob}</div>     
+            <div> DOB: {user?.dob}</div>     
             <br/>
-            <div> email: {user.email}</div>          
+            <div> email: {user?.email}</div>          
             <br/> 
             <div> Account Type: </div>
             <br/>

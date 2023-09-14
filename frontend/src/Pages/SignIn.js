@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { UserContext } from './userContext.js';
 import { useNavigate } from "react-router-dom";
+import UserProfile from './UserProfile.js';
 
 const SignIn = () =>{
 
@@ -36,7 +37,8 @@ const SignIn = () =>{
                     if(!response.data.user.isAdmin){
                         <UserContext.Provider value={user}>
                             {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
-                            {Navigation("/UserProfile")}
+                            <UserProfile/>
+                            {/* {Navigation("/UserProfile")} */}
                         </UserContext.Provider>
                     }else{
                         <UserContext.Provider value='admin'>
