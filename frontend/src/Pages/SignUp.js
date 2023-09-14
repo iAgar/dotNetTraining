@@ -27,7 +27,7 @@ const SignUp = ()=>{
         event.preventDefault();
 
         try {
-            axios.post('https://localhost:7180/api/RegisteredUsers/register', userDetails).then((response) => {
+            axios.post('https://localhost:7180/api/Users/register', userDetails).then((response) => {
                 console.log(response);
                 alert(response.data.message);
             })

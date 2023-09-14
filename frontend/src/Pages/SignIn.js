@@ -21,7 +21,7 @@ const SignIn = () =>{
         event.preventDefault();
         try{
             axios
-            .post('https://localhost:7180/api/RegisteredUsers/login',userDetails)
+            .post('https://localhost:7180/api/Users/login',userDetails)
             .then((response)=>{
                 console.log(response);
                 if(response.data.success){
