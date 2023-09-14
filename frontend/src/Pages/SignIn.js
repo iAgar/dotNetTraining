@@ -23,25 +23,27 @@ const SignIn = () =>{
             axios
             .post('https://localhost:7180/api/Users/login',userDetails)
             .then((response)=>{
+                const user = {
+                    uname: userDetails.uname,
+                    dob: userDetails.dob,
+                    email: userDetails.email,
+                    isAdmin: response.data.user.isAdmin
+                }
                 console.log(response);
                 if(response.data.success){
                     alert("successful signin");
                     //send signed in user details using context and route to post-signin
                     if(!response.data.user.isAdmin){
-                    <UserContext.Provider value='user'>
-                        {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
+                        <UserContext.Provider value={user}>
+                            {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
                             {Navigation("/UserProfile")}
-                           
-                    </UserContext.Provider>
+                        </UserContext.Provider>
                     }else{
-<UserContext.Provider value='admin'>
-                        {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
-                            {Navigation("/CreateAccount")}
-                           
-                    </UserContext.Provider>
-
+                        <UserContext.Provider value='admin'>
+                            {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
+                            {Navigation("/CreateAccount")}           
+                        </UserContext.Provider>
                     }
-                    
                 }
                 else{
                     alert("unsuccessful signin");

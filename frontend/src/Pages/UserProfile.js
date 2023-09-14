@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from './userContext';
 
 const UserProfile = () =>{
 
@@ -23,7 +25,7 @@ const UserProfile = () =>{
         // console.log(userDetails)
     }
 
-    
+    const user = useContext(UserContext);
 
 
     return(
@@ -33,16 +35,12 @@ const UserProfile = () =>{
             </h1>
             <br/>
              
-            <div>Name:</div>
+            <div>Name: {user?.uname}</div>
             <br/>
-            <div> DOB: </div>     
+            <div> DOB: {user.dob}</div>     
             <br/>
-            <div> email:</div>          
+            <div> email: {user.email}</div>          
             <br/> 
-            <div> Contact:</div>   
-            <br/>     
-            <div> Address:</div>
-            <br/>
             <div> Account Type: </div>
             <br/>
             <div>Account balance:</div>
