@@ -1,51 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
+import { UserContext } from './UserContext';
+import { Link } from 'react-router-dom';
 
-const UserProfile = () =>{
+const UserProfile = () => {
 
-    const [userDetails,setUserDetails] = useState({
-        'uname': 0,
-        'email': '',
-        'dob': '',
-        'proof': '',
-        'pass': '',
-        'address':'',
-        'contact':'',
-        'accType':'',
-        'balance':0,
-        'accNumber':0,
+    const userDetails = useContext(UserContext);
 
-    });
-    const [error,setError] = useState('')
-    const handleChange = (event) => {
-        setUserDetails({...userDetails, [event.target.name] : event.target.value})
-        // console.log(userDetails)
-    }
-
-    
+    console.log(userDetails);
+    const [error, setError] = useState('')
 
 
-    return(
-        <div>
+
+    return (
+        <div >
             <h1>
                 Profile Page
             </h1>
-            <br/>
-             
-            <div>Name:</div>
-            <br/>
-            <div> DOB: </div>     
-            <br/>
-            <div> email:</div>          
-            <br/> 
-            <div> Contact:</div>   
-            <br/>     
-            <div> Address:</div>
-            <br/>
-            <div> Account Type: </div>
-            <br/>
-            <div>Account balance:</div>
+            <p style={{ position: 'absolute', left: '30px' }}><button><Link to='/Txn'>Make a Transaction</Link></button></p>
+            <br /><br />
+
+            <div> <h2>user_id :</h2> {userDetails.userid}</div>
+            <br />
+            <div><h2>username:</h2> {userDetails.uname}</div>
+            <br />
+            <div><h2>DOB:</h2>  {userDetails.dob}</div>
+            <br />
+            <div><h2>email:</h2>{userDetails.email}</div>
+            <br />
+            <div><h2> PAN:</h2>{userDetails.proof}</div>
+            <br />
+
 
 
         </div>

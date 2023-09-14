@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { UserContext } from './userContext.js';
+import { UserContext, UserDispatchContext } from './UserContext.js';
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () =>{
+    const setUserDetails = useContext(UserDispatchContext);
 
-    const [userDetails, setUserDetails] = useState({
+    const [userDetails, setUserLoginDetails] = useState({
         'email': '',
         'pass': '',
     });
     const Navigation = useNavigate();
     const handleChange = (event) => {
-        setUserDetails({...userDetails, [event.target.name] : event.target.value})
+        setUserLoginDetails({...userDetails, [event.target.name] : event.target.value})
 
     }
 
@@ -24,14 +25,19 @@ const SignIn = () =>{
             .post('https://localhost:7180/api/Users/login',userDetails)
             .then((response)=>{
                 console.log(response);
+                const user = response.data.user;
+
                 if(response.data.success){
                     alert("successful signin");
+                    // console.log(user);
+                    setUserDetails(user);
                     //send signed in user details using context and route to post-signin
-                    <UserContext.Provider value='user'>
+                    // <UserContext.Provider>
                         {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
-                            {Navigation("/UserProfile")}
+                        
+                    Navigation("/UserProfile",{Users: user})
                            
-                    </UserContext.Provider>
+                    // </UserContext.Provider>
                     
                 }
                 else{
