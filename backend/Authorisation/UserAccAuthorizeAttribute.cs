@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace backend.Authorisation
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class AuthorizeAttribute : Attribute, IAuthorizationFilter
+    public class UserAccAuthorizeAttribute : Attribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
@@ -16,11 +16,23 @@ namespace backend.Authorisation
 
             // authorization
             var user = (RegisteredUser?)context.HttpContext.Items["User"];
-            if (user == null)
+            var path = (string?)context.HttpContext.Items["Path"];
+            var accs = (int[]?)context.HttpContext.Items["Acc"];
+            int? aid = -1;
+            try
             {
-                // not logged in or role not authorized
+                aid = int.Parse(path!);
+            }
+            catch (Exception)
+            {
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
             }
+
+            if (user?.IsAdmin == true || accs?.Any(e => e == aid) == true)
+                return;
+
+            // not logged in or role not authorized
+            context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
     }
 }
