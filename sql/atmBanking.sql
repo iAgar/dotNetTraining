@@ -32,6 +32,9 @@ create table txn(
 	txnType varchar(3)
 );
 
+ALTER TABLE txn ADD isDebit BIT DEFAULT 1;
+ALTER TABLE account ADD isDeleted BIT DEFAULT 0;
+
 
 /*insert into RegisteredUser(uname, email, proof) values('Ram', 'ram@abc.com', '123456');
 insert into account(homeBranch, balance, accType) values('Hyderabad', 10000, 'SAV');
