@@ -15,6 +15,8 @@ public partial class Account
 
     public string? AccType { get; set; }
 
+    public bool? IsDeleted { get; set; }
+
     public virtual ICollection<Txn> Txns { get; set; } = new List<Txn>();
 
     public virtual RegisteredUser? User { get; set; }
