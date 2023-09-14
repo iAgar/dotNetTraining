@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { UserContext, UserDispatchContext } from './UserContext.js';
 import { useNavigate } from "react-router-dom";
+import UserProfile from './UserProfile.js';
 
 const SignIn = () =>{
     const setUserDetails = useContext(UserDispatchContext);
@@ -24,6 +25,7 @@ const SignIn = () =>{
             axios
             .post('https://localhost:7180/api/Users/login',userDetails)
             .then((response)=>{
+                
                 console.log(response);
                 const user = response.data.user;
 
@@ -32,12 +34,11 @@ const SignIn = () =>{
                     // console.log(user);
                     setUserDetails(user);
                     //send signed in user details using context and route to post-signin
-                    // <UserContext.Provider>
+                    <UserContext.Provider value='user'>
                         {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
-                        
-                    Navigation("/UserProfile",{Users: user})
+                            {Navigation("/UserProfile")}
                            
-                    // </UserContext.Provider>
+                    </UserContext.Provider>
                     
                 }
                 else{

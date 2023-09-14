@@ -27,7 +27,7 @@ namespace backend.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public ActionResult Login(RegisteredUser request)
+        public ActionResult Login(UserDto request)
         {
             var result = _authService.Login(request);
 

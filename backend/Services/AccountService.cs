@@ -9,11 +9,23 @@ namespace backend.Services
         {
             _context = context;
         }
+        public List<int> GetAccountIds(int uid)
+        {
+            try
+            {
+                return _context.Accounts.Where(c => c.Userid == uid).ToList().ConvertAll(e => e.Aid);
+            }
+            catch (Exception)
+            {
+                return new List<int>();
+            }
+        }
         public bool CreateAccount(Account a)
         {
             try
             {
                 a.Balance = 0;
+                a.IsDeleted = false;
                 _context.Accounts.Add(a);
                 _context.SaveChanges();
                 return true;
@@ -73,23 +85,38 @@ namespace backend.Services
                 return false;
             }
         }
-        public List<Txn> GetTxns(int aid)
+        public List<int> GetTxnIds(int aid)
         {
             try
             {
                 Account? a = _context.Accounts.Find(aid);
                 if (a != null)
                 {
-                    return _context.Txns.Where(t => t.Aid == aid).ToList();
+                    return _context.Txns.Where(t => t.Aid == aid).ToList().ConvertAll(t => t.Tid);
                 }
                 throw new KeyNotFoundException();
             }
             catch (Exception)
             {
-                return new List<Txn>();
+                return new List<int>();
             }
         }
 
+        public Txn? GetTxnById(int tid)
+        {
+            var res = _context.Txns.Find(tid);
+            if (res != null)
+                res.AidNavigation = null;
+            return res;
+        }
+
+        public Account? GetAccountById(int aid)
+        {
+            var res = _context.Accounts.Find(aid);
+            if (res != null)
+                res.User = null;
+            return res;
+        }
     }
 
 }

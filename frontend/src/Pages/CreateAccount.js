@@ -36,11 +36,15 @@ const CreateAccount =()=>{
                 }
             }
             ).catch((error)=>{
+                console.log(1);
                 console.log(error);
+                alert('unsuccessful');
             })
         }
         catch (error){
+            console.log(1);
             setError(error.Message);
+            alert('unsuccessful');
         }
     }
     return (

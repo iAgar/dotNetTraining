@@ -30,6 +30,8 @@ const SignUp = ()=>{
             axios.post('https://localhost:7180/api/Users/register', userDetails).then((response) => {
                 console.log(response);
                 alert(response.data.message);
+            }).catch((e)=>{
+                console.log(e);
             })
         }
         catch (error){
