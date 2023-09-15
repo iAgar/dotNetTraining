@@ -5,8 +5,8 @@ const Txn =()=>{
     const [txnDetails, setTxnDetails] = useState({
         'aid' : 0,
         'amount' : 0,
-        'txnType' : ''
-        
+        'txnType' : '',
+        'loc': ''   
     });
 
     const userDetails = useContext(UserContext);
@@ -52,10 +52,15 @@ const Txn =()=>{
                 </div>
                 <br/> 
                 <div>
-                txnType: <br/><select name='txnType' value = {txnDetails.txnType} onChange={handleChange}>
+                    Location: <br/><input name='loc' type= 'text' value={txnDetails.loc} onChange={handleChange}/>
+                </div>
+                <br/>
+                <div>
+                Transaction Type: <br/><select name='txnType' value = {txnDetails.txnType} onChange={handleChange}>
                             <option disabled defaultChecked></option>
                         <option>Deposit</option>
                         <option>Withdraw</option>
+                        <option>Fund Transfer</option>
                        </select> 
                 </div>
                 <br></br>
