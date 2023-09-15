@@ -4,6 +4,7 @@ import axios from 'axios';
 import { UserContext, UserDispatchContext } from './UserContext.js';
 import { useNavigate } from "react-router-dom";
 import UserProfile from './UserProfile.js';
+import './SignIn.css'; 
 
 const SignIn = () =>{
     const setUserDetails = useContext(UserDispatchContext);
@@ -51,15 +52,15 @@ const SignIn = () =>{
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div class="login-container">
+            <form onSubmit={handleSubmit} class="login-form">
                 <br/><br/>
                 <div>
-                    email: <input name='email' type = 'email' value = {userDetails.email} onChange={handleChange} /> 
+                    email: <input name='email' type = 'email' class="form-input" value = {userDetails.email} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    password: <input name='pass' type = 'alphanum' value = {userDetails.pass} onChange={handleChange} /> 
+                    password: <input name='pass' type = 'alphanum' class="form-input" value = {userDetails.pass} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
