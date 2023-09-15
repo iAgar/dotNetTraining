@@ -6,8 +6,8 @@ namespace backend.Services
     public class AccountService : IAccountService
     {
         private readonly AtmBankingContext _context;
-        private readonly UserRepository _userRepository;
-        public AccountService(AtmBankingContext context, UserRepository userRepository)
+        private readonly IUserRepository _userRepository;
+        public AccountService(AtmBankingContext context, IUserRepository userRepository)
         {
             _context = context;
             _userRepository = userRepository;
