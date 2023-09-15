@@ -29,7 +29,6 @@ namespace backend.Services
             {
                 if (_userRepository.GetRegisteredUserById(a.Userid ?? default(int)) != null)
                 {
-
                     a.Balance = 0;
                     a.AccType = a.AccType?.Trim().ToUpper()[0..3];
                     a.IsDeleted = false;
@@ -87,6 +86,45 @@ namespace backend.Services
                             return true;
                         }
                     }
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool PerformTransfer(Txn t, int rec_id)
+        {
+            try
+            {
+                Account? a = _context.Accounts.Find(t.Aid);
+                Account? a2 = _context.Accounts.Find(rec_id);
+                if (a != null && a2 != null)
+                {
+                    t.TxnTime = DateTime.Now;
+                    t.IsDebit = true;
+                    Txn t2 = new()
+                    {
+                        Aid = rec_id,
+                        Amount = t.Amount,
+                        TxnTime = t.TxnTime,
+                        TxnType = t.TxnType,
+                        IsDebit = false,
+                        Loc = t.Loc
+                    };
+
+                    if (t.Amount <= a.Balance)
+                    {
+                        a.Balance -= t.Amount;
+                        a2.Balance += t.Amount;
+                        _context.Txns.Add(t);
+                        _context.Txns.Add(t2);
+                        _context.SaveChanges();
+                        return true;
+                    }
+
                 }
                 return false;
             }

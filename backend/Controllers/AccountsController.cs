@@ -53,6 +53,16 @@ namespace backend.Controllers
             return Ok(new { success = result, message = result ? "Deposit successful" : "Deposit failed" });
         }
 
+        [HttpPost("transfer/{rec_aid}/{aid}")]
+        [UserAccAuthorize]
+        public ActionResult Transfer(int rec_aid, int aid, Txn t)
+        {
+            t.Aid = aid;
+            t.TxnType = "T";
+            var result = _accountService.PerformTransfer(t, rec_aid);
+            return Ok(new { success = result, message = result ? "Transfer successful" : "Transfer failed" });
+        }
+
         [HttpGet("transactions/all/{aid}")]
         [UserAccAuthorize]
         public ActionResult GetAllTransactionIds(int aid)
