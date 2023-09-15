@@ -5,6 +5,7 @@ import { BrowserRouter as Router,Route,Routes, createBrowserRouter, createRoutes
 import CreateAccount from './Pages/CreateAccount';
 import UserProfile from './Pages/UserProfile';
 import Txn from './Pages/Txn';
+import WelcomePage from './Pages/WelcomePage';
 import { UserContext, UserProvider } from './Pages/UserContext';
 // import userType from React.createContext('none');
 
@@ -17,6 +18,7 @@ function App() {
       
       <Routes>
       <Route path="/" element={<SignUp />} />
+      <Route path="/Welcome" element={<WelcomePage />} />
       <Route path="/SignIn" element={<SignIn />} />
       <Route path='/CreateAccount' element ={<CreateAccount/>}/>
       <Route path='/UserProfile' element ={<UserProfile/>}/>
