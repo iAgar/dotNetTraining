@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const UserProfile = () =>{
 
-    const userDetails = useContext(UserContext);
+    const userDetails = useContext(UserContext).user;
 
     console.log(userDetails);
     const [error,setError] = useState('')

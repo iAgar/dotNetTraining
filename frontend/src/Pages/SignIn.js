@@ -28,14 +28,14 @@ const SignIn = () =>{
             .then((response)=>{
                 
                 console.log(response);
-                const user = response.data.user;
+                const user = response.data;
 
                 if(response.data.success){
                     alert("successful signin");
                     // console.log(user);
                     setUserDetails(user);
                     //send signed in user details using context and route to post-signin
-                    if(!user.isAdmin){
+                    if(!user.user.isAdmin){
                     <UserContext.Provider value='user'>
                         {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
                             {Navigation("/UserProfile")}
