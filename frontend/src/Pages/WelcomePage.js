@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './WelcomePage.css'; 
+import './WelcomePage.css'; // Create this CSS file for styling
 
 function WelcomePage() {
   return (
@@ -13,8 +13,8 @@ function WelcomePage() {
       </header>
       <main>
         <p>Secure, Simple, and Convenient Banking Services</p>
-        <Link to="/login">Log In</Link>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/SignIn">Log In</Link>
+        <Link to="/SignUp">Sign Up</Link>
       </main>
       <footer>
         <p>&copy; 2023 XYZ Bank. All rights reserved.</p>
