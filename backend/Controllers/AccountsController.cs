@@ -37,6 +37,7 @@ namespace backend.Controllers
         {
             t.IsDebit = true;
             t.Aid = aid;
+            t.TxnType = "W";
             var result = _accountService.PerformTransaction(t);
             return Ok(new { success = result, message = result ? "Withdrawal successful" : "Withdrawal failed" });
         }
@@ -47,6 +48,7 @@ namespace backend.Controllers
         {
             t.IsDebit = false;
             t.Aid = aid;
+            t.TxnType = "D";
             var result = _accountService.PerformTransaction(t);
             return Ok(new { success = result, message = result ? "Deposit successful" : "Deposit failed" });
         }

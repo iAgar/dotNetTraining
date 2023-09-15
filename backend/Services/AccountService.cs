@@ -1,13 +1,16 @@
 using backend.Models;
+using backend.Repository;
 
 namespace backend.Services
 {
     public class AccountService : IAccountService
     {
         private readonly AtmBankingContext _context;
-        public AccountService(AtmBankingContext context)
+        private readonly UserRepository _userRepository;
+        public AccountService(AtmBankingContext context, UserRepository userRepository)
         {
             _context = context;
+            _userRepository = userRepository;
         }
         public List<int> GetAccountIds(int uid)
         {
@@ -24,11 +27,17 @@ namespace backend.Services
         {
             try
             {
-                a.Balance = 0;
-                a.IsDeleted = false;
-                _context.Accounts.Add(a);
-                _context.SaveChanges();
-                return true;
+                if (_userRepository.GetRegisteredUserById(a.Userid ?? default(int)) != null)
+                {
+
+                    a.Balance = 0;
+                    a.AccType = a.AccType?.Trim().ToUpper()[0..3];
+                    a.IsDeleted = false;
+                    _context.Accounts.Add(a);
+                    _context.SaveChanges();
+                    return true;
+                }
+                throw new KeyNotFoundException();
             }
             catch (Exception)
             {
@@ -60,6 +69,7 @@ namespace backend.Services
                 Account? a = _context.Accounts.Find(t.Aid);
                 if (a != null)
                 {
+                    t.TxnTime = DateTime.Now;
                     if (t.IsDebit == false)
                     {
                         a.Balance += t.Amount;
