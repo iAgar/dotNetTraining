@@ -31,7 +31,7 @@ const SignIn = () =>{
                 const user = response.data;
 
                 if(response.data.success){
-                    alert("successful signin");
+                    alert("Sign In successful");
                     // console.log(user);
                     setUserDetails(user);
                     //send signed in user details using context and route to post-signin
@@ -52,7 +52,7 @@ const SignIn = () =>{
                     
                 }
                 else{
-                    alert("unsuccessful signin");
+                    alert("Sign in unsuccessful");
                 }
             })
         }catch(err){
@@ -62,18 +62,19 @@ const SignIn = () =>{
 
     return (
         <div class="login-container">
+            <h1>Sign In</h1>
             <form onSubmit={handleSubmit} class="login-form">
                 <br/><br/>
                 <div>
-                    email: <input name='email' type = 'email' class="form-input" value = {userDetails.email} onChange={handleChange} /> 
+                    Email: <br/> <input name='email' type = 'email' class="form-input" value = {userDetails.email} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    password: <input name='pass' type = 'alphanum' class="form-input" value = {userDetails.pass} onChange={handleChange} /> 
+                    Password: <br/> <input name='pass' type = 'alphanum' class="form-input" value = {userDetails.pass} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    <button type = 'submit'>Sign In</button>
+                    <button class="login-button" type = 'submit'>Sign In</button>
                 </div>
             </form>
         </div>

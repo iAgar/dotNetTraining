@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SignIn from './SignIn';
+import './SignUp.css'
 
 const SignUp = ()=>{
 
@@ -40,39 +41,40 @@ const SignUp = ()=>{
     }
     return (
         // <Router>
-        <div>
-            <h1>Sign Up page</h1>
-            <form onSubmit={handlesubmit}>
+        <div class="signup-container">
+            <br/><br/>
+            <h1>Sign Up</h1>
+            <form onSubmit={handlesubmit} class = "form-group form-label ">
                 <div>
-                    username: <br/><input name ='uname' type = 'text' value = {userDetails.uname} onChange={handleChange} /> 
+                    Username: <br/><input class = "form-input" name ='uname' type = 'text' value = {userDetails.uname} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    email: <br/><input name='email' type = 'email' value = {userDetails.email} onChange={handleChange}/> 
+                    Email: <br/><input class = "form-input" name='email' type = 'email' value = {userDetails.email} onChange={handleChange}/> 
                 </div>
                 <br/>
                 <div>
-                    dob: <br/><input name = 'dob' type = 'date' value = {userDetails.dob} onChange={handleChange} /> 
+                    Date of Birth: <br/><input class = "form-input" name = 'dob' type = 'date' value = {userDetails.dob} onChange={handleChange} /> 
                 </div>
                 <br/> 
                 <div>
-                    PAN: <br/><input name = 'proof' type = 'text' value = {userDetails.proof} onChange={handleChange} /> 
+                    PAN: <br/><input class = "form-input" name = 'proof' type = 'text' value = {userDetails.proof} onChange={handleChange} /> 
                 </div>
                 <br/>
              
                 <div>
-                    password: <br/><input name = 'pass' type = 'alphanum' value = {userDetails.pass} onChange={handleChange} ></input> 
+                    Password: <br/><input class = "form-input" name = 'pass' type = 'alphanum' value = {userDetails.pass} onChange={handleChange} ></input> 
                 </div>
                 <br/>
                 <div>
-                    <button type = 'submit'>Sign Up</button>
+                    <button type = 'submit' class="signup-button">Sign Up</button>
                 </div>
                 <br/>
                 
                 <div>
                     <ul>
                         <li>
-                            Already a user ? 
+                            Already a user? 
                             <Link to='/SignIn'>Sign In</Link>
                         </li>
                     </ul>
