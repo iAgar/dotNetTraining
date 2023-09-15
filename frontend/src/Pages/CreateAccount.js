@@ -29,10 +29,10 @@ const CreateAccount =()=>{
                 console.log(response);
                 const{status ,message} = response.data;
                 if(status == 'success'){
-                    alert("successful signup");
+                    alert("successful account creation");
                 }
                 else{
-                    alert("unsuccessful signup");
+                    alert("unsuccessful account creation");
                 }
             }
             ).catch((error)=>{
@@ -67,9 +67,6 @@ const CreateAccount =()=>{
                     homeBranch: <br/><input name = 'homeBranch' type = 'text' value = {userDetails.homeBranch} onChange={handleChange} /> 
                 </div>
                 <br/> 
-                <div>
-                    balance: <br/><input name = 'balance' type = 'number' value = {userDetails.balance} onChange={handleChange} /> 
-                </div>
                 <br/>
             
                 <div>

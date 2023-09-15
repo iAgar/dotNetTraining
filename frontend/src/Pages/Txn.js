@@ -19,7 +19,7 @@ const Txn =()=>{
         event.preventDefault();
 
         try {
-            axios.post('https://localhost:7180/api/Accounts/deposit/', userDetails).then((response) => {
+            axios.post(`https://localhost:7180/api/Accounts/deposit/${userDetails.aid}`, userDetails).then((response) => {
                 console.log(response);
                 alert(response.data.message);
             }).catch((error)=>{
