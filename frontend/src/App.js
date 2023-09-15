@@ -7,6 +7,7 @@ import UserProfile from './Pages/UserProfile';
 import Txn from './Pages/Txn';
 import WelcomePage from './Pages/WelcomePage';
 import { UserContext, UserProvider } from './Pages/UserContext';
+import Protectedroute from './Pages/Protectedroute';
 // import userType from React.createContext('none');
 
 
@@ -19,10 +20,12 @@ function App() {
       <Routes>
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/" element={<WelcomePage />} />
+      
       <Route path="/SignIn" element={<SignIn />} />
-      <Route path='/CreateAccount' element ={<CreateAccount/>}/>
-      <Route path='/UserProfile' element ={<UserProfile/>}/>
+      <Route path='/CreateAccount' element ={<Protectedroute><CreateAccount/></Protectedroute>}/>
+      <Route path='/UserProfile' element ={<Protectedroute><UserProfile/></Protectedroute>}/>
       <Route path='/Txn' element ={<Txn/>}/>
+      
       </Routes>
       
     </Router>

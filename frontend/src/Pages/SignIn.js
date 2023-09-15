@@ -36,7 +36,7 @@ const SignIn = () =>{
                     setUserDetails(user);
                     //send signed in user details using context and route to post-signin
                     if(!user.user.isAdmin){
-                    <UserContext.Provider value='user'>
+                    <UserContext.Provider value={user}>
                         {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
                             {Navigation("/UserProfile")}
                            

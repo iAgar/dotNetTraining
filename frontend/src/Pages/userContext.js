@@ -9,7 +9,7 @@ const UserDispatchContext = createContext(undefined);
 // A "provider" is used to encapsulate only the
 // components that needs the state in this context
 function UserProvider({ children }) {
-  const [userDetails, setUserDetails] = useState({});
+  const [userDetails, setUserDetails] = useState(null);
 
   return (
     <UserContext.Provider value={userDetails}>
