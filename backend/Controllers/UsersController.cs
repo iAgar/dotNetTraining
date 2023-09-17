@@ -38,5 +38,13 @@ namespace backend.Controllers
             }
             return Ok(new { success = true, message = "Login successful", token = result.Item2, user = result.Item1 });
         }
+
+        [HttpGet("me")]
+        [AllowAnonymous]
+        public ActionResult GetUserDetails()
+        {
+            var user = (RegisteredUser?)HttpContext.Items["User"];
+            return Ok(new { success = user != null, user });
+        }
     }
 }
