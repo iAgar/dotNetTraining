@@ -13,15 +13,17 @@ namespace backend.Authorisation
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context, IAuthService authService, IUserRepository userRepository, IAccountService accountService)
+        public async Task Invoke(HttpContext context, IPasswordUtils utils, IUserRepository userRepository, IAccountService accountService, IConfiguration configuration)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             var path = context.Request.Path.Value?.Split("/").Last();
-            var userId = authService.ValidateToken(token);
+            var userId = utils.ValidateToken(token, configuration);
             if (userId != null)
             {
                 // attach user to context on successful jwt validation
-                context.Items["User"] = userRepository.GetRegisteredUserById(userId.Value);
+                var user = userRepository.GetRegisteredUserById(userId.Value);
+                if (user != null) user.Pass = null;
+                context.Items["User"] = user;
                 context.Items["Path"] = path;
                 context.Items["Acc"] = accountService.GetAccountIds(userId.Value).ToArray();
             }
