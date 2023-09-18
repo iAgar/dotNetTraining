@@ -22,7 +22,6 @@ function App() {
       <Routes>
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/" element={<WelcomePage />} />
-      
       <Route path="/SignIn" element={<SignIn />} />
       <Route path='/CreateAccount' element ={<ProtectedrouteAdmin><CreateAccount/></ProtectedrouteAdmin>}/>
       <Route path='/UserProfile' element ={<Protectedroute><UserProfile/></Protectedroute>}/>

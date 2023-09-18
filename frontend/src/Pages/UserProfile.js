@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
 import { UserContext } from './UserContext';
 import { Link } from 'react-router-dom';
+import './UserProfile.css';
 
 const UserProfile = () =>{
 
@@ -14,24 +15,25 @@ const UserProfile = () =>{
 
 
     return(
-        <div >
+        <div className="user-details-container">
             <h1>
                 Profile Page
             </h1>
+
             <p style={{position:'absolute', left:'30px'}}><button><Link to='/Txn'>Make a Transaction</Link></button></p>
             <br/><br/><br/>
             <p style={{position:'absolute', left:'30px'}}><button><Link to='/ChangePin'>Change PIN</Link></button></p>
             <br/><br/>
 
-            <div> <h2>user_id :</h2> {userDetails.userid}</div>
+            <div className="user-info"> <h2>User ID :</h2> {userDetails.userid}
             <br/>
-            <div><h2>username:</h2> {userDetails.uname}</div>
+            <h2>Username:</h2> {userDetails.uname}
             <br/>
-            <div><h2>DOB:</h2>  {userDetails.dob}</div>     
+            <h2>Date of birth:</h2> {userDetails.dob}    
             <br/>
-            <div><h2>email:</h2>{userDetails.email}</div>          
+            <h2>Email:</h2> {userDetails.email}         
             <br/> 
-            <div><h2> PAN:</h2>{userDetails.proof}</div>   
+            <h2> PAN:</h2> {userDetails.proof}</div>   
             <br/>     
             
 

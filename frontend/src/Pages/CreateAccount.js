@@ -52,11 +52,11 @@ const CreateAccount =()=>{
             <h1>Create Account</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    userid: <br/><input name ='userid' type = 'number' value = {userDetails.userid} onChange={handleChange} /> 
+                    User ID: <br/><input name ='userid' type = 'number' value = {userDetails.userid} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    accType: <br/><select name='accType' value = {userDetails.accType} onChange={handleChange}>
+                    Account Type: <br/><select name='accType' value = {userDetails.accType} onChange={handleChange}>
                         <option>Savings</option>
                         <option>Current</option>
                         <option>Salary</option>
@@ -64,7 +64,7 @@ const CreateAccount =()=>{
                 </div>
                 <br/>
                 <div>
-                    homeBranch: <br/><input name = 'homeBranch' type = 'text' value = {userDetails.homeBranch} onChange={handleChange} /> 
+                    Home Branch: <br/><input name = 'homeBranch' type = 'text' value = {userDetails.homeBranch} onChange={handleChange} /> 
                 </div>
                 <br/> 
                 <br/>
