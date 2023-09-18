@@ -19,6 +19,8 @@ const UserProfile = () =>{
                 Profile Page
             </h1>
             <p style={{position:'absolute', left:'30px'}}><button><Link to='/Txn'>Make a Transaction</Link></button></p>
+            <br/><br/><br/>
+            <p style={{position:'absolute', left:'30px'}}><button><Link to='/ChangePin'>Change PIN</Link></button></p>
             <br/><br/>
 
             <div> <h2>user_id :</h2> {userDetails.userid}</div>
