@@ -38,6 +38,7 @@ builder.Services.AddCors();
 builder.Services.AddDbContext<AtmBankingContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPasswordUtils, PasswordUtils>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 var app = builder.Build();
