@@ -8,6 +8,8 @@ import Txn from './Pages/Txn';
 import WelcomePage from './Pages/WelcomePage';
 import { UserContext, UserProvider } from './Pages/userContext.js';
 import Protectedroute from './Pages/Protectedroute';
+import ChangePin from './Pages/ChangePin';
+import ProtectedrouteAdmin from './Pages/ProtectedrouteAdmin';
 // import userType from React.createContext('none');
 
 
@@ -20,12 +22,11 @@ function App() {
       <Routes>
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/" element={<WelcomePage />} />
-      
       <Route path="/SignIn" element={<SignIn />} />
-      <Route path='/CreateAccount' element ={<Protectedroute><CreateAccount/></Protectedroute>}/>
+      <Route path='/CreateAccount' element ={<ProtectedrouteAdmin><CreateAccount/></ProtectedrouteAdmin>}/>
       <Route path='/UserProfile' element ={<Protectedroute><UserProfile/></Protectedroute>}/>
       <Route path='/Txn' element ={<Txn/>}/>
-      
+      <Route path ='/ChangePin' element={<ChangePin/>}/>
       </Routes>
       
     </Router>
