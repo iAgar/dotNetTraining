@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import { UserContext } from './UserContext';
+import { UserContext } from './userContext';
 const ProtectedrouteAdmin =({children} )=> {
     const context = useContext(UserContext);
     if (!context || !context.user || !context.user.isAdmin) {

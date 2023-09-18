@@ -66,6 +66,7 @@ Authorization: `bearer ${userDetails.token}`
                 <br/>
                 <div>
                     Account Type: <br/><select name='accType' value = {userDetails.accType} onChange={handleChange}>
+                    <option disabled defaultChecked></option>
                         <option>Savings</option>
                         <option>Current</option>
                         <option>Salary</option>
