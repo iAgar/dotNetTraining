@@ -9,7 +9,7 @@ namespace backend.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        private IAccountService _accountService;
+        private readonly IAccountService _accountService;
         public AccountsController(IAccountService accountService)
         {
             _accountService = accountService;
@@ -33,7 +33,7 @@ namespace backend.Controllers
 
         [HttpPost("withdraw/{aid}")]
         [UserAccAuthorize]
-        public ActionResult Withdraw(int aid, Txn t)
+        public ActionResult Withdraw(int aid, TxnDto t)
         {
             t.IsDebit = true;
             t.Aid = aid;
@@ -44,7 +44,7 @@ namespace backend.Controllers
 
         [HttpPost("deposit/{aid}")]
         [UserAccAuthorize]
-        public ActionResult Deposit(int aid, Txn t)
+        public ActionResult Deposit(int aid, TxnDto t)
         {
             t.IsDebit = false;
             t.Aid = aid;
@@ -53,13 +53,13 @@ namespace backend.Controllers
             return Ok(new { success = result, message = result ? "Deposit successful" : "Deposit failed" });
         }
 
-        [HttpPost("transfer/{rec_aid}/{aid}")]
+        [HttpPost("transfer/{aid}")]
         [UserAccAuthorize]
-        public ActionResult Transfer(int rec_aid, int aid, Txn t)
+        public ActionResult Transfer(int aid, TxnDto t)
         {
             t.Aid = aid;
             t.TxnType = "T";
-            var result = _accountService.PerformTransfer(t, rec_aid);
+            var result = _accountService.PerformTransfer(t);
             return Ok(new { success = result, message = result ? "Transfer successful" : "Transfer failed" });
         }
 
@@ -106,5 +106,15 @@ namespace backend.Controllers
             return Ok(new { success = false, message = "No accounts found" });
         }
 
+
+        [HttpPost("/changepin/{aid}")]
+        [UserAccSelfAuthorize]
+        public ActionResult ChangePin(int aid, PinDto p)
+        {
+            p.Aid = aid;
+            bool result = _accountService.UpdatePin(p);
+            return Ok(new { success = result, message = "PIN change " + (result ? "" : "not ") + "successful" });
+
+        }
     }
 }

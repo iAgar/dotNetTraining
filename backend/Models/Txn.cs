@@ -19,5 +19,9 @@ public partial class Txn
 
     public bool? IsDebit { get; set; }
 
+    public string? Remarks { get; set; }
+
+    public string? Currency { get; set; }
+
     public virtual Account? AidNavigation { get; set; }
 }

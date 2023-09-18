@@ -6,6 +6,7 @@ namespace backend.Models;
 
 public partial class AtmBankingContext : DbContext
 {
+#nullable disable
     public AtmBankingContext()
     {
     }
@@ -15,6 +16,7 @@ public partial class AtmBankingContext : DbContext
     {
     }
 
+#nullable restore
     public virtual DbSet<Account> Accounts { get; set; }
 
     public virtual DbSet<RegisteredUser> RegisteredUsers { get; set; }
@@ -22,7 +24,7 @@ public partial class AtmBankingContext : DbContext
     public virtual DbSet<Txn> Txns { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-=> optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection");
+        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -38,6 +40,10 @@ public partial class AtmBankingContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("accType");
             entity.Property(e => e.Balance).HasColumnName("balance");
+            entity.Property(e => e.Currency)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("currency");
             entity.Property(e => e.HomeBranch)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -45,6 +51,10 @@ public partial class AtmBankingContext : DbContext
             entity.Property(e => e.IsDeleted)
                 .HasDefaultValueSql("((0))")
                 .HasColumnName("isDeleted");
+            entity.Property(e => e.Pin)
+                .HasMaxLength(128)
+                .IsUnicode(false)
+                .HasColumnName("pin");
             entity.Property(e => e.Userid).HasColumnName("userid");
 
             entity.HasOne(d => d.User).WithMany(p => p.Accounts)
@@ -91,6 +101,10 @@ public partial class AtmBankingContext : DbContext
             entity.Property(e => e.Tid).HasColumnName("tid");
             entity.Property(e => e.Aid).HasColumnName("aid");
             entity.Property(e => e.Amount).HasColumnName("amount");
+            entity.Property(e => e.Currency)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("currency");
             entity.Property(e => e.IsDebit)
                 .HasDefaultValueSql("((1))")
                 .HasColumnName("isDebit");
@@ -98,6 +112,10 @@ public partial class AtmBankingContext : DbContext
                 .HasMaxLength(6)
                 .IsUnicode(false)
                 .HasColumnName("loc");
+            entity.Property(e => e.Remarks)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("remarks");
             entity.Property(e => e.TxnTime)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("date")

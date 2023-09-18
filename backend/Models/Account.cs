@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace backend.Models;
 
@@ -7,6 +8,7 @@ public partial class Account
 {
     public int Aid { get; set; }
 
+    [Required]
     public int? Userid { get; set; }
 
     public string? HomeBranch { get; set; }
@@ -16,6 +18,11 @@ public partial class Account
     public string? AccType { get; set; }
 
     public bool? IsDeleted { get; set; }
+
+    [Required]
+    public string? Pin { get; set; }
+
+    public string? Currency { get; set; }
 
     public virtual ICollection<Txn> Txns { get; set; } = new List<Txn>();
 
