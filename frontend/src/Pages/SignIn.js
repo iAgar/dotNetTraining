@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { UserContext, UserDispatchContext } from './UserContext.js';
+import { UserContext, UserDispatchContext } from './userContext.js';
 import { useNavigate } from "react-router-dom";
 import UserProfile from './UserProfile.js';
 import './SignIn.css'; 

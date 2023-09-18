@@ -6,7 +6,7 @@ import CreateAccount from './Pages/CreateAccount';
 import UserProfile from './Pages/UserProfile';
 import Txn from './Pages/Txn';
 import WelcomePage from './Pages/WelcomePage';
-import { UserContext, UserProvider } from './Pages/UserContext';
+import { UserContext, UserProvider } from './Pages/userContext.js';
 import Protectedroute from './Pages/Protectedroute';
 // import userType from React.createContext('none');
 

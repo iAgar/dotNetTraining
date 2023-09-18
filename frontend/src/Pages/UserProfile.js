@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
-import { UserContext } from './UserContext';
+import { UserContext } from './userContext.js';
 import { Link } from 'react-router-dom';
 
 const UserProfile = () =>{

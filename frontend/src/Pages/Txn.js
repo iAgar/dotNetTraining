@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import  axios  from "axios";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./userContext.js";
 const Txn =()=>{
     const [txnDetails, setTxnDetails] = useState({
         'aid' : 0,
         'amount' : 0,
         'txnType' : '',
-        'loc': ''   
+        'loc': '',
+        'raid': 0
     });
 
     const userDetails = useContext(UserContext);
@@ -44,7 +45,7 @@ const Txn =()=>{
             <h1>Transaction Page</h1>
             <form onSubmit={handlesubmit}>
                 <div>
-                    Acct id: <br/><input name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
+                    Account id: <br/><input name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
@@ -60,10 +61,16 @@ const Txn =()=>{
                             <option disabled defaultChecked></option>
                         <option>Deposit</option>
                         <option>Withdraw</option>
-                        <option>Fund Transfer</option>
+                        <option>Transfer</option>
                        </select> 
                 </div>
-                <br></br>
+                <br/>
+                {txnDetails.txnType=='Transfer' &&
+                <div>
+                   Reciever Account id: <br/><input name='raid'  type = 'number' value = {txnDetails.raid} onChange={handleChange} /> 
+                </div>
+}
+                <br/>
                 <button type = 'submit'>
                     Submit
                 </button>
