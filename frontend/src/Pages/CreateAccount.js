@@ -80,6 +80,10 @@ Authorization: `bearer ${userDetails.token}`
                 <br/>
             
                 <div>
+                    Pin: <br/><input name = 'pin' type = 'text' value = {userDetails.pin} onChange={handleChange} /> 
+                </div>
+                <br/> 
+                <div>
                     <button type = 'submit'>Create Account</button>
                 </div>
             </form>

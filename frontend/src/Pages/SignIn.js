@@ -54,7 +54,9 @@ const SignIn = () =>{
                 else{
                     alert("Sign in unsuccessful");
                 }
-            })
+            }).catch((err)=>
+                console.log("error", err)
+            )
         }catch(err){
             console.log(err);
         }
