@@ -1,6 +1,7 @@
 ﻿using backend.Models;
 using backend.Repository;
 using backend.Services;
+using backend.Utils;
 
 namespace backend.Authorisation
 {
@@ -21,7 +22,8 @@ namespace backend.Authorisation
             if (userId != null)
             {
                 // attach user to context on successful jwt validation
-                var user = userRepository.GetRegisteredUserById(userId.Value);
+                var tuser = userRepository.GetRegisteredUserById(userId.Value);
+                var user = SystemExtension.Clone(tuser);
                 if (user != null) user.Pass = null;
                 context.Items["User"] = user;
                 context.Items["Path"] = path;
