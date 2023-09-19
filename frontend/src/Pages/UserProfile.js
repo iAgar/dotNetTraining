@@ -35,16 +35,12 @@ const UserProfile = () =>{
             </div>   
 
             <br/><br/>
-
-            {/* <Link to='/Txn'>
-            <button type="button" class="btn btn-primary">Primary</button>
-            </Link> */}
             
         
-            <button class="my-btn" role='button'><Link to='/Txn'>Make a Transaction</Link></button>
-            <br/><br/>
+            <Link to='/Txn'>Make a Transaction</Link>
+            <br/><br/><br/><br/>
 
-            <button class="my-btn" role='button'><Link to='/ChangePin'>Change PIN</Link></button>
+            <Link  to='/ChangePin'>Change PIN</Link>
             <br/><br/> 
             <button class="my-btn" role='button'><Link to='/ChequeDeposit'>Cheque Deposit</Link></button>
             <br/><br/> 

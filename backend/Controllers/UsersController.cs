@@ -18,7 +18,7 @@ namespace backend.Controllers
         }
 
         [HttpPost("register")]
-        //[AdminAuthorize]
+        [AdminAuthorize]
         public ActionResult Register(RegisteredUser request)
         {
             var result = _authService.Register(request);
