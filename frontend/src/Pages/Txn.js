@@ -7,7 +7,8 @@ const Txn =()=>{
         'amount' : 0,
         'txnType' : '',
         'loc': '',
-        'raid': 0
+        'rec_aid': 0,
+        'isDebit': true
     });
 
     const userDetails = useContext(UserContext);
@@ -21,6 +22,7 @@ const Txn =()=>{
     const handlesubmit = async(event) => {
         console.log(txnDetails);
         event.preventDefault();
+        
         const headers = {
             'Content-type': 'application/json',
             'Authorization': `bearer ${userDetails.token}`
@@ -39,6 +41,7 @@ const Txn =()=>{
         catch (error){
             setError(error.Message);
         }
+    
     }
     return (
         <div>
@@ -65,9 +68,12 @@ const Txn =()=>{
                        </select> 
                 </div>
                 <br/>
+                {(txnDetails.txnType=='Withdraw' || txnDetails.txnType=='Transfer') && <div>
+                    Pin: <br/><input name='pin' type='text' value={txnDetails.pin} onChange={handleChange}/></div>}
+                <br/>
                 {txnDetails.txnType=='Transfer' &&
                 <div>
-                   Reciever Account id: <br/><input name='raid'  type = 'number' value = {txnDetails.raid} onChange={handleChange} /> 
+                   Reciever Account id: <br/><input name='rec_aid'  type = 'number' value = {txnDetails.rec_aid} onChange={handleChange} /> 
                 </div>
 }
                 <br/>
