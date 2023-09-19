@@ -85,6 +85,7 @@ namespace backend.Services
                     a.IsDeleted = false;
 # warning currency is default now
                     a.Currency = "INR";
+                    a.Pin = _utils.HashPasswordV2(a.Pin ?? "0000".Trim()[0..4], _rng);
                     _context.Accounts.Add(a);
                     _context.SaveChanges();
                     return true;
