@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import  axios  from "axios";
 import { UserContext } from "./userContext.js";
+import './SignUp.css';
+
 const Txn =()=>{
     const [txnDetails, setTxnDetails] = useState({
         'aid' : 0,
@@ -44,19 +46,20 @@ const Txn =()=>{
     
     }
     return (
-        <div>
+        <div class="signup-container">
+            <br/><br/>
             <h1>Transaction Page</h1>
-            <form onSubmit={handlesubmit}>
+            <form onSubmit={handlesubmit} class = "form-group form-label">
                 <div>
-                    Account id: <br/><input name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
+                    Account id: <br/><input class = "form-input" name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    Amount: <br/><input name='amount'  type = 'number' value = {txnDetails.amount} onChange={handleChange}/> 
+                    Amount: <br/><input class = "form-input" name='amount'  type = 'number' value = {txnDetails.amount} onChange={handleChange}/> 
                 </div>
                 <br/> 
                 <div>
-                    Location: <br/><input name='loc' type= 'text' value={txnDetails.loc} onChange={handleChange}/>
+                    Location: <br/><input class = "form-input" name='loc' type= 'text' value={txnDetails.loc} onChange={handleChange}/>
                 </div>
                 <br/>
                 <div>
@@ -77,7 +80,7 @@ const Txn =()=>{
                 </div>
 }
                 <br/>
-                <button type = 'submit'>
+                <button type = 'submit' class="signup-button">
                     Submit
                 </button>
             </form>

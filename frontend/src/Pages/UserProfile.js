@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
 import { UserContext } from './userContext.js';
 import { Link } from 'react-router-dom';
-import './UserProfile.css';
-//import { Button } from 'react-bootstrap';
+//import './UserProfile.css';
+import "./SignIn.css";
 
 const UserProfile = () =>{
 
@@ -16,22 +16,25 @@ const UserProfile = () =>{
 
 
     return(
-        <div class='user-profile'>
-            <div  class="user-details-container">
-            <div class="user-info"> 
-                <h2>User Profile</h2>
-                <br />
-                <h4>User ID :</h4> {userDetails.userid}
+        <div class='login-container'>
+            <h1>User Profile</h1>
+            <div  class="login-form">
+                <br/><br/>
+                <div>
+                    User ID : <br/> <div class="form-input">{userDetails.userid}</div>
+                </div>
+
                 <br/>
-                <h4>Username:</h4> {userDetails.uname}
+                <div>Username: <div class="form-input">{userDetails.uname}</div>
+                </div>
                 <br/>
-                <h4>Date of birth:</h4> {userDetails.dob}    
+                <div>Date of birth: <div class="form-input">{userDetails.dob}  </div>  </div>
                 <br/>
-                <h4>Email:</h4> {userDetails.email}         
+                <div>Email: <div class="form-input">{userDetails.email}  </div>    </div>   
                 <br/> 
-                <h4> PAN:</h4> {userDetails.proof}
+                <div> PAN: <div class="form-input">{userDetails.proof} </div> </div>
                 <br/>  <br/>
-            </div>   
+              
             </div>   
 
             <br/><br/>
