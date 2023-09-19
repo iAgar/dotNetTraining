@@ -41,8 +41,8 @@ const UserProfile = () =>{
             <br/><br/><br/><br/>
 
             <Link  to='/ChangePin'>Change PIN</Link>
-            <br/><br/> 
-            <button class="my-btn" role='button'><Link to='/ChequeDeposit'>Cheque Deposit</Link></button>
+            <br/><br/> <br/><br/>
+            <Link to='/ChequeDeposit'>Cheque Deposit</Link>
             <br/><br/> 
 
         </div>
