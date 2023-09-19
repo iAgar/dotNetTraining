@@ -86,7 +86,12 @@ Authorization: `bearer ${userDetails.token}`
                 <div>
                     <button type = 'submit'>Create Account</button>
                 </div>
+                
             </form>
+            <br/>
+            <br/><br/>
+                <Link to='/SignUp'>Register User</Link>
+            
         </div>
     )
 
