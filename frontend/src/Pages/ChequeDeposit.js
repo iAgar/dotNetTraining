@@ -8,7 +8,8 @@ const ChequeDeposit =()=>{
         'txnType' : '',
         'loc': '',
         'rec_aid': 0,
-        'isDebit': true
+        'isDebit': true,
+        'remarks': ''
     });
 
     const userDetails = useContext(UserContext);
@@ -49,6 +50,10 @@ const ChequeDeposit =()=>{
             <form onSubmit={handlesubmit}>
                 <div>
                     Account id: <br/><input name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
+                </div>
+                <br/>
+                <div>
+                    Cheque Number: <br/><input name='remarks'  type = 'number' value = {txnDetails.ChequeNumber} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
