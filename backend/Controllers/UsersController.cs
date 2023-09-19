@@ -10,7 +10,7 @@ namespace backend.Controllers
     public class UsersController : ControllerBase
     {
 
-        private IAuthService _authService;
+        private readonly IAuthService _authService;
 
         public UsersController(IAuthService authService)
         {

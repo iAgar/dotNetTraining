@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
-using backend.Authorisation;
 using backend.Models;
 using backend.Repository;
+using backend.Utils;
 
 namespace backend.Services
 {
@@ -83,6 +83,8 @@ namespace backend.Services
                     a.Balance = 0;
                     a.AccType = a.AccType?.Trim().ToUpper()[0..3];
                     a.IsDeleted = false;
+# warning currency is default now
+                    a.Currency = "INR";
                     _context.Accounts.Add(a);
                     _context.SaveChanges();
                     return true;
