@@ -10,6 +10,7 @@ import { UserContext, UserProvider } from './Pages/userContext.js';
 import Protectedroute from './Pages/Protectedroute';
 import ChangePin from './Pages/ChangePin';
 import ProtectedrouteAdmin from './Pages/ProtectedrouteAdmin';
+import ChequeDeposit from './Pages/ChequeDeposit';
 // import userType from React.createContext('none');
 
 
@@ -27,6 +28,7 @@ function App() {
       <Route path='/UserProfile' element ={<Protectedroute><UserProfile/></Protectedroute>}/>
       <Route path='/Txn' element ={<Txn/>}/>
       <Route path ='/ChangePin' element={<ChangePin/>}/>
+      <Route path ='/ChequeDeposit' element={<ChequeDeposit/>}/>
       </Routes>
       
     </Router>

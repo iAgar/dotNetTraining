@@ -46,6 +46,8 @@ const UserProfile = () =>{
 
             <button class="my-btn" role='button'><Link to='/ChangePin'>Change PIN</Link></button>
             <br/><br/> 
+            <button class="my-btn" role='button'><Link to='/ChequeDeposit'>Cheque Deposit</Link></button>
+            <br/><br/> 
 
         </div>
     )
