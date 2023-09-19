@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { UserContext } from './userContext.js';
 import { Link } from 'react-router-dom';
 import './UserProfile.css';
+//import { Button } from 'react-bootstrap';
 
 const UserProfile = () =>{
 
@@ -15,28 +16,36 @@ const UserProfile = () =>{
 
 
     return(
-        <div className="user-details-container">
-            <h1>
-                Profile Page
-            </h1>
+        <div class='user-profile'>
+            <div  class="user-details-container">
+            <div class="user-info"> 
+                <h2>User Profile</h2>
+                <br />
+                <h4>User ID :</h4> {userDetails.userid}
+                <br/>
+                <h4>Username:</h4> {userDetails.uname}
+                <br/>
+                <h4>Date of birth:</h4> {userDetails.dob}    
+                <br/>
+                <h4>Email:</h4> {userDetails.email}         
+                <br/> 
+                <h4> PAN:</h4> {userDetails.proof}
+                <br/>  <br/>
+            </div>   
+            </div>   
 
-            <p style={{position:'absolute', left:'30px'}}><button><Link to='/Txn'>Make a Transaction</Link></button></p>
-            <br/><br/><br/>
-            <p style={{position:'absolute', left:'30px'}}><button><Link to='/ChangePin'>Change PIN</Link></button></p>
             <br/><br/>
 
-            <div className="user-info"> <h2>User ID :</h2> {userDetails.userid}
-            <br/>
-            <h2>Username:</h2> {userDetails.uname}
-            <br/>
-            <h2>Date of birth:</h2> {userDetails.dob}    
-            <br/>
-            <h2>Email:</h2> {userDetails.email}         
-            <br/> 
-            <h2> PAN:</h2> {userDetails.proof}</div>   
-            <br/>     
+            {/* <Link to='/Txn'>
+            <button type="button" class="btn btn-primary">Primary</button>
+            </Link> */}
             
+        
+            <button class="my-btn" role='button'><Link to='/Txn'>Make a Transaction</Link></button>
+            <br/><br/>
 
+            <button class="my-btn" role='button'><Link to='/ChangePin'>Change PIN</Link></button>
+            <br/><br/> 
 
         </div>
     )

@@ -52,7 +52,7 @@ const Txn =()=>{
                 </div>
                 <br/>
                 <div>
-                    amount: <br/><input name='amount'  type = 'number' value = {txnDetails.amount} onChange={handleChange}/> 
+                    Amount: <br/><input name='amount'  type = 'number' value = {txnDetails.amount} onChange={handleChange}/> 
                 </div>
                 <br/> 
                 <div>
@@ -73,7 +73,7 @@ const Txn =()=>{
                 <br/>
                 {txnDetails.txnType=='Transfer' &&
                 <div>
-                   Reciever Account id: <br/><input name='rec_aid'  type = 'number' value = {txnDetails.rec_aid} onChange={handleChange} /> 
+                   Reciever Account ID: <br/><input name='raid'  type = 'number' value = {txnDetails.raid} onChange={handleChange} /> 
                 </div>
 }
                 <br/>

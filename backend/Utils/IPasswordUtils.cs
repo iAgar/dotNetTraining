@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 using backend.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace backend.Authorisation
+namespace backend.Utils
 {
     public interface IPasswordUtils
     {

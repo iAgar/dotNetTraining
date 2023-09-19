@@ -6,7 +6,7 @@ using backend.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.IdentityModel.Tokens;
 
-namespace backend.Authorisation
+namespace backend.Utils
 {
     public class PasswordUtils : IPasswordUtils
     {
@@ -81,7 +81,7 @@ namespace backend.Authorisation
                 new Claim("isAdmin", user.IsAdmin.ToString()!),
             };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value!));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value!));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 

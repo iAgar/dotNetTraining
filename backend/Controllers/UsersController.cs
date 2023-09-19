@@ -10,7 +10,7 @@ namespace backend.Controllers
     public class UsersController : ControllerBase
     {
 
-        private IAuthService _authService;
+        private readonly IAuthService _authService;
 
         public UsersController(IAuthService authService)
         {
@@ -18,7 +18,7 @@ namespace backend.Controllers
         }
 
         [HttpPost("register")]
-        [AdminAuthorize]
+        //[AdminAuthorize]
         public ActionResult Register(RegisteredUser request)
         {
             var result = _authService.Register(request);

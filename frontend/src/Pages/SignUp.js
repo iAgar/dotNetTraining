@@ -26,9 +26,13 @@ const SignUp = ()=>{
     const handlesubmit = async(event) => {
         console.log(userDetails)
         event.preventDefault();
-
+        const headers = {
+            'Content-type': 'application/json',
+            //change userdetails here
+            'Authorization': `bearer ${userDetails.token}`
+        }
         try {
-            axios.post('https://localhost:7180/api/Users/register', userDetails).then((response) => {
+            axios.post('https://localhost:7180/api/Users/register', userDetails, headers).then((response) => {
                 console.log(response);
                 alert(response.data.message);
             }).catch((e)=>{
