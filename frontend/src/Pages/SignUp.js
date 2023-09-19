@@ -62,12 +62,12 @@ const SignUp = ()=>{
                 </div>
                 <br/> 
                 <div>
-                    PAN: <br/><input class = "form-input" name = 'proof' type = 'text' value = {userDetails.proof} onChange={handleChange} /> 
+                    PAN: <br/><input maxLength="10" pattern='[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}' class = "form-input" name = 'proof' type = 'text' value = {userDetails.proof} onChange={handleChange} /> 
                 </div>
                 <br/>
              
                 <div>
-                    Password: <br/><input class = "form-input" name = 'pass' type = 'alphanum' value = {userDetails.pass} onChange={handleChange} ></input> 
+                    Password: <br/><input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class = "form-input" name = 'pass' type = 'alphanum' value = {userDetails.pass} onChange={handleChange} ></input> 
                 </div>
                 <br/>
                 <div>
