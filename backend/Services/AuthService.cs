@@ -13,7 +13,7 @@ namespace backend.Services
 {
     public class AuthService : IAuthService
     {
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IPasswordUtils _utils;
         private readonly IConfiguration _configuration;
         private readonly RandomNumberGenerator _rng = RandomNumberGenerator.Create();
@@ -68,6 +68,10 @@ namespace backend.Services
                 var result_right = new Tuple<RegisteredUser?, string>(user1, token);
                 return result_right;
             }
+        }
+        public IEnumerable<RegisteredUser> GetRegisteredCustomers()
+        {
+            return _userRepository.GetAllCustomers();
         }
     }
 }
