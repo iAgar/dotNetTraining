@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import  axios  from "axios";
 import { UserContext } from "./userContext.js";
+import './SignUp.css';
+
 const ChequeDeposit =()=>{
     const [txnDetails, setTxnDetails] = useState({
         'aid' : 0,
@@ -45,23 +47,23 @@ const ChequeDeposit =()=>{
     
     }
     return (
-        <div>
+        <div class="signup-container">
             <h1>Cheque Deposit Page</h1>
-            <form onSubmit={handlesubmit}>
+            <form onSubmit={handlesubmit}  class = "form-group form-label">
                 <div>
-                    Account id: <br/><input name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
+                    Account id: <br/><input class = "form-input" name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    Cheque Number: <br/><input name='remarks'  type = 'number' value = {txnDetails.ChequeNumber} onChange={handleChange} /> 
+                    Cheque Number: <br/><input class = "form-input" name='remarks'  type = 'number' value = {txnDetails.ChequeNumber} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
-                    Amount: <br/><input name='amount'  type = 'number' value = {txnDetails.amount} onChange={handleChange}/> 
+                    Amount: <br/><input class = "form-input" name='amount'  type = 'number' value = {txnDetails.amount} onChange={handleChange}/> 
                 </div>
                 <br/> 
                 <div>
-                    Location: <br/><input name='loc' type= 'text' value={txnDetails.loc} onChange={handleChange}/>
+                    Location: <br/><input class = "form-input" name='loc' type= 'text' value={txnDetails.loc} onChange={handleChange}/>
                 </div>
                 <br/>
                 <div>
@@ -82,7 +84,7 @@ const ChequeDeposit =()=>{
                 </div>
 }
                 <br/>
-                <button type = 'submit'>
+                <button type = 'submit' class="signup-button">
                     Submit
                 </button>
             </form>

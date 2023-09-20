@@ -4,7 +4,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SignIn from './SignIn';
 import './SignUp.css'
-
+import { useEffect } from 'react';
+import { UserContext } from './userContext';
+import { useContext } from 'react';
 const SignUp = ()=>{
 
     
@@ -16,6 +18,8 @@ const SignUp = ()=>{
         'proof': '',
         'pass': ''
     });
+
+    const context = useContext(UserContext);
     
     const [error,setError] = useState('')
     const handleChange = (event) => {
@@ -29,10 +33,10 @@ const SignUp = ()=>{
         const headers = {
             'Content-type': 'application/json',
             //change userdetails here
-            'Authorization': `bearer ${userDetails.token}`
+            'Authorization': `bearer ${context.token}`
         }
         try {
-            axios.post('https://localhost:7180/api/Users/register', userDetails, headers).then((response) => {
+            axios.post('https://localhost:7180/api/Users/register', userDetails, {headers:headers}).then((response) => {
                 console.log(response);
                 alert(response.data.message);
             }).catch((e)=>{

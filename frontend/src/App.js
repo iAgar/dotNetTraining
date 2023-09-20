@@ -22,7 +22,7 @@ function App() {
     <Router>
       
       <Routes>
-      <Route path="/SignUp" element={<SignUp />} />
+      <Route path="/SignUp" element={<ProtectedrouteAdmin><SignUp/></ProtectedrouteAdmin>} />
       <Route path="/" element={<WelcomePage />} />
       <Route path="/SignIn" element={<SignIn />} />
       <Route path='/CreateAccount' element ={<ProtectedrouteAdmin><CreateAccount/></ProtectedrouteAdmin>}/>
