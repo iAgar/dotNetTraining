@@ -25,14 +25,14 @@ namespace backend.Authorisation
             }
             catch (Exception)
             {
-                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                context.Result = new JsonResult(new { success = false, message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
             }
 
             if (accs?.Any(e => e == aid) == true)
                 return;
 
             // not logged in or role not authorized
-            context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            context.Result = new JsonResult(new { success = false, message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
     }
 }
