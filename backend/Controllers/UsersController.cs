@@ -2,6 +2,7 @@
 using backend.Models;
 using backend.Services;
 using backend.Authorisation;
+using backend.Utils;
 
 namespace backend.Controllers
 {
@@ -53,6 +54,14 @@ namespace backend.Controllers
         {
             var res = _authService.GetRegisteredCustomers();
             return Ok(new { success = res.Count() != 0, users = res });
+        }
+
+        [HttpGet("currencies")]
+        [AllowAnonymous]
+
+        public ActionResult GetAllCurrencies()
+        {
+            return Ok(CurrencyList.GetCurrencies());
         }
     }
 }

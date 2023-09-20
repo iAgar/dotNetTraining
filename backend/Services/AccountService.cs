@@ -45,9 +45,16 @@ namespace backend.Services
 
         public double CurrencyConverter(string? c1, string? c2, double amt)
         {
-#warning currency logic is not yet implemented
-            // TODO: currency logic
-            return amt;
+            try
+            {
+                return CurrencyList.GetConversionRate(c1??"", c2??"") * amt;
+            }
+            catch (Exception)
+            {
+
+                return amt;
+            }
+
         }
 
         private bool CheckPin(Account a, string? pin)
@@ -78,13 +85,11 @@ namespace backend.Services
         {
             try
             {
-                if (_userRepository.GetRegisteredUserById(a.Userid ?? default) != null)
+                if (_userRepository.GetRegisteredUserById(a.Userid ?? default) != null && CurrencyList.CheckCurrency(a.Currency??"") != null)
                 {
                     a.Balance = 0;
                     a.AccType = a.AccType?.Trim().ToUpper()[0..3];
                     a.IsDeleted = false;
-# warning currency is default now
-                    a.Currency = "INR";
                     a.Pin = _utils.HashPasswordV2(a.Pin ?? "0000".Trim()[0..4], _rng);
                     _context.Accounts.Add(a);
                     _context.SaveChanges();
