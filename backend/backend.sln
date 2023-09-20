@@ -4,11 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "backend", "backend.csproj", "{125BACE0-0EEB-41C5-A8D6-F20EBFB71E24}"
-<<<<<<< Updated upstream
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend.Tests", "backend.Tests\backend.Tests.csproj", "{3EF019A0-9C4A-430A-8C6D-AF445CAAFCB1}"
-=======
->>>>>>> Stashed changes
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend.Tests", "..\backend.Tests\backend.Tests.csproj", "{BADE2DC0-F4B2-4D85-9B8F-68DAD5105039}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +17,10 @@ Global
 		{125BACE0-0EEB-41C5-A8D6-F20EBFB71E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{125BACE0-0EEB-41C5-A8D6-F20EBFB71E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{125BACE0-0EEB-41C5-A8D6-F20EBFB71E24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3EF019A0-9C4A-430A-8C6D-AF445CAAFCB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3EF019A0-9C4A-430A-8C6D-AF445CAAFCB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3EF019A0-9C4A-430A-8C6D-AF445CAAFCB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3EF019A0-9C4A-430A-8C6D-AF445CAAFCB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BADE2DC0-F4B2-4D85-9B8F-68DAD5105039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BADE2DC0-F4B2-4D85-9B8F-68DAD5105039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BADE2DC0-F4B2-4D85-9B8F-68DAD5105039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BADE2DC0-F4B2-4D85-9B8F-68DAD5105039}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
