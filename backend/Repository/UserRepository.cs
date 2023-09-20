@@ -21,7 +21,15 @@ namespace backend.Repository
 
         public IEnumerable<RegisteredUser> GetAllCustomers()
         {
-            return _context.RegisteredUsers.Where(e => e.IsAdmin != true).ToList();
+            return _context.RegisteredUsers
+                .Where(e => e.IsAdmin != true)
+                .Select(e => new RegisteredUser
+                {
+                    Userid = e.Userid,
+                    Uname = e.Uname,
+                    Email = e.Email
+                })
+                .ToList();
         }
         public RegisteredUser? GetRegisteredUserById(int uId)
         {

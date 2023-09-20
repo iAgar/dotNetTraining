@@ -46,5 +46,13 @@ namespace backend.Controllers
             var user = (RegisteredUser?)HttpContext.Items["User"];
             return Ok(new { success = user != null, user });
         }
+
+        [HttpGet("all")]
+        [AdminAuthorize]
+        public ActionResult GetAllUsers()
+        {
+            var res = _authService.GetRegisteredCustomers();
+            return Ok(new { success = res.Count() != 0, users = res });
+        }
     }
 }

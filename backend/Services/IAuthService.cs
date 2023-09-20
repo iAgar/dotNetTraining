@@ -7,5 +7,6 @@ namespace backend.Services
     {
         Tuple<RegisteredUser?, string> Login(UserDto user);
         int Register(RegisteredUser user);
+        IEnumerable<RegisteredUser> GetRegisteredCustomers();
     }
 }
