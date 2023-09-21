@@ -32,12 +32,7 @@ const [users, setUsers] = useState([])
                   </tr>
                   {users.map(user => {return (
                     <tr key={user.userid}>
-                      <td><Link to={
-                        {
-                            pathname:'/accounts',
-                            userId: `${user.userid}`
-                        }
-                      }>{user.userid}</Link></td>
+                      <td><Link to={`/accounts/${user.userid}`}>{user.userid}</Link></td>
                       <td>{user.uname}</td>
                       <td>{user.email}</td>
                     </tr>

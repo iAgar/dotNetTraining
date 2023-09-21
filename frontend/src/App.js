@@ -12,6 +12,7 @@ import ChangePin from './Pages/ChangePin';
 import ProtectedrouteAdmin from './Pages/ProtectedrouteAdmin';
 import ChequeDeposit from './Pages/ChequeDeposit';
 import AdminPostSignIn from './Pages/AdminPostSignIn';
+import Accounts from './Pages/Accounts';
 // import userType from React.createContext('none');
 
 
@@ -31,6 +32,7 @@ function App() {
       <Route path ='/ChangePin' element={<ChangePin/>}/>
       <Route path ='/ChequeDeposit' element={<ChequeDeposit/>}/>
       <Route path ='/AdminPostSignIn' element={<AdminPostSignIn/>}/>
+      <Route path = '/accounts/:userid' element={<Accounts/>}/>
       </Routes>
       
     </Router>
