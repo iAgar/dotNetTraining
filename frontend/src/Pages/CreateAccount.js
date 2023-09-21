@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SignIn from './SignIn';
 import { UserContext } from "./userContext.js";
+import './SignUp.css';
 
 const CreateAccount =()=>{
     const [accDetails, setAccDetails] = useState({
@@ -57,11 +58,12 @@ Authorization: `bearer ${userDetails.token}`
         }
     }
     return (
-        <div>
+        <div class="signup-container">
+            <br/><br/>
             <h1>Create Account</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} class = "form-group form-label">
                 <div>
-                    User ID: <br/><input name ='userid' type = 'number' value = {userDetails.userid} onChange={handleChange} /> 
+                    User ID: <br/><input class = "form-input" name ='userid' type = 'number' value = {userDetails.userid} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
@@ -74,17 +76,17 @@ Authorization: `bearer ${userDetails.token}`
                 </div>
                 <br/>
                 <div>
-                    Home Branch: <br/><input name = 'homeBranch' type = 'text' value = {userDetails.homeBranch} onChange={handleChange} /> 
+                    Home Branch: <br/><input class = "form-input" name = 'homeBranch' type = 'text' value = {userDetails.homeBranch} onChange={handleChange} /> 
                 </div>
                 <br/> 
                 <br/>
             
                 <div>
-                    Pin: <br/><input name = 'pin' type = 'text' value = {userDetails.pin} onChange={handleChange} /> 
+                    Pin: <br/><input class = "form-input" name = 'pin' type = 'text' value = {userDetails.pin} onChange={handleChange} /> 
                 </div>
                 <br/> 
                 <div>
-                    <button type = 'submit'>Create Account</button>
+                    <button type = 'submit' class="signup-button">Create Account</button>
                 </div>
                 
             </form>
