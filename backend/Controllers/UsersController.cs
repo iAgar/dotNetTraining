@@ -61,7 +61,7 @@ namespace backend.Controllers
 
         public ActionResult GetAllCurrencies()
         {
-            return Ok(CurrencyList.GetCurrencies());
+            return Ok(new { success = true, message = "Fetch successful", currency = CurrencyList.GetCurrencies() });
         }
     }
 }
