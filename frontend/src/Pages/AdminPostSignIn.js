@@ -8,9 +8,14 @@ const AdminPostSignIn = () =>{
 
 const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
+  const userDetails = useContext(UserContext);
   useEffect(() => {
     setLoading(true);
-    axios.get("https://localhost:7180/api/Users/all").then((response) => {
+    const headers = {
+      'Content-type': 'application/json',
+      'Authorization': `bearer ${userDetails.token}`
+  }
+    axios.get("https://localhost:7180/api/Users/all", {headers: headers}).then((response) => {
         console.log(response);
         setUsers(response.data.users);
         setLoading(false)
