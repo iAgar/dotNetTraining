@@ -24,7 +24,10 @@ public partial class AtmBankingContext : DbContext
     public virtual DbSet<Txn> Txns { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection");
+    {
+        if (!optionsBuilder.IsConfigured)
+            optionsBuilder.UseSqlServer("Name=ConnectionStrings:DefaultConnection");
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
