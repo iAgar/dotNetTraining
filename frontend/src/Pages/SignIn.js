@@ -29,7 +29,7 @@ const SignIn = () =>{
                 
                 console.log(response);
                 const user = response.data;
-
+                localStorage.setItem('user', JSON.stringify(user));
                 if(response.data.success){
                     alert("Sign In successful");
                     // console.log(user);

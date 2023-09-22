@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import  axios  from "axios";
 import { UserContext } from "./userContext.js";
 import './SignUp.css';
+import { useEffect } from "react";
 
 const Txn =()=>{
     const [txnDetails, setTxnDetails] = useState({
@@ -12,23 +13,45 @@ const Txn =()=>{
         'rec_aid': 0,
         'isDebit': true
     });
-
+    
     const userDetails = useContext(UserContext);
+    const headers = {
+        'Content-type': 'application/json',
+        'Authorization': `bearer ${userDetails.token}`
+    }
 
     const [error,setError] = useState('')
+
+    const[accts,setAccts] = useState(['1234','1002']);
+    
+    useEffect(() => {
+        try{
+            axios.get(`https://localhost:7180/api/Accounts/all/${userDetails.user.userid}`, {headers:headers})
+            .then((res)=>{
+                console.log(res);
+                
+                if( res.success){
+                    setAccts(res.accounts);
+                }
+            }).catch((error)=>{
+                console.log(error);
+                alert(error);
+            })
+        }
+        catch(error){
+            setError(error.Message);
+        }
+    },[]);
 
     const handleChange = (event) => {
         setTxnDetails({...txnDetails, [event.target.name] : event.target.value})
         // console.log(userDetails)
     }
     const handlesubmit = async(event) => {
-        console.log(txnDetails);
+        // console.log(txnDetails);
         event.preventDefault();
         
-        const headers = {
-            'Content-type': 'application/json',
-            'Authorization': `bearer ${userDetails.token}`
-        }
+        
         try {
             axios.post(`https://localhost:7180/api/Accounts/${txnDetails.txnType.toLowerCase()}/${txnDetails.aid}`, {...txnDetails, txnType: ""}, {
                 headers:headers
@@ -51,7 +74,14 @@ const Txn =()=>{
             <h1>Transaction Page</h1>
             <form onSubmit={handlesubmit} class = "form-group form-label">
                 <div>
-                    Account id: <br/><input class = "form-input" name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
+                    Account id: <br/><select class = "form-input" name='aid'  value = {txnDetails.aid} onChange={handleChange} >
+                    {
+                        
+                        accts.map( (acct) => <option>{acct}</option> )
+                    }
+                        
+                       </select>  
+                       
                 </div>
                 <br/>
                 <div>
