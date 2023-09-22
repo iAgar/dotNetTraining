@@ -94,9 +94,9 @@ namespace backend.Controllers
 
         [HttpGet("all/{uid}")]
         [UserIdAuthorize]
-        public ActionResult GetAllAccountIds(int uid)
+        public ActionResult GetAllAccounts(int uid)
         {
-            var accounts = _accountService.GetAccountIds(uid);
+            var accounts = _accountService.GetAccounts(uid);
             bool result = accounts.Count != 0;
             if (result)
             {
