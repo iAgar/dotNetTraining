@@ -28,6 +28,19 @@ namespace backend.Services
                 return new List<int>();
             }
         }
+        public List<Account?> GetAccounts(int uid)
+        {
+            try
+            {
+                return _context.Accounts.Where(c => c.Userid == uid)
+                    .ToList()
+                    .ConvertAll(e => { var x = SystemExtension.Clone(e); if (x != null) x.Pin = null; return x; });
+            }
+            catch (Exception)
+            {
+                return new List<Account?>();
+            }
+        }
         public Txn CreateTxnObj(TxnDto t1, Account a, bool isDebit)
         {
             return new Txn()
@@ -47,7 +60,7 @@ namespace backend.Services
         {
             try
             {
-                return CurrencyList.GetConversionRate(c1??"", c2??"") * amt;
+                return CurrencyList.GetConversionRate(c1 ?? "", c2 ?? "") * amt;
             }
             catch (Exception)
             {
@@ -85,7 +98,7 @@ namespace backend.Services
         {
             try
             {
-                if (_userRepository.GetRegisteredUserById(a.Userid ?? default) != null && CurrencyList.CheckCurrency(a.Currency??"") != null)
+                if (_userRepository.GetRegisteredUserById(a.Userid ?? default) != null && CurrencyList.CheckCurrency(a.Currency ?? "") != null)
                 {
                     a.Balance = 0;
                     a.AccType = a.AccType?.Trim().ToUpper()[0..3];
