@@ -22,6 +22,12 @@ const Accounts = (props) => {
         setLoading(false)
       })
   }, [])
+  const deleteUser = (aid) =>{
+    axios.delete(`https://localhost:7180/api/Accounts/delete/${aid}`, {headers:{
+        'Content-type': 'application/json',
+        'Authorization': `bearer ${userDetails.token}`
+    }}).then(window.location.reload())
+  }
 
   return (
     <div>
@@ -31,14 +37,20 @@ const Accounts = (props) => {
             <table border={1}>
               <tr>
                 <th>Account Id</th>
-                {/* <th>Balance</th>
-         */}
+                <th>Balance</th>
+                <th>Currency</th>
+                <th>Is Deleted</th>
+                <th>Home Branch</th>
               </tr>
               {accounts.map(acc => {return (
-                <tr key={acc}>
-                  <td>{acc}</td>
-                  <td><button onClick={()=>{axios.delete(`https://localhost:7180/api/Accounts/delete/${acc}`)}}>Delete</button></td>
-                </tr>
+                <tr key={acc.aid}>
+                  <td>{acc.aid}</td>
+                  <td>{acc.balance}</td>
+                  <td>{acc.currency}</td>
+                  {(acc.isDeleted===false)&&<td>False</td>}{(acc.isDeleted===true)&&<td>True</td>}
+                  <td>{acc.homeBranch}</td>{(acc.isDeleted===false)&&
+                  <td><button onClick={deleteUser(acc.aid)}>Delete</button></td>
+                  }</tr>
               )})}
             </table>
             </div>
