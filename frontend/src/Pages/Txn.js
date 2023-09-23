@@ -22,7 +22,7 @@ const Txn =()=>{
 
     const [error,setError] = useState('')
 
-    const[accts,setAccts] = useState(['1234','1002']);
+    const[accts,setAccts] = useState([]);
     
     useEffect(() => {
         try{
@@ -30,8 +30,9 @@ const Txn =()=>{
             .then((res)=>{
                 console.log(res);
                 
-                if( res.success){
-                    setAccts(res.accounts);
+                if( res.data.success){
+                    setAccts(res.data.accounts);
+                    console.log(res.data.accounts);
                 }
             }).catch((error)=>{
                 console.log(error);
