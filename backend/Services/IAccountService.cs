@@ -6,7 +6,7 @@ namespace backend.Services
     {
         bool CreateAccount(Account a);
         List<int> GetAccountIds(int uid);
-        List<Account?> GetAccounts(int uid);
+        List<Account> GetAccounts(int uid);
         bool DeleteAccount(int? aid);
         bool PerformTransaction(TxnDto t1);
         bool PerformTransfer(TxnDto t1);

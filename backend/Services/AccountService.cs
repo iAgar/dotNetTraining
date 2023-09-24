@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using backend.Models;
 using backend.Repository;
 using backend.Utils;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Services
 {
@@ -28,24 +29,27 @@ namespace backend.Services
                 return new List<int>();
             }
         }
-        public List<Account?> GetAccounts(int uid)
+
+        public List<Account> GetAccounts(int uid)
         {
             try
             {
-                return _context.Accounts.Where(c => c.Userid == uid)
-                    .ToList()
-                    .ConvertAll(e => { var x = SystemExtension.Clone(e); if (x != null) x.Pin = null; return x; });
+                var r = _context.Accounts.AsNoTracking()
+                    .Where(c => c.Userid == uid).ToList();
+                r.ForEach(e => e.Pin = null);
+                return r;
             }
             catch (Exception)
             {
-                return new List<Account?>();
+                return new List<Account>();
             }
         }
+
         public Txn CreateTxnObj(TxnDto t1, Account a, bool isDebit)
         {
             return new Txn()
             {
-                Aid = t1.Aid,
+                Aid = a.Aid,
                 Amount = t1.Amount,
                 TxnTime = DateTime.Now,
                 Loc = t1.Loc,
@@ -64,7 +68,6 @@ namespace backend.Services
             }
             catch (Exception)
             {
-
                 return amt;
             }
 
@@ -115,6 +118,7 @@ namespace backend.Services
                 return false;
             }
         }
+
         public bool DeleteAccount(int? aid)
         {
             try
@@ -133,6 +137,7 @@ namespace backend.Services
                 return false;
             }
         }
+
         public bool PerformTransaction(TxnDto t1)
         {
             try
@@ -177,10 +182,12 @@ namespace backend.Services
                 {
                     var t = CreateTxnObj(t1, a, true);
                     var t2 = CreateTxnObj(t1, a2, false);
+                    var x = CurrencyConverter(a.Currency, a2.Currency, t1.Amount);
                     if (CheckPin(a, t1.Pin) && t.Amount <= a.Balance)
                     {
+                        t2.Amount = x;
                         a.Balance -= t.Amount;
-                        a2.Balance += CurrencyConverter(a.Currency, a2.Currency, t1.Amount);
+                        a2.Balance += x;
                         _context.Txns.Add(t);
                         _context.Txns.Add(t2);
                         _context.SaveChanges();
@@ -194,6 +201,7 @@ namespace backend.Services
                 return false;
             }
         }
+
         public List<int> GetTxnIds(int aid)
         {
             try
@@ -215,7 +223,10 @@ namespace backend.Services
         {
             var res = _context.Txns.Find(tid);
             if (res != null)
+            {
+                _context.Entry(res).State = EntityState.Detached;
                 res.AidNavigation = null;
+            }
             return res;
         }
 
@@ -223,7 +234,11 @@ namespace backend.Services
         {
             var res = _context.Accounts.Find(aid);
             if (res != null)
+            {
+                _context.Entry(res).State = EntityState.Detached;
                 res.User = null;
+                res.Pin = null;
+            }
             return res;
         }
     }
