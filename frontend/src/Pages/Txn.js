@@ -76,9 +76,11 @@ const Txn =()=>{
             <form onSubmit={handlesubmit} class = "form-group form-label">
                 <div>
                     Account id: <br/><select class = "form-input" name='aid'  value = {txnDetails.aid} onChange={handleChange} >
+                    <option>select account-id</option>
                     {
                         
-                        accts.map( (acct) => <option>{acct}</option> )
+                        
+                        accts.map( (acct) => <option>{acct.aid}</option> )
                     }
                         
                        </select>  
