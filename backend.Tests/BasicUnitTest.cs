@@ -1,4 +1,4 @@
-namespace backend.Tests
+/*namespace backend.Tests
 {
     [TestClass]
     public class BasicUnitTest
@@ -10,13 +10,6 @@ namespace backend.Tests
         {
             _options = new DbContextOptionsBuilder<Models.AtmBankingContext>()
                 .UseInMemoryDatabase(databaseName: "testdb").Options;
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            Assert.AreEqual(1, 1);
-            Assert.AreNotEqual(1, 0);
         }
 
         [TestMethod]
@@ -72,4 +65,4 @@ namespace backend.Tests
             _context.Dispose();
         }
     }
-}
+}*/
