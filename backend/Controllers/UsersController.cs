@@ -31,11 +31,9 @@ namespace backend.Controllers
         public ActionResult Login(UserDto request)
         {
             var result = _authService.Login(request);
-
             if (result.Item1 == null)
             {
-                return Ok(new { success = false, message = result.Item2 })
-;
+                return Ok(new { success = false, message = result.Item2 });
             }
             return Ok(new { success = true, message = "Login successful", token = result.Item2, user = result.Item1 });
         }
@@ -58,7 +56,6 @@ namespace backend.Controllers
 
         [HttpGet("currencies")]
         [AllowAnonymous]
-
         public ActionResult GetAllCurrencies()
         {
             return Ok(new { success = true, message = "Fetch successful", currency = CurrencyList.GetCurrencies() });

@@ -89,7 +89,7 @@ namespace backend.Utils
                 claims: claims,
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds
-                );
+            );
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
