@@ -16,10 +16,19 @@ import Accounts from './Pages/Accounts';
 // import userType from React.createContext('none');
 
 
+
 function App() {
+
+
+  const logout = () =>{
+    localStorage.removeItem('user');
+    window.location.reload();
+  };
+
   return (
     <UserProvider>
     <div className='App'>
+    
     <Router>
       
       <Routes>
@@ -28,14 +37,16 @@ function App() {
       <Route path="/SignIn" element={<SignIn />} />
       <Route path='/CreateAccount' element ={<ProtectedrouteAdmin><CreateAccount/></ProtectedrouteAdmin>}/>
       <Route path='/UserProfile' element ={<Protectedroute><UserProfile/></Protectedroute>}/>
-      <Route path='/Txn' element ={<Txn/>}/>
+      <Route path='/Txn' element ={<Protectedroute><Txn/></Protectedroute>}/>
       <Route path ='/ChangePin' element={<ChangePin/>}/>
       <Route path ='/ChequeDeposit' element={<ChequeDeposit/>}/>
-      <Route path ='/AdminPostSignIn' element={<AdminPostSignIn/>}/>
+      <Route path ='/AdminPostSignIn' element={<ProtectedrouteAdmin><AdminPostSignIn/></ProtectedrouteAdmin>}/>
       <Route path = '/accounts/:userid' element={<Accounts/>}/>
       </Routes>
       
     </Router>
+    <br/>
+    <button style={{width:'100px',height:'50px'}} onClick={logout}>Log Out</button>
     </div>
     </UserProvider>
    
