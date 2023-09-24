@@ -53,6 +53,7 @@ namespace backend.Repository
             return result;
 
         }
+
         public RegisteredUser? UpdateRegisteredUser(RegisteredUser userEntity)
         {
             RegisteredUser? registeredUser = null;
@@ -65,6 +66,7 @@ namespace backend.Repository
             }
             return registeredUser;
         }
+
         public void DeleteRegisteredUser(int uId)
         {
             RegisteredUser? userEntity = GetRegisteredUserById(uId);

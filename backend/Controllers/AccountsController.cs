@@ -81,7 +81,12 @@ namespace backend.Controllers
         public ActionResult GetTransactionById(int tid)
         {
             var result = _accountService.GetTxnById(tid);
-            return Ok(new { success = result == null, details = result });
+            return Ok(new
+            {
+                success = result != null,
+                message = "Transacion details " + result != null ? "" : "not " + "found",
+                details = result
+            });
         }
 
         [HttpGet("details/{aid}")]
@@ -89,7 +94,12 @@ namespace backend.Controllers
         public ActionResult GetAccountById(int aid)
         {
             var result = _accountService.GetAccountById(aid);
-            return Ok(new { success = result == null, details = result });
+            return Ok(new
+            {
+                success = result != null,
+                message = "Account details " + result != null ? "" : "not " + "found",
+                details = result
+            });
         }
 
         [HttpGet("all/{uid}")]
