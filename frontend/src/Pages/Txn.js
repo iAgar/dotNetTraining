@@ -107,7 +107,7 @@ const Txn =()=>{
                 </div>
                 <br/>
                 {(txnDetails.txnType=='Withdraw' || txnDetails.txnType=='Transfer') && <div>
-                    Pin: <br/><input class = "form-input" name='pin' type='text' value={txnDetails.pin} onChange={handleChange}/></div>}
+                    Pin: <br/><input class = "form-input" name='pin' type='password' value={txnDetails.pin} onChange={handleChange}/></div>}
                 <br/>
                 {txnDetails.txnType=='Transfer' &&
                 <div>

@@ -74,7 +74,7 @@ const SignIn = () =>{
                 </div>
                 <br/>
                 <div>
-                    Password: <br/> <input name='pass' type = 'alphanum' class="form-input" value = {userDetails.pass} onChange={handleChange} /> 
+                    Password: <br/> <input name='pass' type = 'password' class="form-input" value = {userDetails.pass} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>

@@ -84,7 +84,7 @@ Authorization: `bearer ${userDetails.token}`
                 <br/>
             
                 <div>
-                    Pin: <br/><input class = "form-input" name = 'pin' type = 'text' value = {userDetails.pin} onChange={handleChange} /> 
+                    Pin: <br/><input class = "form-input" name = 'pin' type = 'password' value = {userDetails.pin} onChange={handleChange} /> 
                 </div>
                 <br/>
                 <div>
