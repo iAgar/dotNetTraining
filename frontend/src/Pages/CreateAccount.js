@@ -84,6 +84,10 @@ Authorization: `bearer ${userDetails.token}`
                 <div>
                     Pin: <br/><input class = "form-input" name = 'pin' type = 'text' value = {userDetails.pin} onChange={handleChange} /> 
                 </div>
+                <br/>
+                <div>
+                    Currency: <br/><input class = "form-input" name = 'currency' type = 'text' value = {userDetails.currency} onChange={handleChange} /> 
+                </div>
                 <br/> 
                 <div>
                     <button type = 'submit' class="signup-button">Create Account</button>
