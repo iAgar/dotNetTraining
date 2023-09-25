@@ -45,8 +45,8 @@ function App() {
       <Route path='/CreateAccount' element ={<ProtectedrouteAdmin><CreateAccount/></ProtectedrouteAdmin>}/>
       <Route path='/UserProfile' element ={<Protectedroute><UserProfile/></Protectedroute>}/>
       <Route path='/Txn' element ={<Protectedroute><Txn/></Protectedroute>}/>
-      <Route path ='/ChangePin' element={<ChangePin/>}/>
-      <Route path ='/ChequeDeposit' element={<ChequeDeposit/>}/>
+      <Route path ='/ChangePin' element={<Protectedroute><ChangePin/></Protectedroute>}/>
+      <Route path ='/ChequeDeposit' element={<Protectedroute><ChequeDeposit/></Protectedroute>}/>
       <Route path ='/AdminPostSignIn' element={<ProtectedrouteAdmin><AdminPostSignIn/></ProtectedrouteAdmin>}/>
       <Route path = '/accounts/:userid' element={<Accounts/>}/>
       </Routes>

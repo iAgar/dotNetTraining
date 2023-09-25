@@ -12,7 +12,8 @@ const Txn =()=>{
         'txnType' : '',
         'loc': '',
         'rec_aid': 0,
-        'isDebit': true
+        'isDebit': true,
+        'currency':''
     });
     
     const userDetails = useContext(UserContext);
@@ -24,6 +25,7 @@ const Txn =()=>{
     const [error,setError] = useState('')
 
     const[accts,setAccts] = useState([]);
+    const[currencies,setCurrencies] = useState([]);
     
     useEffect(() => {
         try{
@@ -34,6 +36,23 @@ const Txn =()=>{
                 if( res.data.success){
                     setAccts(res.data.accounts);
                     console.log(res.data.accounts);
+                }
+            }).catch((error)=>{
+                console.log(error);
+                alert(error);
+            })
+        }
+        catch(error){
+            setError(error.Message);
+        }
+        try{
+            axios.get('https://localhost:7180/api/Users/currencies', {headers:headers})
+            .then((res)=>{
+                console.log(res);
+                
+                if( res.data.success){
+                    setCurrencies(res.data.currency);
+                    console.log(res.data.currency);
                 }
             }).catch((error)=>{
                 console.log(error);
@@ -55,7 +74,7 @@ const Txn =()=>{
         
         
         try {
-            axios.post(`https://localhost:7180/api/Accounts/${txnDetails.txnType.toLowerCase()}/${txnDetails.aid}`, {...txnDetails, txnType: ""}, {
+            axios.post(`https://localhost:7180/api/Accounts/${txnDetails.txnType.toLowerCase()}/${txnDetails.aid}`, {...txnDetails, txnType: txnDetails.txnType.substring(0,3)}, {
                 headers:headers
             }).then((response) => {
                 console.log(response);
@@ -83,6 +102,19 @@ const Txn =()=>{
                         
                         
                         accts.map( (acct) => <option>{acct.aid}</option> )
+                    }
+                        
+                       </select>  
+                       
+                </div>
+                <br/>
+                <div>
+                    Currency: <br/><select class = "form-input" name='currency'  value = {txnDetails.currency} onChange={handleChange} >
+                    <option>select currency</option>
+                    {
+                        
+                        
+                        currencies.map( (currency) => <option>{currency}</option> )
                     }
                         
                        </select>  
