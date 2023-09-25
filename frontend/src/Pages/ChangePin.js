@@ -3,6 +3,7 @@ import { UserContext } from "./userContext.js";
 import axios from 'axios';
 import './SignIn.css';
 import './SignUp.css';
+import { useEffect } from "react";
 
 const ChangePin =() =>{
     
@@ -14,6 +15,32 @@ const ChangePin =() =>{
     const userDetails = useContext(UserContext);
     // const user = useContext(UserContext);
     const[error,setError] = useState();
+    const[accts,setAccts] = useState([]);
+    const headers = {
+        'Content-type': 'application/json',
+        'Authorization': `bearer ${userDetails.token}`
+    }
+    
+    useEffect(() => {
+        try{
+            axios.get(`https://localhost:7180/api/Accounts/all/${userDetails.user.userid}`, {headers:headers})
+            .then((res)=>{
+                console.log(res);
+                
+                if( res.data.success){
+                    setAccts(res.data.accounts);
+                    console.log(res.data.accounts);
+                }
+            }).catch((error)=>{
+                console.log(error);
+                alert(error);
+            })
+        }
+        catch(error){
+            setError(error.Message);
+        }
+    },[]);
+
 
     const handleChange =(event) =>{
         setPinChange({...pinChangeDetails, [event.target.name] : event.target.value})
@@ -21,10 +48,7 @@ const ChangePin =() =>{
 
     const handleSubmit = async(event) => {
         event.preventDefault();
-        const headers = {
-            'Content-type': 'application/json',
-            'Authorization': `bearer ${userDetails.token}`
-        }
+        
         console.log(pinChangeDetails);
         try {
             axios.post(`https://localhost:7180/changepin/${pinChangeDetails.Aid}`, pinChangeDetails,{
@@ -47,7 +71,15 @@ const ChangePin =() =>{
             <h1>Change PIN</h1>
             <form onSubmit={handleSubmit} class = "form-group form-label ">
                 <div>
-                    Account ID <br/> <input class = "form-input" name='Aid' type='number' value={userDetails.Aid} onChange={handleChange}/>
+                Account id: <br/><select class = "form-input" name='aid'  value = {pinChangeDetails.aid} onChange={handleChange} >
+                    <option>select account-id</option>
+                    {
+                        
+                        
+                        accts.map( (acct) => <option>{acct.aid}</option> )
+                    }
+                        
+                       </select>  
                 </div>
                 <br/>
 

@@ -75,6 +75,7 @@
 
             var res1 = repo.UpdateRegisteredUser(user);
 
+            Assert.IsNotNull(res1);
             Assert.AreEqual(res1.Uname, "New username");
         }
 
@@ -108,7 +109,7 @@
             var repo = new Repository.UserRepository(_context);
 
             var user = new Models.RegisteredUser
-            { 
+            {
                 Userid = 1,
                 Uname = "Test User",
                 Email = "test1@email.com",
@@ -207,7 +208,7 @@
                 Uname = "Test User",
                 Email = "test1@email.com",
                 Pass = "test12"
-            }) ;
+            });
 
             int res1 = repo.AddRegisteredUser(new Models.RegisteredUser
             {
@@ -218,6 +219,7 @@
             });
 
             var result = repo.GetRegisteredUserById(2);
+            Assert.IsNotNull(result);
             Assert.AreEqual(result.Userid, 2);
         }
 
@@ -270,6 +272,7 @@
             });
 
             var result = repo.GetRegisteredUserByEmail("test1@email.com");
+            Assert.IsNotNull(result);
             Assert.AreEqual(result.Email, "test1@email.com");
         }
 
