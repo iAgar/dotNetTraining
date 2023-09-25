@@ -51,7 +51,7 @@ const SignUp = ()=>{
     return (
         // <Router>
         <div class="signup-container">
-            <br/><br/>
+            <br/>
             <h1>Sign Up</h1>
             <BackButton/>
             <form onSubmit={handlesubmit} class = "form-group form-label ">
@@ -81,7 +81,7 @@ const SignUp = ()=>{
                 </div>
                 <br/>
                 
-                <div>
+                {/* <div>
                     <ul>
                         <li>
                             Already a user? 
@@ -89,7 +89,7 @@ const SignUp = ()=>{
                         </li>
                     </ul>
                    
-                </div>
+                </div> */}
             </form>
         </div>
         // </Router>

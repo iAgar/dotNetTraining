@@ -11,7 +11,7 @@ function WelcomePage() {
       </header>
       <main>
         <p>Secure, Simple, and Convenient Banking Services</p>
-        <Link to="/SignIn">Log In</Link>
+        {/* <Link to="/SignIn">Log In</Link> */}
       </main>
       <footer>
         <p>&copy; 2023 Zenith Bank. All rights reserved.</p>

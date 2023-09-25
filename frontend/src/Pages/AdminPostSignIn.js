@@ -25,8 +25,8 @@ const [users, setUsers] = useState([])
 
     return (
         <div>
-            <Link  to='/SignUp'>Sign Up new User</Link>
-            <Link to='/CreateAccount'>Create new Bank Account</Link>
+            {/* <Link  to='/SignUp'>Sign Up new User</Link>
+            <Link to='/CreateAccount'>Create new Bank Account</Link> */}
             {loading ? (<div>Loading ...</div>):(
                 <div>
                 <h1>Users</h1>
