@@ -16,7 +16,8 @@ import Accounts from './Pages/Accounts';
 import { useNavigate } from 'react-router-dom';
 import BackButton from './Component/BackButton';
 import Navbar from './Pages/navbar';
-import React from 'react';
+import React,{useEffect, useState} from 'react';
+import Logout from './Component/Logout';
 // import userType from React.createContext('none');
 
 
@@ -24,14 +25,8 @@ import React from 'react';
 function App() {
 
 
-  const logout = () =>{
-    localStorage.removeItem('user');
-    window.location.href = '/';
-    //window.location.reload();
-  };
 
   
-
   return (
     <UserProvider>
     <div className='App'>
@@ -49,12 +44,13 @@ function App() {
       <Route path ='/ChangePin' element={<Protectedroute><ChangePin/></Protectedroute>}/>
       <Route path ='/ChequeDeposit' element={<Protectedroute><ChequeDeposit/></Protectedroute>}/>
       <Route path ='/AdminPostSignIn' element={<ProtectedrouteAdmin><AdminPostSignIn/></ProtectedrouteAdmin>}/>
-      <Route path = '/accounts/:userid' element={<Accounts/>}/>
+      <Route path = '/accounts/:userid' element={<ProtectedrouteAdmin><Accounts/></ProtectedrouteAdmin>}/>
       </Routes>
       
     </Router>
     <br/>
-    <button style={{width:'100px',height:'50px'}} onClick={logout}>Log Out</button>
+    
+    <Logout/>
     
     </div>
     </UserProvider>
