@@ -13,9 +13,10 @@ import ProtectedrouteAdmin from './Pages/ProtectedrouteAdmin';
 import ChequeDeposit from './Pages/ChequeDeposit';
 import AdminPostSignIn from './Pages/AdminPostSignIn';
 import Accounts from './Pages/Accounts';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import BackButton from './Component/BackButton';
-
+import Navbar from './Pages/navbar';
+import React from 'react';
 // import userType from React.createContext('none');
 
 
@@ -33,6 +34,7 @@ function App() {
   return (
     <UserProvider>
     <div className='App'>
+      <Navbar />
     
     <Router>
       
