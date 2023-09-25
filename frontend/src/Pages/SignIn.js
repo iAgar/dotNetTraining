@@ -5,6 +5,7 @@ import { UserContext, UserDispatchContext } from './userContext.js';
 import { useNavigate } from "react-router-dom";
 import UserProfile from './UserProfile.js';
 import './SignIn.css'; 
+import BackButton from '../Component/BackButton.js';
 
 const SignIn = () =>{
     const setUserDetails = useContext(UserDispatchContext);
@@ -65,6 +66,7 @@ const SignIn = () =>{
     return (
         <div class="login-container">
             <h1>Sign In</h1>
+            <BackButton/>
             <form onSubmit={handleSubmit} class="login-form">
                 <br/><br/>
                 <div>

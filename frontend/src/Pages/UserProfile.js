@@ -5,6 +5,7 @@ import { UserContext } from './userContext.js';
 import { Link } from 'react-router-dom';
 //import './UserProfile.css';
 import "./SignIn.css";
+import BackButton from '../Component/BackButton.js';
 
 const UserProfile = () =>{
 
@@ -18,6 +19,7 @@ const UserProfile = () =>{
     return(
         <div class='login-container'>
             <h1>User Profile</h1>
+            <BackButton/>
             <div  class="login-form">
                 <br/><br/>
                 <div>

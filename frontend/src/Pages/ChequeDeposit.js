@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import  axios  from "axios";
 import { UserContext } from "./userContext.js";
 import './SignUp.css';
+import BackButton from "../Component/BackButton.js";
 
 const ChequeDeposit =()=>{
     const [txnDetails, setTxnDetails] = useState({
@@ -49,6 +50,7 @@ const ChequeDeposit =()=>{
     return (
         <div class="signup-container">
             <h1>Cheque Deposit Page</h1>
+            <BackButton/>
             <form onSubmit={handlesubmit}  class = "form-group form-label">
                 <div>
                     Account id: <br/><input class = "form-input" name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 

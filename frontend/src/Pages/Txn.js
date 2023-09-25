@@ -3,6 +3,7 @@ import  axios  from "axios";
 import { UserContext } from "./userContext.js";
 import './SignUp.css';
 import { useEffect } from "react";
+import BackButton from "../Component/BackButton.js";
 
 const Txn =()=>{
     const [txnDetails, setTxnDetails] = useState({
@@ -73,6 +74,7 @@ const Txn =()=>{
         <div class="signup-container">
             <br/><br/>
             <h1>Transaction Page</h1>
+            <BackButton/>
             <form onSubmit={handlesubmit} class = "form-group form-label">
                 <div>
                     Account id: <br/><select class = "form-input" name='aid'  value = {txnDetails.aid} onChange={handleChange} >

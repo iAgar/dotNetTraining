@@ -13,6 +13,9 @@ import ProtectedrouteAdmin from './Pages/ProtectedrouteAdmin';
 import ChequeDeposit from './Pages/ChequeDeposit';
 import AdminPostSignIn from './Pages/AdminPostSignIn';
 import Accounts from './Pages/Accounts';
+import { useNavigate } from "react-router-dom";
+import BackButton from './Component/BackButton';
+
 // import userType from React.createContext('none');
 
 
@@ -24,6 +27,8 @@ function App() {
     localStorage.removeItem('user');
     window.location.reload();
   };
+
+  
 
   return (
     <UserProvider>
@@ -47,6 +52,7 @@ function App() {
     </Router>
     <br/>
     <button style={{width:'100px',height:'50px'}} onClick={logout}>Log Out</button>
+    
     </div>
     </UserProvider>
    
