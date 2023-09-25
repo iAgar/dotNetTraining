@@ -52,11 +52,11 @@ const ChangePin =() =>{
                 <br/>
 
                 <div>
-                    Old PIN: <br/><input class = "form-input" name='Pin' type = 'text' maxLength={4} minLength={4} value = {userDetails.Pin} onChange={handleChange}/> 
+                    Old PIN: <br/><input class = "form-input" name='Pin' type = 'password' maxLength={4} minLength={4} value = {userDetails.Pin} onChange={handleChange}/> 
                 </div>
                 <br/>
                 <div>
-                    New PIN: <br/><input class = "form-input" name = 'NewPin' type = 'text' maxLength={4} minLength={4}  value = {userDetails.NewPin} onChange={handleChange} /> 
+                    New PIN: <br/><input class = "form-input" name = 'NewPin' type = 'password' maxLength={4} minLength={4}  value = {userDetails.NewPin} onChange={handleChange} /> 
                 </div>
                 <br/> 
                

@@ -71,7 +71,7 @@ const SignUp = ()=>{
                 <br/>
              
                 <div>
-                    Password: <br/><input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class = "form-input" name = 'pass' type = 'alphanum' value = {userDetails.pass} onChange={handleChange} ></input> 
+                    Password: <br/><input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class = "form-input" name = 'pass' type = 'password' value = {userDetails.pass} onChange={handleChange} ></input> 
                 </div>
                 <br/>
                 <div>
