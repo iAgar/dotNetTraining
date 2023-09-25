@@ -4,14 +4,15 @@ namespace backend.Utils
 {
     public class CurrencyList
     {
-        private static readonly List<Currency> currencies =  new List<Currency> { 
-            new Currency(1, "USD"),
-            new Currency(80, "INR"),
-            new Currency(1.55f, "AUD"),
-            new Currency(1.34f, "CAD"),
-            new Currency(7.30f, "CNY"),
-            new Currency(0.94f, "EUR"),
-            new Currency(0.81f, "GBP")
+        private static readonly List<Currency> currencies = new()
+        {
+            new (1, "USD"),
+            new (80, "INR"),
+            new (1.55f, "AUD"),
+            new (1.34f, "CAD"),
+            new (7.30f, "CNY"),
+            new (0.94f, "EUR"),
+            new (0.81f, "GBP")
         };
 
         public static List<string> GetCurrencies()
@@ -29,7 +30,8 @@ namespace backend.Utils
             var currency1 = CheckCurrency(cur1);
             var currency2 = CheckCurrency(cur2);
 
-            if (currency1 != null && currency2 != null){
+            if (currency1 != null && currency2 != null)
+            {
                 return currency2.ConverionRate / currency1.ConverionRate;
             }
             throw new KeyNotFoundException();

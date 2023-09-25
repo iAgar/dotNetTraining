@@ -22,6 +22,7 @@ public partial class Account
     [Required]
     public string? Pin { get; set; }
 
+    [Required]
     public string? Currency { get; set; }
 
     public virtual ICollection<Txn> Txns { get; set; } = new List<Txn>();
