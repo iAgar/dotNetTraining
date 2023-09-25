@@ -18,6 +18,7 @@ namespace backend.Services
             _userRepository = userRepository;
             _utils = utils;
         }
+
         public List<int> GetAccountIds(int uid)
         {
             try
@@ -143,24 +144,30 @@ namespace backend.Services
             try
             {
                 Account? a = _context.Accounts.Find(t1.Aid);
-                if (a != null)
+                if (a != null && a.IsDeleted == false)
                 {
-                    var t = CreateTxnObj(t1, a, t1.IsDebit);
-                    if (t.IsDebit == false)
+                    t1.Currency = (t1.Currency ?? a.Currency ?? "").ToUpper();
+                    if (CurrencyList.CheckCurrency(t1.Currency) != null)
                     {
-                        a.Balance += t.Amount;
-                        _context.Txns.Add(t);
-                        _context.SaveChanges();
-                        return true;
-                    }
-                    else
-                    {
-                        if (CheckPin(a, t1.Pin) && t.Amount <= a.Balance)
+                        var t = CreateTxnObj(t1, a, t1.IsDebit);
+                        t.Currency = t1.Currency;
+                        var a_amount = CurrencyConverter(t1.Currency, a.Currency, t1.Amount);
+                        if (t.IsDebit == false)
                         {
-                            a.Balance -= t.Amount;
+                            a.Balance += a_amount;
                             _context.Txns.Add(t);
                             _context.SaveChanges();
                             return true;
+                        }
+                        else
+                        {
+                            if (CheckPin(a, t1.Pin) && a_amount <= a.Balance)
+                            {
+                                a.Balance -= a_amount;
+                                _context.Txns.Add(t);
+                                _context.SaveChanges();
+                                return true;
+                            }
                         }
                     }
                 }
@@ -178,7 +185,7 @@ namespace backend.Services
             {
                 Account? a = _context.Accounts.Find(t1.Aid);
                 Account? a2 = _context.Accounts.Find(t1.Rec_aid);
-                if (a != null && a2 != null)
+                if (a != null && a2 != null && a.IsDeleted == false && a2.IsDeleted == false)
                 {
                     var t = CreateTxnObj(t1, a, true);
                     var t2 = CreateTxnObj(t1, a2, false);
