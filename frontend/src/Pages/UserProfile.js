@@ -39,7 +39,7 @@ const UserProfile = () =>{
               
             </div>   
 
-            <br/><br/>
+           {/*  <br/><br/>
             
         
             <Link to='/Txn'>Make a Transaction</Link>
@@ -48,7 +48,7 @@ const UserProfile = () =>{
             <Link  to='/ChangePin'>Change PIN</Link>
             <br/><br/> <br/><br/>
             <Link to='/ChequeDeposit'>Cheque Deposit</Link>
-            <br/><br/> 
+            <br/><br/>  */}
 
         </div>
     )

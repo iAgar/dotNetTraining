@@ -26,7 +26,8 @@ function App() {
 
   const logout = () =>{
     localStorage.removeItem('user');
-    window.location.reload();
+    window.location.href = '/';
+    //window.location.reload();
   };
 
   
@@ -34,10 +35,10 @@ function App() {
   return (
     <UserProvider>
     <div className='App'>
-      <Navbar />
+      
     
     <Router>
-      
+      <Navbar />
       <Routes>
       <Route path="/SignUp" element={<ProtectedrouteAdmin><SignUp/></ProtectedrouteAdmin>} />
       <Route path="/" element={<WelcomePage />} />

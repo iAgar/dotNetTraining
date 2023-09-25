@@ -1,20 +1,15 @@
-/* src/components/Navbar.css */
-
-/* Navbar container */
 .navbar {
   background-color: #1b2855; /* Background color for the navbar */
   color: #fff; /* Text color for links */
   padding: 10px 0;
 }
 
-/* Container for logo/brand */
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Navbar brand/logo */
 .navbar-brand {
   font-size: 2rem; /* Font size for the brand/logo */
   font-weight: bold;
@@ -23,14 +18,12 @@
   padding-left: 5%;
 }
 
-/* Navbar links */
 .navbar-links {
   list-style: none; /* Remove bullet points from the list */
   padding: 0;
   display: flex;
 }
 
-/* Navbar dropdown menu button */
 .navbar-button {
   background-color: #718af7; /* Button background color */
   color: #fff; /* Text color */
