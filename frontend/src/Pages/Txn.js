@@ -88,10 +88,10 @@ const Txn = () => {
       Authorization: `bearer ${userDetails.token}`,
     };
     try {
-      if(txnDetails.txnType == "Transfer")
-      setTxnDetails({...txnDetails, remarks: txnDetails.rec_aid})
-    else
-      setTxnDetails({...txnDetails, remarks: null})
+      console.log(txnDetails.txnType)
+      if(txnDetails.txnType == "Transfer"){    
+        setTxnDetails({...txnDetails, remarks: txnDetails.rec_aid})
+    }
       axios
         .post(
           `https://localhost:7180/api/Accounts/${txnDetails.txnType.toLowerCase()}/${
@@ -129,7 +129,7 @@ const Txn = () => {
             value={txnDetails.aid}
             onChange={handleChange}
           >
-            <option disabled selected>Select Account ID</option>
+            <option>Select Account ID</option>
             {accts
               .filter((e) => !e.isDeleted)
               .map((acct) => (
@@ -140,7 +140,7 @@ const Txn = () => {
         
 
         <div>
-          {accts.filter((e) => e.aid === txnDetails.aid).length != 0 && <><br /> "Balance:" <br /></>}
+          {accts.filter((e) => e.aid == txnDetails.aid).length != 0 && <><br /> Balance: <br /></>}
           <div>
             {accts
               .filter((e) => e.aid == txnDetails.aid)
@@ -161,7 +161,7 @@ const Txn = () => {
             value={txnDetails.currency}
             onChange={handleChange}
           >
-            <option selected disabled>Select Currency</option>
+            <option>Select Currency</option>
             {currencies.map((currency) => (
               <option>{currency}</option>
             ))}
