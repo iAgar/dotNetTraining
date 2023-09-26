@@ -16,6 +16,7 @@ import Accounts from "./Pages/Accounts";
 import Navbar from "./Pages/Navbar";
 import React from "react";
 import Logout from "./Component/Logout";
+import TransactionDetails from "./Pages/TransactionDetails";
 import NotProtectedroute from "./Component/NotProtectedroute";
 // import userType from React.createContext('none');
 
@@ -96,6 +97,14 @@ function App() {
               element={
                 <ProtectedrouteAdmin>
                   <Accounts />
+                </ProtectedrouteAdmin>
+              }
+            />
+            <Route
+              path="/accounts/transactions/all/:accountid"
+              element={
+                <ProtectedrouteAdmin>
+                  <TransactionDetails />
                 </ProtectedrouteAdmin>
               }
             />

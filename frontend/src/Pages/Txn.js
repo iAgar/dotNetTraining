@@ -77,7 +77,7 @@ const Txn = () => {
   const handlesubmit = async (event) => {
     event.preventDefault();
 
-    if(txnDetails.aid == txnDetails.raid){
+    if(txnDetails.aid == txnDetails.rec_aid){
         alert('Change account-id of recipient');
         return;
     }
@@ -219,9 +219,9 @@ const Txn = () => {
             Reciever Account ID: <br />
             <input
               class="form-input"
-              name="raid"
+              name="rec_aid"
               type="number"
-              value={txnDetails.raid}
+              value={txnDetails.rec_aid}
               onChange={handleChange}
             />
           </div>
