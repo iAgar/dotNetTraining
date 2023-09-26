@@ -7,15 +7,16 @@ import UserProfile from "./Pages/UserProfile";
 import Txn from "./Pages/Txn";
 import WelcomePage from "./Pages/WelcomePage";
 import { UserProvider } from "./Pages/userContext.js";
-import Protectedroute from "./Pages/Protectedroute";
+import Protectedroute from "./Component/Protectedroute";
 import ChangePin from "./Pages/ChangePin";
-import ProtectedrouteAdmin from "./Pages/ProtectedrouteAdmin";
+import ProtectedrouteAdmin from "./Component/ProtectedrouteAdmin";
 import ChequeDeposit from "./Pages/ChequeDeposit";
 import AdminPostSignIn from "./Pages/AdminPostSignIn";
 import Accounts from "./Pages/Accounts";
 import Navbar from "./Pages/Navbar";
 import React from "react";
 import Logout from "./Component/Logout";
+import NotProtectedroute from "./Component/NotProtectedroute";
 // import userType from React.createContext('none');
 
 function App() {
@@ -34,7 +35,14 @@ function App() {
               }
             />
             <Route path="/" element={<WelcomePage />} />
-            <Route path="/SignIn" element={<SignIn />} />
+            <Route
+              path="/SignIn"
+              element={
+                <NotProtectedroute>
+                  <SignIn />
+                </NotProtectedroute>
+              }
+            />
             <Route
               path="/CreateAccount"
               element={
