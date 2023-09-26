@@ -76,6 +76,12 @@ const Txn = () => {
   };
   const handlesubmit = async (event) => {
     event.preventDefault();
+
+    if(txnDetails.aid == txnDetails.raid){
+        alert('Change account-id of recipient');
+        return;
+    }
+
     const headers = {
       "Content-type": "application/json",
       Authorization: `bearer ${userDetails.token}`,
@@ -133,7 +139,7 @@ const Txn = () => {
           Balance: <br />
           <div>
             {accts
-              .filter((e) => e.aid === txnDetails.aid)
+              .filter((e) => e.aid == txnDetails.aid)
               .map((acct) => (
                 <option>
                   {acct.balance} {acct.currency}
@@ -164,6 +170,7 @@ const Txn = () => {
             name="amount"
             type="number"
             value={txnDetails.amount}
+            min ={0}
             onChange={handleChange}
           />
         </div>

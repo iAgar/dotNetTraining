@@ -175,6 +175,7 @@ const ChequeDeposit = () => {
             class="form-input"
             name="amount"
             type="number"
+            min ={0}
             value={txnDetails.amount}
             onChange={handleChange}
           />
