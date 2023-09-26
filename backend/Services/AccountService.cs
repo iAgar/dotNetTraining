@@ -57,7 +57,7 @@ namespace backend.Services
                 TxnType = t1.TxnType,
                 IsDebit = isDebit,
                 Remarks = t1.Remarks,
-                Currency = a.Currency
+                Currency = t1.Currency
             };
         }
 
@@ -147,10 +147,9 @@ namespace backend.Services
                 if (a != null && a.IsDeleted == false)
                 {
                     t1.Currency = (t1.Currency ?? a.Currency ?? "").ToUpper();
-                    if (CurrencyList.CheckCurrency(t1.Currency) != null)
+                    if (CurrencyList.CheckCurrency(t1.Currency) != null && t1.Amount > 0)
                     {
                         var t = CreateTxnObj(t1, a, t1.IsDebit);
-                        t.Currency = t1.Currency;
                         var a_amount = CurrencyConverter(t1.Currency, a.Currency, t1.Amount);
                         if (t.IsDebit == false)
                         {
@@ -183,22 +182,27 @@ namespace backend.Services
         {
             try
             {
+                if (t1.Aid == t1.Rec_aid || t1.Amount < 0) return false;
                 Account? a = _context.Accounts.Find(t1.Aid);
                 Account? a2 = _context.Accounts.Find(t1.Rec_aid);
                 if (a != null && a2 != null && a.IsDeleted == false && a2.IsDeleted == false)
                 {
-                    var t = CreateTxnObj(t1, a, true);
-                    var t2 = CreateTxnObj(t1, a2, false);
-                    var x = CurrencyConverter(a.Currency, a2.Currency, t1.Amount);
-                    if (CheckPin(a, t1.Pin) && t.Amount <= a.Balance)
+                    t1.Currency = (t1.Currency ?? a.Currency ?? "").ToUpper();
+                    if (CurrencyList.CheckCurrency(t1.Currency) != null && t1.Amount > 0)
                     {
-                        t2.Amount = x;
-                        a.Balance -= t.Amount;
-                        a2.Balance += x;
-                        _context.Txns.Add(t);
-                        _context.Txns.Add(t2);
-                        _context.SaveChanges();
-                        return true;
+                        var t = CreateTxnObj(t1, a, true);
+                        var t2 = CreateTxnObj(t1, a2, false);
+                        var a_amount = CurrencyConverter(t1.Currency, a.Currency, t1.Amount);
+                        var a2_amount = CurrencyConverter(t1.Currency, a2.Currency, t1.Amount);
+                        if (CheckPin(a, t1.Pin))
+                        {
+                            a.Balance -= a_amount;
+                            a2.Balance += a2_amount;
+                            _context.Txns.Add(t);
+                            _context.Txns.Add(t2);
+                            _context.SaveChanges();
+                            return true;
+                        }
                     }
                 }
                 return false;
