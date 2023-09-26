@@ -3,6 +3,7 @@ import  axios  from "axios";
 import { UserContext } from "./userContext.js";
 import './SignUp.css';
 import { useEffect } from "react";
+import BackButton from "../Component/BackButton.js";
 
 const Txn =()=>{
     const [txnDetails, setTxnDetails] = useState({
@@ -11,7 +12,8 @@ const Txn =()=>{
         'txnType' : '',
         'loc': '',
         'rec_aid': 0,
-        'isDebit': true
+        'isDebit': true,
+        'currency':''
     });
     
     const userDetails = useContext(UserContext);
@@ -23,6 +25,7 @@ const Txn =()=>{
     const [error,setError] = useState('')
 
     const[accts,setAccts] = useState([]);
+    const[currencies,setCurrencies] = useState([]);
     
     useEffect(() => {
         try{
@@ -42,6 +45,23 @@ const Txn =()=>{
         catch(error){
             setError(error.Message);
         }
+        try{
+            axios.get('https://localhost:7180/api/Users/currencies', {headers:headers})
+            .then((res)=>{
+                console.log(res);
+                
+                if( res.data.success){
+                    setCurrencies(res.data.currency);
+                    console.log(res.data.currency);
+                }
+            }).catch((error)=>{
+                console.log(error);
+                alert(error);
+            })
+        }
+        catch(error){
+            setError(error.Message);
+        }
     },[]);
 
     const handleChange = (event) => {
@@ -52,7 +72,7 @@ const Txn =()=>{
         
         
         try {
-            axios.post(`https://localhost:7180/api/Accounts/${txnDetails.txnType.toLowerCase()}/${txnDetails.aid}`, {...txnDetails, txnType: ""}, {
+            axios.post(`https://localhost:7180/api/Accounts/${txnDetails.txnType.toLowerCase()}/${txnDetails.aid}`, {...txnDetails, txnType: txnDetails.txnType.substring(0,3)}, {
                 headers:headers
             }).then((response) => {
                 console.log(response);
@@ -71,6 +91,7 @@ const Txn =()=>{
         <div class="signup-container">
             <br/><br/>
             <h1>Transaction Page</h1>
+            <BackButton/>
             <form onSubmit={handlesubmit} class = "form-group form-label">
                 <div>
                     Account Id: <br/><select class = "form-input" name='aid'  value = {txnDetails.aid} onChange={handleChange} >
@@ -87,6 +108,38 @@ const Txn =()=>{
                     Balance: <br/><div>{
                         accts.filter(e=>(e.aid==txnDetails.aid)).map( (acct) => <option>{acct.balance} {acct.currency}</option> )
                     }</div>
+                </div>
+                <br/>
+                <div>
+                    Currency: <br/><select class = "form-input" name='currency'  value = {txnDetails.currency} onChange={handleChange} >
+                    <option>select currency</option>
+                    {
+                        
+                        
+                        currencies.map( (currency) => <option>{currency}</option> )
+                    }
+   
+                       </select>  
+                       
+                </div>
+                <br/>
+                <div>
+                    Balance: <br/><div>{
+                        accts.filter(e=>(e.aid==txnDetails.aid)).map( (acct) => <option>{acct.balance} {acct.currency}</option> )
+                    }</div>
+                </div>
+                <br/>
+                <div>
+                    Currency: <br/><select class = "form-input" name='currency'  value = {txnDetails.currency} onChange={handleChange} >
+                    <option>select currency</option>
+                    {
+                        
+                        
+                        currencies.map( (currency) => <option>{currency}</option> )
+                    }
+                        
+                       </select>  
+                       
                 </div>
                 <br/>
                 <div>

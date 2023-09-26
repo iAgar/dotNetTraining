@@ -5,6 +5,7 @@ import { UserContext } from './userContext.js';
 import { Link } from 'react-router-dom';
 //import './UserProfile.css';
 import "./SignIn.css";
+import BackButton from '../Component/BackButton.js';
 
 const UserProfile = () =>{
 
@@ -18,6 +19,7 @@ const UserProfile = () =>{
     return(
         <div class='login-container'>
             <h1>User Profile</h1>
+            <BackButton/>
             <div  class="login-form">
                 <br/><br/>
                 <div>
@@ -37,7 +39,7 @@ const UserProfile = () =>{
               
             </div>   
 
-            <br/><br/>
+           {/*  <br/><br/>
             
         
             <Link to='/Txn'>Make a Transaction</Link>
@@ -46,7 +48,7 @@ const UserProfile = () =>{
             <Link  to='/ChangePin'>Change PIN</Link>
             <br/><br/> <br/><br/>
             <Link to='/ChequeDeposit'>Cheque Deposit</Link>
-            <br/><br/> 
+            <br/><br/>  */}
 
         </div>
     )

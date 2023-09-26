@@ -7,6 +7,7 @@ import './SignUp.css'
 import { useEffect } from 'react';
 import { UserContext } from './userContext';
 import { useContext } from 'react';
+import BackButton from '../Component/BackButton';
 const SignUp = ()=>{
 
     
@@ -50,8 +51,9 @@ const SignUp = ()=>{
     return (
         // <Router>
         <div class="signup-container">
-            <br/><br/>
+            <br/>
             <h1>Sign Up</h1>
+            <BackButton/>
             <form onSubmit={handlesubmit} class = "form-group form-label ">
                 <div>
                     Username: <br/><input class = "form-input" name ='uname' type = 'text' value = {userDetails.uname} onChange={handleChange} /> 
@@ -79,7 +81,7 @@ const SignUp = ()=>{
                 </div>
                 <br/>
                 
-                <div>
+                {/* <div>
                     <ul>
                         <li>
                             Already a user? 
@@ -87,7 +89,7 @@ const SignUp = ()=>{
                         </li>
                     </ul>
                    
-                </div>
+                </div> */}
             </form>
         </div>
         // </Router>

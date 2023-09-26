@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import SignIn from './SignIn';
 import { UserContext } from "./userContext.js";
 import './SignUp.css';
+import { useEffect } from 'react';
+import BackButton from '../Component/BackButton';
 
 const CreateAccount =()=>{
     const [accDetails, setAccDetails] = useState({
@@ -16,8 +18,34 @@ const CreateAccount =()=>{
         currency:''
     })
     const userDetails = useContext(UserContext);
+    const headers = {
+        'Content-type': 'application/json',
+        'Authorization': `bearer ${userDetails.token}`
+    }
 
     const [error,setError] = useState('');
+    const[currencies,setCurrencies] = useState([]);
+
+    useEffect(() => {
+
+        try{
+            axios.get('https://localhost:7180/api/Users/currencies', {headers:headers})
+            .then((res)=>{
+                console.log(res);
+                
+                if( res.data.success){
+                    setCurrencies(res.data.currency);
+                    console.log(res.data.currency);
+                }
+            }).catch((error)=>{
+                console.log(error);
+                alert(error);
+            })
+        }
+        catch(error){
+            setError(error.Message);
+        }
+    },[]);
 
     const handleChange = (event) => {
         setAccDetails({...accDetails, [event.target.name] : event.target.value})
@@ -61,6 +89,7 @@ Authorization: `bearer ${userDetails.token}`
         <div class="signup-container">
             <br/><br/>
             <h1>Create Account</h1>
+            <BackButton/>
             <form onSubmit={handleSubmit} class = "form-group form-label">
                 <div>
                     User ID: <br/><input class = "form-input" name ='userid' type = 'number' value = {userDetails.userid} onChange={handleChange} /> 
@@ -68,7 +97,7 @@ Authorization: `bearer ${userDetails.token}`
                 <br/>
                 <div>
                     Account Type: <br/><select name='accType' value = {userDetails.accType} onChange={handleChange}>
-                    <option disabled defaultChecked></option>
+                    <option></option>
                         <option>Savings</option>
                         <option>Current</option>
                         <option>Salary</option>
@@ -86,7 +115,16 @@ Authorization: `bearer ${userDetails.token}`
                 </div>
                 <br/>
                 <div>
-                    Currency: <br/><input class = "form-input" name = 'currency' type = 'text' value = {userDetails.currency} onChange={handleChange} /> 
+                    Currency: <br/><select class = "form-input" name='currency'  value = {userDetails.currency} onChange={handleChange} >
+                    <option>select currency</option>
+                    {
+                        
+                        
+                        currencies.map( (currency) => <option>{currency}</option> )
+                    }
+                        
+                       </select>  
+                       
                 </div>
                 <br/> 
                 <div>

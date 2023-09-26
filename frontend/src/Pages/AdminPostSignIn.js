@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { UserContext } from './userContext.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import BackButton from '../Component/BackButton.js';
 
 const AdminPostSignIn = () =>{
 
@@ -24,11 +25,12 @@ const [users, setUsers] = useState([])
 
     return (
         <div>
-            <Link  to='/SignUp'>Sign Up new User</Link>
-            <Link to='/CreateAccount'>Create new Bank Account</Link>
+            {/* <Link  to='/SignUp'>Sign Up new User</Link>
+            <Link to='/CreateAccount'>Create new Bank Account</Link> */}
             {loading ? (<div>Loading ...</div>):(
                 <div>
                 <h1>Users</h1>
+                <BackButton/>
                 <table border={1}>
                   <tr>
                     <th>User Id</th>

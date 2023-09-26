@@ -5,6 +5,7 @@ import { UserContext, UserDispatchContext } from './userContext.js';
 import { useNavigate } from "react-router-dom";
 import UserProfile from './UserProfile.js';
 import './SignIn.css'; 
+import BackButton from '../Component/BackButton.js';
 
 const SignIn = () =>{
     const setUserDetails = useContext(UserDispatchContext);
@@ -36,17 +37,15 @@ const SignIn = () =>{
                     setUserDetails(user);
                     //send signed in user details using context and route to post-signin
                     if(!user.user.isAdmin){
-                    <UserContext.Provider value={user}>
-                        {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
-                            {Navigation("/UserProfile")}
+                   return  (
+                          <> {Navigation("/UserProfile")}</> 
                            
-                    </UserContext.Provider>
+            )
                     }else{
-                        <UserContext.Provider value='user'>
-                        {/* <Navigate  to = '/CreateAccount' replace={true}/> */}
-                            {Navigation("/AdminPostSignIn")}
+                        return (<> {Navigation("/AdminPostSignIn")}</>)
                            
-                    </UserContext.Provider>
+                           
+                    // </UserContext.Provider>
                         
                     }
                     
@@ -65,6 +64,7 @@ const SignIn = () =>{
     return (
         <div class="login-container">
             <h1>Sign In</h1>
+            <BackButton/>
             <form onSubmit={handleSubmit} class="login-form">
                 <br/><br/>
                 <div>

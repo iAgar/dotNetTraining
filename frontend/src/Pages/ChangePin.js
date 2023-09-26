@@ -4,6 +4,7 @@ import axios from 'axios';
 import './SignIn.css';
 import './SignUp.css';
 import { useEffect } from "react";
+import BackButton from "../Component/BackButton.js";
 
 const ChangePin =() =>{
     
@@ -69,6 +70,7 @@ const ChangePin =() =>{
         <div class="signup-container">
             <br/><br/>
             <h1>Change PIN</h1>
+            <BackButton/>
             <form onSubmit={handleSubmit} class = "form-group form-label ">
                 <div>
                 Account Id: <br/><select class = "form-input" name='aid'  value = {pinChangeDetails.aid} onChange={handleChange} >

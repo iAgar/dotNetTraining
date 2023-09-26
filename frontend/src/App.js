@@ -13,6 +13,11 @@ import ProtectedrouteAdmin from './Pages/ProtectedrouteAdmin';
 import ChequeDeposit from './Pages/ChequeDeposit';
 import AdminPostSignIn from './Pages/AdminPostSignIn';
 import Accounts from './Pages/Accounts';
+import { useNavigate } from 'react-router-dom';
+import BackButton from './Component/BackButton';
+import Navbar from './Pages/navbar';
+import React,{useEffect, useState} from 'react';
+import Logout from './Component/Logout';
 // import userType from React.createContext('none');
 
 
@@ -20,17 +25,15 @@ import Accounts from './Pages/Accounts';
 function App() {
 
 
-  const logout = () =>{
-    localStorage.removeItem('user');
-    window.location.reload();
-  };
 
+  
   return (
     <UserProvider>
     <div className='App'>
+      
     
     <Router>
-      
+      <Navbar />
       <Routes>
       <Route path="/SignUp" element={<ProtectedrouteAdmin><SignUp/></ProtectedrouteAdmin>} />
       <Route path="/" element={<WelcomePage />} />
@@ -38,15 +41,17 @@ function App() {
       <Route path='/CreateAccount' element ={<ProtectedrouteAdmin><CreateAccount/></ProtectedrouteAdmin>}/>
       <Route path='/UserProfile' element ={<Protectedroute><UserProfile/></Protectedroute>}/>
       <Route path='/Txn' element ={<Protectedroute><Txn/></Protectedroute>}/>
-      <Route path ='/ChangePin' element={<ChangePin/>}/>
-      <Route path ='/ChequeDeposit' element={<ChequeDeposit/>}/>
+      <Route path ='/ChangePin' element={<Protectedroute><ChangePin/></Protectedroute>}/>
+      <Route path ='/ChequeDeposit' element={<Protectedroute><ChequeDeposit/></Protectedroute>}/>
       <Route path ='/AdminPostSignIn' element={<ProtectedrouteAdmin><AdminPostSignIn/></ProtectedrouteAdmin>}/>
-      <Route path = '/accounts/:userid' element={<Accounts/>}/>
+      <Route path = '/accounts/:userid' element={<ProtectedrouteAdmin><Accounts/></ProtectedrouteAdmin>}/>
       </Routes>
       
     </Router>
     <br/>
-    <button style={{width:'100px',height:'50px'}} onClick={logout}>Log Out</button>
+    
+    <Logout/>
+    
     </div>
     </UserProvider>
    
