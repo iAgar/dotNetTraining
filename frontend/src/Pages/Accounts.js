@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "./userContext.js";
+import { Link } from "react-router-dom";
 import BackButton from "../Component/BackButton.js";
 
 const Accounts = (props) => {
@@ -63,7 +64,12 @@ const Accounts = (props) => {
               {accounts.map((acc) => {
                 return (
                   <tr key={acc.aid}>
-                    <td>{acc.aid}</td>
+                    <td><Link
+                          to={`/accounts/transactions/all/${acc.aid}`}
+                          style={{ border: "none" }}
+                        >
+                          {acc.aid}
+                        </Link></td>
                     <td>{acc.balance}</td>
                     <td>{acc.currency}</td>
                     {acc.isDeleted === false && <td>Yes</td>}

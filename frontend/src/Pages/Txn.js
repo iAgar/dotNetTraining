@@ -14,6 +14,7 @@ const Txn = () => {
     rec_aid: 0,
     isDebit: true,
     currency: "",
+    remarks: null
   });
 
   const userDetails = useContext(UserContext);
@@ -87,6 +88,10 @@ const Txn = () => {
       Authorization: `bearer ${userDetails.token}`,
     };
     try {
+      if(txnDetails.txnType == "Transfer")
+      setTxnDetails({...txnDetails, remarks: txnDetails.rec_aid})
+    else
+      setTxnDetails({...txnDetails, remarks: null})
       axios
         .post(
           `https://localhost:7180/api/Accounts/${txnDetails.txnType.toLowerCase()}/${
