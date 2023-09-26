@@ -146,7 +146,7 @@ const Txn = () => {
               .filter((e) => e.aid == txnDetails.aid)
               .map((acct) => (
                 <>
-                  {acct.balance} {acct.currency}
+                  {Math.round(acct.balance*100)/100} {acct.currency}
                 </>
                 
               ))}
