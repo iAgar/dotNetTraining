@@ -2,12 +2,13 @@ import React, { useContext, useState } from "react";
 import  axios  from "axios";
 import { UserContext } from "./userContext.js";
 import './SignUp.css';
+import { useEffect } from "react";
 
 const ChequeDeposit =()=>{
     const [txnDetails, setTxnDetails] = useState({
         'aid' : 0,
         'amount' : 0,
-        'txnType' : '',
+        'txnType' : 'Deposit',
         'loc': '',
         'rec_aid': 0,
         'isDebit': true,
@@ -17,11 +18,37 @@ const ChequeDeposit =()=>{
     const userDetails = useContext(UserContext);
 
     const [error,setError] = useState('')
+    const[accts,setAccts] = useState([]);
 
     const handleChange = (event) => {
         setTxnDetails({...txnDetails, [event.target.name] : event.target.value})
         // console.log(userDetails)
     }
+    const headers = {
+        'Content-type': 'application/json',
+        'Authorization': `bearer ${userDetails.token}`
+    }
+    useEffect(() => {
+        try{
+            axios.get(`https://localhost:7180/api/Accounts/all/${userDetails.user.userid}`, {headers:headers})
+            .then((res)=>{
+                console.log(res);
+                
+                if( res.data.success){
+                    setAccts(res.data.accounts);
+                    console.log(res.data.accounts);
+                }
+            }).catch((error)=>{
+                console.log(error);
+                alert(error);
+            })
+        }
+        catch(error){
+            setError(error.Message);
+        }
+    },[]);
+
+
     const handlesubmit = async(event) => {
         console.log(txnDetails);
         event.preventDefault();
@@ -51,7 +78,14 @@ const ChequeDeposit =()=>{
             <h1>Cheque Deposit Page</h1>
             <form onSubmit={handlesubmit}  class = "form-group form-label">
                 <div>
-                    Account id: <br/><input class = "form-input" name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} /> 
+                    Account Id: <br/><select class = "form-input" name='aid'  type = 'number' value = {txnDetails.aid} onChange={handleChange} > 
+                    <option>Select Account Id</option>
+                    {
+                        
+                        
+                        accts.map( (acct) => {acct.isDeleted===false&&<option>{acct.aid}</option>} )
+                    }      
+                    </select>          
                 </div>
                 <br/>
                 <div>
@@ -66,23 +100,9 @@ const ChequeDeposit =()=>{
                     Location: <br/><input class = "form-input" name='loc' type= 'text' value={txnDetails.loc} onChange={handleChange}/>
                 </div>
                 <br/>
-                <div>
-                Transaction Type: <br/><select name='txnType' value = {txnDetails.txnType} onChange={handleChange}>
-                            <option disabled defaultChecked></option>
-                        <option>Deposit</option>
-                        <option>Withdraw</option>
-                        <option>Transfer</option>
-                       </select> 
-                </div>
+                Transaction Type: <br/> Deposit
                 <br/>
-                {(txnDetails.txnType=='Withdraw' || txnDetails.txnType=='Transfer') && <div>
-                    Pin: <br/><input name='pin' type='password' value={txnDetails.pin} onChange={handleChange}/></div>}
                 <br/>
-                {txnDetails.txnType=='Transfer' &&
-                <div>
-                   Reciever Account ID: <br/><input name='raid'  type = 'number' value = {txnDetails.raid} onChange={handleChange} /> 
-                </div>
-}
                 <br/>
                 <button type = 'submit' class="signup-button">
                     Submit

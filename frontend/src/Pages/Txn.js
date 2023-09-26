@@ -46,10 +46,8 @@ const Txn =()=>{
 
     const handleChange = (event) => {
         setTxnDetails({...txnDetails, [event.target.name] : event.target.value})
-        // console.log(userDetails)
     }
     const handlesubmit = async(event) => {
-        // console.log(txnDetails);
         event.preventDefault();
         
         
@@ -75,16 +73,20 @@ const Txn =()=>{
             <h1>Transaction Page</h1>
             <form onSubmit={handlesubmit} class = "form-group form-label">
                 <div>
-                    Account id: <br/><select class = "form-input" name='aid'  value = {txnDetails.aid} onChange={handleChange} >
-                    <option>select account-id</option>
+                    Account Id: <br/><select class = "form-input" name='aid'  value = {txnDetails.aid} onChange={handleChange} >
+                    <option>Select Account Id</option>
                     {
-                        
-                        
-                        accts.map( (acct) => <option>{acct.aid}</option> )
+                        accts.filter(e=>!e.isDeleted).map( (acct) => <option>{acct.aid}</option> )
                     }
-                        
+   
                        </select>  
                        
+                </div>
+                <br/>
+                <div>
+                    Balance: <br/><div>{
+                        accts.filter(e=>(e.aid==txnDetails.aid)).map( (acct) => <option>{acct.balance} {acct.currency}</option> )
+                    }</div>
                 </div>
                 <br/>
                 <div>
