@@ -66,8 +66,8 @@ const Accounts = (props) => {
                     <td>{acc.aid}</td>
                     <td>{acc.balance}</td>
                     <td>{acc.currency}</td>
-                    {acc.isDeleted === false && <td>No</td>}
-                    {acc.isDeleted === true && <td>Yes</td>}
+                    {acc.isDeleted === false && <td>Yes</td>}
+                    {acc.isDeleted === true && <td>No</td>}
                     <td>{acc.homeBranch}</td>
                     {acc.isDeleted === false && (
                       <td>
