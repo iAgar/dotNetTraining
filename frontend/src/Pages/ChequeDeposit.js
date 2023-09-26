@@ -73,7 +73,6 @@ const ChequeDeposit = () => {
 
     const handleChange = (event) => {
         setTxnDetails({...txnDetails, [event.target.name] : event.target.value})
-        // console.log(userDetails)
     }
     
     useEffect(() => {

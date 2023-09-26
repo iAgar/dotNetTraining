@@ -25,8 +25,6 @@ const AdminPostSignIn = () => {
 
   return (
     <div className="login-container">
-      {/* <Link  to='/SignUp'>Sign Up new User</Link>
-            <Link to='/CreateAccount'>Create new Bank Account</Link> */}
       {loading ? (
         <div>Loading ...</div>
       ) : (

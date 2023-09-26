@@ -32,19 +32,15 @@ const SignIn = () => {
           const user = response.data;
           localStorage.setItem("user", JSON.stringify(user));
           if (response.data.success) {
-            alert("Sign In successful");
-            // console.log(user);
+            alert("Sign In Successful");
             setUserDetails(user);
-            //send signed in user details using context and route to post-signin
             if (!user.user.isAdmin) {
               return <> {Navigation("/UserProfile")}</>;
             } else {
               return <> {Navigation("/AdminPostSignIn")}</>;
-
-              // </UserContext.Provider>
             }
           } else {
-            alert("Sign in unsuccessful");
+            alert("Sign In Unsuccessful");
           }
         })
         .catch((err) => console.log("error", err));

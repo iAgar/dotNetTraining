@@ -14,7 +14,6 @@ const ChangePin =() =>{
         'NewPin' :'',
     });
     const userDetails = useContext(UserContext);
-    // const user = useContext(UserContext);
     const[error,setError] = useState();
     const[accts,setAccts] = useState([]);
     const headers = {
@@ -66,7 +65,6 @@ const ChangePin =() =>{
         }
     }
     return (
-        // <Router>
         <div class="signup-container">
             <br/><br/>
             <h1>Change PIN</h1>

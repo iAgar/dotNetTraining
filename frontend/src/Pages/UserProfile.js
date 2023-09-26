@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { UserContext } from "./userContext.js";
-//import './UserProfile.css';
 import "./SignIn.css";
 import BackButton from "../Component/BackButton.js";
 
@@ -41,17 +40,6 @@ const UserProfile = () => {
         </div>
         <br /> <br />
       </div>
-
-      {/*  <br/><br/>
-            
-        
-            <Link to='/Txn'>Make a Transaction</Link>
-            <br/><br/><br/><br/>
-
-            <Link  to='/ChangePin'>Change PIN</Link>
-            <br/><br/> <br/><br/>
-            <Link to='/ChequeDeposit'>Cheque Deposit</Link>
-            <br/><br/>  */}
     </div>
   );
 };

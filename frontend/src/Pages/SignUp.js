@@ -19,7 +19,6 @@ const SignUp = () => {
   const [, setError] = useState("");
   const handleChange = (event) => {
     setUserDetails({ ...userDetails, [event.target.name]: event.target.value });
-    // console.log(userDetails)
   };
 
   const handlesubmit = async (event) => {
@@ -27,7 +26,6 @@ const SignUp = () => {
     event.preventDefault();
     const headers = {
       "Content-type": "application/json",
-      //change userdetails here
       Authorization: `bearer ${context.token}`,
     };
     try {
@@ -47,7 +45,6 @@ const SignUp = () => {
     }
   };
   return (
-    // <Router>
     <div class="signup-container">
       <br />
       <h1>Sign Up</h1>
@@ -119,19 +116,8 @@ const SignUp = () => {
           </button>
         </div>
         <br />
-
-        {/* <div>
-                    <ul>
-                        <li>
-                            Already a user? 
-                            <Link to='/SignIn'>Sign In</Link>
-                        </li>
-                    </ul>
-                   
-                </div> */}
       </form>
     </div>
-    // </Router>
   );
 };
 export default SignUp;

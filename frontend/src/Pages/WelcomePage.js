@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './WelcomePage.css'; // Create this CSS file for styling
+import './WelcomePage.css'; 
 
 function WelcomePage() {
   return (
@@ -11,7 +11,6 @@ function WelcomePage() {
       </header>
       <main>
         <p>Secure, Simple, and Convenient Banking Services</p>
-        {/* <Link to="/SignIn">Log In</Link> */}
       </main>
       <footer>
         <p>&copy; 2023 Zenith Bank. All rights reserved.</p>

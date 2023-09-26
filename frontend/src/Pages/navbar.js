@@ -35,7 +35,6 @@ const Navbar = () => {
           {isDropdownOpen && (
             <div className={styles.navbarLinks}>
               {isLoggedIn ? (
-                // Render links for logged-in users
                 <>
                   {!isLoggedIn.user.isAdmin && (
                     <>
@@ -69,7 +68,6 @@ const Navbar = () => {
                   )}
                 </>
               ) : (
-                // Render links for non-logged-in users
                 <>
                   <Link to="/SignIn" onClick={closeDropdown}>
                     Login
