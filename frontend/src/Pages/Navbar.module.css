@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.navbar-brand {
+.navbarBrand {
   font-size: 2rem; /* Font size for the brand/logo */
   font-weight: bold;
   color: #fff; /* Text color for the brand/logo */
@@ -18,13 +18,13 @@
   padding-left: 5%;
 }
 
-.navbar-links {
+.navbarLinks {
   list-style: none; /* Remove bullet points from the list */
   padding: 0;
   display: flex;
 }
 
-.navbar-button {
+.navbarButton {
   background-color: #718af7; /* Button background color */
   color: #fff; /* Text color */
   border: none; /* Remove button border */
@@ -35,18 +35,18 @@
   margin-right: 10%;
 }
 
-.navbar-dropdown {
+.navbarDropdown {
   position: relative; /* Relative positioning for proper dropdown placement */
 }
 
 /* Style the button on hover */
-.navbar-button:hover {
+.navbarButton:hover {
   background-color: #17a2b8; /* Background color on hover */
   color: #fff; /* Text color on hover */
 }
 
 /* Style the dropdown menu (when it's open) */
-.navbar-links {
+.navbarLinks {
   background-color: #333; /* Dropdown background color */
   position: absolute;
   top: 100%;
@@ -60,7 +60,7 @@
 }
 
 /* Style individual menu items */
-.navbar-links a {
+.navbarLinks a {
   padding: 10px 20px; /* Padding for menu items */
   color: #fff; /* Text color for menu items */
   text-decoration: none; /* Remove underlines */
@@ -69,18 +69,18 @@
 }
 
 /* Style menu items on hover */
-.navbar-links a:hover {
+.navbarLinks a:hover {
   background-color: #17a2b8; /* Background color on hover */
   color: #fff; /* Text color on hover */
 }
 
 /* Individual navbar items */
-.navbar-item {
+.navbarItem {
   margin-right: 20px; /* Spacing between navigation items */
 }
 
 /* Styling for navigation links */
-.navbar-item a {
+.navbarItem a {
   text-decoration: none; /* Remove underlines from links */
   color: #fff; /* Text color for links */
   font-size: 1.2rem; /* Font size for links */
@@ -90,7 +90,7 @@
 }
 
 /* Change link color on hover */
-.navbar-item a:hover {
+.navbarItem a:hover {
   color: #17a2b8; /* Link color on hover */
 }
 
@@ -102,13 +102,13 @@
   }
 
   /* Stack navigation items vertically on small screens */
-  .navbar-links {
+  .navbarLinks {
     flex-direction: column;
     align-items: center;
   }
 
   /* Add spacing between stacked navigation items */
-  .navbar-item {
+  .navbarItem {
     margin: 10px 0;
   }
 }
