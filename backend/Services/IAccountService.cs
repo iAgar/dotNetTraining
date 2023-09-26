@@ -11,6 +11,7 @@ namespace backend.Services
         bool PerformTransaction(TxnDto t1);
         bool PerformTransfer(TxnDto t1);
         List<int> GetTxnIds(int aid);
+        List<Txn> GetTxns(int aid);
         Txn? GetTxnById(int tid);
         Account? GetAccountById(int aid);
         // bool CheckPin(Account a, string? pin);

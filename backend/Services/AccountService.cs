@@ -230,6 +230,24 @@ namespace backend.Services
             }
         }
 
+        public List<Txn> GetTxns(int aid)
+        {
+            try
+            {
+                Account? a = _context.Accounts.Find(aid);
+                if (a != null)
+                {
+                    return _context.Txns.AsNoTracking()
+                        .Where(t => t.Aid == aid).ToList();
+                }
+                throw new KeyNotFoundException();
+            }
+            catch (Exception)
+            {
+                return new List<Txn>();
+            }
+        }
+
         public Txn? GetTxnById(int tid)
         {
             var res = _context.Txns.Find(tid);

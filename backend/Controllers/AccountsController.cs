@@ -65,9 +65,9 @@ namespace backend.Controllers
 
         [HttpGet("transactions/all/{aid}")]
         [UserAccAuthorize]
-        public ActionResult GetAllTransactionIds(int aid)
+        public ActionResult GetAllTransactions(int aid)
         {
-            var txns = _accountService.GetTxnIds(aid);
+            var txns = _accountService.GetTxns(aid);
             bool result = txns.Count != 0;
             if (result)
             {
