@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from './userContext.js';
+import BackButton from '../Component/BackButton.js';
 
 const Accounts = (props) => {
     const {userid} = useParams()
@@ -10,6 +11,7 @@ const Accounts = (props) => {
     const [accounts, setAccounts] = useState([])
     const userDetails = useContext(UserContext);
     const [loading, setLoading] = useState(false)
+    const [hasAccount, setHasAccount] = useState(true);
     useEffect(() => {
     setLoading(true);
     const headers = {
@@ -19,6 +21,9 @@ const Accounts = (props) => {
     axios.get(`https://localhost:7180/api/Accounts/all/${userid}`,{headers: headers}).then((response) => {
         console.log(response);
         setAccounts(response.data.accounts);
+        if(response.data.success==false){
+            setHasAccount(false);
+        }
         setLoading(false)
       })
   }, [])
@@ -34,6 +39,8 @@ const Accounts = (props) => {
         {loading ? (<div>Loading ...</div>):(
             <div>
             <h1>Accounts</h1>
+            <BackButton/>
+            {!hasAccount ? (<div>No accounts for this user</div>):(
             <table border={1}>
               <tr>
                 <th>Account Id</th>
@@ -49,10 +56,11 @@ const Accounts = (props) => {
                   <td>{acc.currency}</td>
                   {(acc.isDeleted===false)&&<td>False</td>}{(acc.isDeleted===true)&&<td>True</td>}
                   <td>{acc.homeBranch}</td>{(acc.isDeleted===false)&&
-                  <td><button onClick={deleteUser(acc.aid)}>Delete</button></td>
+                  <td><button onClick={()=>deleteUser(acc.aid)}>Delete</button></td>
                   }</tr>
               )})}
             </table>
+            )}
             </div>
         )}
     </div>

@@ -9,7 +9,7 @@ import BackButton from "../Component/BackButton.js";
 const ChangePin =() =>{
     
     const [pinChangeDetails, setPinChange] = useState({
-        'Aid': '',
+        'aid': '',
         'Pin': '',
         'NewPin' :'',
     });
@@ -52,7 +52,7 @@ const ChangePin =() =>{
         
         console.log(pinChangeDetails);
         try {
-            axios.post(`https://localhost:7180/changepin/${pinChangeDetails.Aid}`, pinChangeDetails,{
+            axios.post(`https://localhost:7180/changepin/${pinChangeDetails.aid}`, pinChangeDetails,{
                 headers: headers
             }).then((response) => {
                 console.log(response);
@@ -77,7 +77,8 @@ const ChangePin =() =>{
                 <option>Select Account Id</option>
                     {
                         
-                         accts.map( (acct) => acct.isDeleted===false&&<option>{acct.aid}</option> )
+                        
+                        accts.map( (acct) => acct.isDeleted===false&&<option>{acct.aid}</option> )
                     }
                         
                        </select>  

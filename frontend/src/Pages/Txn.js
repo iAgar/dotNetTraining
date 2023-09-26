@@ -104,24 +104,7 @@ const Txn =()=>{
                        
                 </div>
                 <br/>
-                <div>
-                    Balance: <br/><div>{
-                        accts.filter(e=>(e.aid==txnDetails.aid)).map( (acct) => <option>{acct.balance} {acct.currency}</option> )
-                    }</div>
-                </div>
-                <br/>
-                <div>
-                    Currency: <br/><select class = "form-input" name='currency'  value = {txnDetails.currency} onChange={handleChange} >
-                    <option>select currency</option>
-                    {
-                        
-                        
-                        currencies.map( (currency) => <option>{currency}</option> )
-                    }
-   
-                       </select>  
-                       
-                </div>
+                
                 <br/>
                 <div>
                     Balance: <br/><div>{

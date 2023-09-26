@@ -75,6 +75,7 @@ const ChequeDeposit = () => {
         setTxnDetails({...txnDetails, [event.target.name] : event.target.value})
         // console.log(userDetails)
     }
+    
     useEffect(() => {
         try{
             axios.get(`https://localhost:7180/api/Accounts/all/${userDetails.user.userid}`, {headers:headers})
