@@ -14,7 +14,7 @@ const ChangePin =() =>{
         'NewPin' :'',
     });
     const userDetails = useContext(UserContext);
-    const[error,setError] = useState();
+    const[setError] = useState();
     const[accts,setAccts] = useState([]);
     const headers = {
         'Content-type': 'application/json',

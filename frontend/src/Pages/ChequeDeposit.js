@@ -22,7 +22,7 @@ const ChequeDeposit = () => {
     "Content-type": "application/json",
     Authorization: `bearer ${userDetails.token}`,
   };
-  const [error, setError] = useState("");
+  const [setError] = useState("");
 
   const [accts, setAccts] = useState([]);
   const [currencies, setCurrencies] = useState([]);
