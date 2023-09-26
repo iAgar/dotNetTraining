@@ -1,72 +1,93 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { UserContext } from './userContext.js';
-import BackButton from '../Component/BackButton.js';
+import React, { useContext, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { UserContext } from "./userContext.js";
+import BackButton from "../Component/BackButton.js";
 
 const Accounts = (props) => {
-    const {userid} = useParams()
-    console.log(userid);
-    const [accounts, setAccounts] = useState([])
-    const userDetails = useContext(UserContext);
-    const [loading, setLoading] = useState(false)
-    const [hasAccount, setHasAccount] = useState(true);
-    useEffect(() => {
+  const { userid } = useParams();
+  console.log(userid);
+  const [accounts, setAccounts] = useState([]);
+  const userDetails = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
+  const [hasAccount, setHasAccount] = useState(true);
+  useEffect(() => {
     setLoading(true);
     const headers = {
-        'Content-type': 'application/json',
-        'Authorization': `bearer ${userDetails.token}`
-    }
-    axios.get(`https://localhost:7180/api/Accounts/all/${userid}`,{headers: headers}).then((response) => {
+      "Content-type": "application/json",
+      Authorization: `bearer ${userDetails.token}`,
+    };
+    axios
+      .get(`https://localhost:7180/api/Accounts/all/${userid}`, {
+        headers: headers,
+      })
+      .then((response) => {
         console.log(response);
         setAccounts(response.data.accounts);
-        if(response.data.success==false){
-            setHasAccount(false);
+        if (response.data.success === false) {
+          setHasAccount(false);
         }
-        setLoading(false)
+        setLoading(false);
+      });
+  }, [userDetails.token, userid]);
+  const deleteUser = (aid) => {
+    axios
+      .delete(`https://localhost:7180/api/Accounts/delete/${aid}`, {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${userDetails.token}`,
+        },
       })
-  }, [])
-  const deleteUser = (aid) =>{
-    axios.delete(`https://localhost:7180/api/Accounts/delete/${aid}`, {headers:{
-        'Content-type': 'application/json',
-        'Authorization': `bearer ${userDetails.token}`
-    }}).then(window.location.reload())
-  }
+      .then(window.location.reload());
+  };
 
   return (
     <div>
-        {loading ? (<div>Loading ...</div>):(
-            <div>
-            <h1>Accounts</h1>
-            <BackButton/>
-            {!hasAccount ? (<div>No accounts for this user</div>):(
+      {loading ? (
+        <div>Loading ...</div>
+      ) : (
+        <div className="login-container">
+          <h1>Accounts</h1>
+          <BackButton />
+          {!hasAccount ? (
+            <div>No accounts for this user</div>
+          ) : (
             <table border={1}>
               <tr>
                 <th>Account Id</th>
                 <th>Balance</th>
                 <th>Currency</th>
-                <th>Is Deleted</th>
+                <th>Is Active</th>
                 <th>Home Branch</th>
               </tr>
-              {accounts.map(acc => {return (
-                <tr key={acc.aid}>
-                  <td>{acc.aid}</td>
-                  <td>{acc.balance}</td>
-                  <td>{acc.currency}</td>
-                  {(acc.isDeleted===false)&&<td>False</td>}{(acc.isDeleted===true)&&<td>True</td>}
-                  <td>{acc.homeBranch}</td>{(acc.isDeleted===false)&&
-                  <td><button onClick={()=>deleteUser(acc.aid)}>Delete</button></td>
-                  }</tr>
-              )})}
+              {accounts.map((acc) => {
+                return (
+                  <tr key={acc.aid}>
+                    <td>{acc.aid}</td>
+                    <td>{acc.balance}</td>
+                    <td>{acc.currency}</td>
+                    {acc.isDeleted === false && <td>No</td>}
+                    {acc.isDeleted === true && <td>Yes</td>}
+                    <td>{acc.homeBranch}</td>
+                    {acc.isDeleted === false && (
+                      <td>
+                        <button
+                          onClick={() => deleteUser(acc.aid)}
+                          className="logout-button"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
             </table>
-            )}
-            </div>
-        )}
+          )}
+        </div>
+      )}
     </div>
-    
-)
-
-}
+  );
+};
 
 export default Accounts;
