@@ -122,14 +122,14 @@ const Txn = () => {
       <BackButton />
       <form onSubmit={handlesubmit} class="form-group form-label">
         <div>
-          Account Id: <br />
+          Account ID: <br />
           <select
             class="form-input"
             name="aid"
             value={txnDetails.aid}
             onChange={handleChange}
           >
-            <option>Select Account Id</option>
+            <option disabled selected>Select Account ID</option>
             {accts
               .filter((e) => !e.isDeleted)
               .map((acct) => (
@@ -137,18 +137,18 @@ const Txn = () => {
               ))}
           </select>
         </div>
-        <br />
+        
 
-        <br />
         <div>
-          Balance: <br />
+          {accts.filter((e) => e.aid === txnDetails.aid).length != 0 && <><br /> "Balance:" <br /></>}
           <div>
             {accts
               .filter((e) => e.aid == txnDetails.aid)
               .map((acct) => (
-                <option>
+                <>
                   {acct.balance} {acct.currency}
-                </option>
+                </>
+                
               ))}
           </div>
         </div>
@@ -161,7 +161,7 @@ const Txn = () => {
             value={txnDetails.currency}
             onChange={handleChange}
           >
-            <option>select currency</option>
+            <option selected disabled>Select Currency</option>
             {currencies.map((currency) => (
               <option>{currency}</option>
             ))}
@@ -194,11 +194,12 @@ const Txn = () => {
         <div>
           Transaction Type: <br />
           <select
+            class="form-input"
             name="txnType"
             value={txnDetails.txnType}
             onChange={handleChange}
           >
-            <option disabled defaultChecked></option>
+            <option disabled selected></option>
             <option>Deposit</option>
             <option>Withdraw</option>
             <option>Transfer</option>

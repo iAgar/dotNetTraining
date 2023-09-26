@@ -35,7 +35,6 @@ const Navbar = () => {
           {isDropdownOpen && (
             <div className={styles.navbarLinks}>
               {isLoggedIn ? (
-                // Render links for logged-in users
                 <>
                   {!isLoggedIn.user.isAdmin && (
                     <>
@@ -60,16 +59,15 @@ const Navbar = () => {
                         Dashboard
                       </Link>
                       <Link to="/SignUp" onClick={closeDropdown}>
-                        Sign Up new User
+                        Sign Up New User
                       </Link>
                       <Link to="/CreateAccount" onClick={closeDropdown}>
-                        Create new Bank Account
+                        Create New Bank Account
                       </Link>
                     </>
                   )}
                 </>
               ) : (
-                // Render links for non-logged-in users
                 <>
                   <Link to="/SignIn" onClick={closeDropdown}>
                     Login

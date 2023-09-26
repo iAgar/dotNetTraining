@@ -130,7 +130,7 @@ const CreateAccount = () => {
         <br />
 
         <div>
-          Pin: <br />
+          PIN: <br />
           <input
             class="form-input"
             name="pin"
@@ -148,7 +148,7 @@ const CreateAccount = () => {
             value={userDetails.currency}
             onChange={handleChange}
           >
-            <option>select currency</option>
+            <option selected disabled>Select Currency</option>
             {currencies.map((currency) => (
               <option>{currency}</option>
             ))}

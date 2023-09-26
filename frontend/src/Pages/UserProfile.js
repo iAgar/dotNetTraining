@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { UserContext } from "./userContext.js";
-//import './UserProfile.css';
 import "./SignIn.css";
 import BackButton from "../Component/BackButton.js";
 
@@ -10,10 +9,10 @@ const UserProfile = () => {
   console.log(userDetails);
 
   return (
-    <div class="login-container">
+    <div class="signup-container">
       <h1>User Profile</h1>
       <BackButton />
-      <div class="login-form">
+      <div class="form-group form-label">
         <br />
         <br />
         <div>
@@ -25,7 +24,7 @@ const UserProfile = () => {
         </div>
         <br />
         <div>
-          Date of birth:{" "}
+          Date of Birth:{" "}
           <div class="form-input">
             {new Date(userDetails.dob).toLocaleDateString()}{" "}
           </div>{" "}
@@ -41,17 +40,6 @@ const UserProfile = () => {
         </div>
         <br /> <br />
       </div>
-
-      {/*  <br/><br/>
-            
-        
-            <Link to='/Txn'>Make a Transaction</Link>
-            <br/><br/><br/><br/>
-
-            <Link  to='/ChangePin'>Change PIN</Link>
-            <br/><br/> <br/><br/>
-            <Link to='/ChequeDeposit'>Cheque Deposit</Link>
-            <br/><br/>  */}
     </div>
   );
 };

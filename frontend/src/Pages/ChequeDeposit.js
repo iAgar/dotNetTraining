@@ -22,7 +22,7 @@ const ChequeDeposit = () => {
     "Content-type": "application/json",
     Authorization: `bearer ${userDetails.token}`,
   };
-  const [error, setError] = useState("");
+  const [setError] = useState("");
 
   const [accts, setAccts] = useState([]);
   const [currencies, setCurrencies] = useState([]);
@@ -73,7 +73,6 @@ const ChequeDeposit = () => {
 
     const handleChange = (event) => {
         setTxnDetails({...txnDetails, [event.target.name] : event.target.value})
-        // console.log(userDetails)
     }
     
     useEffect(() => {
@@ -129,14 +128,14 @@ const ChequeDeposit = () => {
       <BackButton />
       <form onSubmit={handlesubmit} class="form-group form-label">
         <div>
-          Account id: <br />
+          Account ID: <br />
           <select
             class="form-input"
             name="aid"
             value={txnDetails.aid}
             onChange={handleChange}
           >
-            <option>select account-id</option>
+            <option disabled selected>Select Account ID</option>
             {accts.map((acct) => (
               <option>{acct.aid}</option>
             ))}
@@ -151,7 +150,7 @@ const ChequeDeposit = () => {
             value={txnDetails.currency}
             onChange={handleChange}
           >
-            <option>select currency</option>
+            <option disabled selected>Select Currency</option>
             {currencies.map((currency) => (
               <option>{currency}</option>
             ))}
@@ -191,10 +190,6 @@ const ChequeDeposit = () => {
             onChange={handleChange}
           />
         </div>
-        <br />
-        Transaction Type: <br /> Deposit
-        <br />
-        <br />
         <br />
         <button type="submit" class="signup-button">
           Submit

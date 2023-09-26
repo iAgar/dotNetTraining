@@ -14,8 +14,7 @@ const ChangePin =() =>{
         'NewPin' :'',
     });
     const userDetails = useContext(UserContext);
-    // const user = useContext(UserContext);
-    const[error,setError] = useState();
+    const[setError] = useState();
     const[accts,setAccts] = useState([]);
     const headers = {
         'Content-type': 'application/json',
@@ -66,18 +65,15 @@ const ChangePin =() =>{
         }
     }
     return (
-        // <Router>
         <div class="signup-container">
             <br/><br/>
             <h1>Change PIN</h1>
             <BackButton/>
             <form onSubmit={handleSubmit} class = "form-group form-label ">
                 <div>
-                Account Id: <br/><select class = "form-input" name='aid'  value = {pinChangeDetails.aid} onChange={handleChange} >
-                <option>Select Account Id</option>
+                Account ID: <br/><select class = "form-input" name='aid'  value = {pinChangeDetails.aid} onChange={handleChange} >
+                <option selected disabled>Select Account ID</option>
                     {
-                        
-                        
                         accts.map( (acct) => acct.isDeleted===false&&<option>{acct.aid}</option> )
                     }
                         
