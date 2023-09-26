@@ -24,27 +24,32 @@ const [users, setUsers] = useState([])
   }, [])
 
     return (
-        <div>
+        <div className="login-container">
             {/* <Link  to='/SignUp'>Sign Up new User</Link>
             <Link to='/CreateAccount'>Create new Bank Account</Link> */}
             {loading ? (<div>Loading ...</div>):(
                 <div>
                 <h1>Users</h1>
                 <BackButton/>
-                <table border={1}>
+                <div>
+                <table  style={{margin: "1rem auto"}} border={1}>
+                  <thead>
                   <tr>
                     <th>User Id</th>
                     <th>Name</th>
                     <th>Email</th>
                   </tr>
+                  </thead>
+                  <tbody>
                   {users.map(user => {return (
                     <tr key={user.userid}>
-                      <td><Link to={`/accounts/${user.userid}`}>{user.userid}</Link></td>
+                      <td><Link to={`/accounts/${user.userid}`}  style={{border: "none"}}>{user.userid}</Link></td>
                       <td>{user.uname}</td>
                       <td>{user.email}</td>
                     </tr>
-                  )})}
+                  )})}</tbody>
                 </table>
+                </div>
                 </div>
             )}
         </div>
