@@ -72,7 +72,7 @@ const ChangePin =() =>{
             <form onSubmit={handleSubmit} class = "form-group form-label ">
                 <div>
                 Account ID: <br/><select class = "form-input" name='aid'  value = {pinChangeDetails.aid} onChange={handleChange} >
-                <option selected disabled>Select Account ID</option>
+                <option>Select Account ID</option>
                     {
                         accts.map( (acct) => acct.isDeleted===false&&<option>{acct.aid}</option> )
                     }

@@ -135,7 +135,7 @@ const ChequeDeposit = () => {
             value={txnDetails.aid}
             onChange={handleChange}
           >
-            <option disabled selected>Select Account ID</option>
+            <option>Select Account ID</option>
             {accts.map((acct) => (
               <option>{acct.aid}</option>
             ))}
