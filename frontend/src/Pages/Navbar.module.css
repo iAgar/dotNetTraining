@@ -18,11 +18,11 @@
   padding-left: 5%;
 }
 
-.navbarLinks {
+/* .navbarLinks {
   list-style: none; /* Remove bullet points from the list */
-  padding: 0;
-  display: flex;
-}
+  /* padding: 0; */
+  /* display: flex; */
+/* }  */
 
 .navbarButton {
   background-color: #718af7; /* Button background color */
@@ -47,10 +47,12 @@
 
 /* Style the dropdown menu (when it's open) */
 .navbarLinks {
+  top: 100%; /* Position it below the button */
+  /* left: -100%; */
+  right: 0;
   background-color: #333; /* Dropdown background color */
   position: absolute;
-  top: 100%;
-  left: 0;
+  /* left: 0; */
   width: 200px; /* Width of the dropdown menu */
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);

@@ -14,7 +14,7 @@ const BackButton = () =>{
     }
 
     return(
-        <button style={{width:'100px',height:'50px'}} onClick={back}>back</button>
+        <button style={{width:'100px',height:'50px0', marginRight: "auto", display: "block"}} onClick={back} className='login-button'>&#x2190; Back</button>
     )
 
 }

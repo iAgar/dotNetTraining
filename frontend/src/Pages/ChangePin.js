@@ -77,8 +77,7 @@ const ChangePin =() =>{
                 <option>Select Account Id</option>
                     {
                         
-                        
-                        accts.map( (acct) => {acct.isDeleted===false&&<option>{acct.aid}</option>} )
+                         accts.map( (acct) => acct.isDeleted===false&&<option>{acct.aid}</option> )
                     }
                         
                        </select>  

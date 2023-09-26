@@ -71,33 +71,29 @@ const ChequeDeposit = () => {
     }
   }, []);
 
-  const handleChange = (event) => {
-    setTxnDetails({ ...txnDetails, [event.target.name]: event.target.value });
-    // console.log(userDetails)
-  };
-  useEffect(() => {
-    try {
-      axios
-        .get(
-          `https://localhost:7180/api/Accounts/all/${userDetails.user.userid}`,
-          { headers }
-        )
-        .then((res) => {
-          console.log(res);
-
-          if (res.data.success) {
-            setAccts(res.data.accounts);
-            console.log(res.data.accounts);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          alert(error);
-        });
-    } catch (error) {
-      setError(error.Message);
+    const handleChange = (event) => {
+        setTxnDetails({...txnDetails, [event.target.name] : event.target.value})
+        // console.log(userDetails)
     }
-  }, []);
+    useEffect(() => {
+        try{
+            axios.get(`https://localhost:7180/api/Accounts/all/${userDetails.user.userid}`, {headers:headers})
+            .then((res)=>{
+                console.log(res);
+                
+                if( res.data.success){
+                    setAccts(res.data.accounts);
+                    console.log(res.data.accounts);
+                }
+            }).catch((error)=>{
+                console.log(error);
+                alert(error);
+            })
+        }
+        catch(error){
+            setError(error.Message);
+        }
+    },[]);
 
   const handlesubmit = async (event) => {
     console.log(txnDetails);
