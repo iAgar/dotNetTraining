@@ -31,13 +31,13 @@ const AdminPostSignIn = () => {
         <div>Loading ...</div>
       ) : (
         <div>
-          <h1>Users</h1>
+          <h1>Registered Users</h1>
           <BackButton />
           <div>
             <table border={1}>
               <thead>
                 <tr>
-                  <th>User Id</th>
+                  <th>User ID</th>
                   <th>Name</th>
                   <th>Email</th>
                 </tr>

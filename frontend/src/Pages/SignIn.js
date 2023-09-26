@@ -54,7 +54,7 @@ const SignIn = () => {
   };
 
   return (
-    <div class="login-container">
+    <div class="signup-container">
       <h1>Sign In</h1>
       <BackButton />
       <form onSubmit={handleSubmit} class="login-form">

@@ -10,10 +10,10 @@ const UserProfile = () => {
   console.log(userDetails);
 
   return (
-    <div class="login-container">
+    <div class="signup-container">
       <h1>User Profile</h1>
       <BackButton />
-      <div class="login-form">
+      <div class="form-group form-label">
         <br />
         <br />
         <div>
@@ -25,7 +25,7 @@ const UserProfile = () => {
         </div>
         <br />
         <div>
-          Date of birth:{" "}
+          Date of Birth:{" "}
           <div class="form-input">
             {new Date(userDetails.dob).toLocaleDateString()}{" "}
           </div>{" "}

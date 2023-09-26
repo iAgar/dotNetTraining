@@ -60,10 +60,10 @@ const Navbar = () => {
                         Dashboard
                       </Link>
                       <Link to="/SignUp" onClick={closeDropdown}>
-                        Sign Up new User
+                        Sign Up New User
                       </Link>
                       <Link to="/CreateAccount" onClick={closeDropdown}>
-                        Create new Bank Account
+                        Create New Bank Account
                       </Link>
                     </>
                   )}
