@@ -86,7 +86,7 @@ namespace backend.Services
                 Account? a = _context.Accounts.Find(p.Aid);
                 if (a != null && CheckPin(a, p.Pin))
                 {
-                    a.Pin = _utils.HashPasswordV2(p.Pin.Trim()[0..4], _rng);
+                    a.Pin = _utils.HashPasswordV2(p.NewPin!.Trim()[0..4], _rng);
                     _context.SaveChanges();
                     return true;
                 }
