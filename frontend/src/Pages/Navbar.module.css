@@ -1,7 +1,7 @@
 .navbar {
   background-color: #1b2855; /* Background color for the navbar */
   color: #fff; /* Text color for links */
-  padding: 10px 0;
+  padding: 10px 30px;
 }
 
 .container {
@@ -15,7 +15,7 @@
   font-weight: bold;
   color: #fff; /* Text color for the brand/logo */
   text-decoration: none; /* Remove underlines from the brand/logo */
-  padding-left: 5%;
+  /* padding-left: 5%; */
 }
 
 /* .navbarLinks {
@@ -99,9 +99,9 @@
 /* Responsive Styles for Small Screens */
 @media (max-width: 768px) {
   /* Center-align the logo/brand on small screens */
-  .container {
+  /* .container {
     justify-content: center;
-  }
+  } */
 
   /* Stack navigation items vertically on small screens */
   .navbarLinks {
