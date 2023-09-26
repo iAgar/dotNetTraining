@@ -1,45 +1,48 @@
-import React, { useContext } from 'react';
-import ReactDOM from 'react-dom/client';
-import { useState } from 'react';
-import { UserContext } from './userContext.js';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { UserContext } from "./userContext.js";
 //import './UserProfile.css';
 import "./SignIn.css";
-import BackButton from '../Component/BackButton.js';
+import BackButton from "../Component/BackButton.js";
 
-const UserProfile = () =>{
+const UserProfile = () => {
+  const userDetails = useContext(UserContext).user;
 
-    const userDetails = useContext(UserContext).user;
+  console.log(userDetails);
 
-    console.log(userDetails);
-    const [error,setError] = useState('')
-    
+  return (
+    <div class="login-container">
+      <h1>User Profile</h1>
+      <BackButton />
+      <div class="login-form">
+        <br />
+        <br />
+        <div>
+          User ID : <br /> <div class="form-input">{userDetails.userid}</div>
+        </div>
+        <br />
+        <div>
+          Username: <div class="form-input">{userDetails.uname}</div>
+        </div>
+        <br />
+        <div>
+          Date of birth:{" "}
+          <div class="form-input">
+            {new Date(userDetails.dob).toLocaleDateString()}{" "}
+          </div>{" "}
+        </div>
+        <br />
+        <div>
+          Email: <div class="form-input">{userDetails.email} </div>{" "}
+        </div>
+        <br />
+        <div>
+          {" "}
+          PAN: <div class="form-input">{userDetails.proof} </div>{" "}
+        </div>
+        <br /> <br />
+      </div>
 
-
-    return(
-        <div class='login-container'>
-            <h1>User Profile</h1>
-            <BackButton/>
-            <div  class="login-form">
-                <br/><br/>
-                <div>
-                    User ID : <br/> <div class="form-input">{userDetails.userid}</div>
-                </div>
-
-                <br/>
-                <div>Username: <div class="form-input">{userDetails.uname}</div>
-                </div>
-                <br/>
-                <div>Date of birth: <div class="form-input">{userDetails.dob}  </div>  </div>
-                <br/>
-                <div>Email: <div class="form-input">{userDetails.email}  </div>    </div>   
-                <br/> 
-                <div> PAN: <div class="form-input">{userDetails.proof} </div> </div>
-                <br/>  <br/>
-              
-            </div>   
-
-           {/*  <br/><br/>
+      {/*  <br/><br/>
             
         
             <Link to='/Txn'>Make a Transaction</Link>
@@ -49,9 +52,8 @@ const UserProfile = () =>{
             <br/><br/> <br/><br/>
             <Link to='/ChequeDeposit'>Cheque Deposit</Link>
             <br/><br/>  */}
-
-        </div>
-    )
-}
+    </div>
+  );
+};
 
 export default UserProfile;

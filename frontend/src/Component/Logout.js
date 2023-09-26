@@ -12,9 +12,10 @@ const Logout = () => {
     <>
       {userDetails && (
         <button
-          style={{ width: "100px", height: "50px" }}
+          style={{ width: "100px", height: "50px", marginBottom: "2rem" }}
           onClick={logout}
           className="logout-button"
+          type="button"
         >
           Log Out
         </button>
