@@ -95,17 +95,17 @@ function App() {
             <Route
               path="/accounts/:userid"
               element={
-                <ProtectedrouteAdmin>
+                <Protectedroute>
                   <Accounts />
-                </ProtectedrouteAdmin>
+                </Protectedroute>
               }
             />
             <Route
               path="/accounts/transactions/all/:accountid"
               element={
-                <ProtectedrouteAdmin>
+                <Protectedroute>
                   <TransactionDetails />
-                </ProtectedrouteAdmin>
+                </Protectedroute>
               }
             />
           </Routes>

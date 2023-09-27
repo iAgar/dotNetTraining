@@ -28,9 +28,15 @@ const Accounts = (props) => {
         if (response.data.success === false) {
           setHasAccount(false);
         }
-        setLoading(false);
-      });
-  }, [userDetails.token, userid]);
+      })
+      .catch((e) => {
+        console.error(e);
+        if (userid !== userDetails.userid && !userDetails.isAdmin)
+          alert("Unauthorised");
+        setHasAccount(false);
+      })
+      .finally(() => setLoading(false));
+  }, [userDetails.isAdmin, userDetails.token, userDetails.userid, userid]);
   const deleteUser = (aid) => {
     axios
       .delete(`https://localhost:7180/api/Accounts/delete/${aid}`, {
@@ -51,7 +57,7 @@ const Accounts = (props) => {
           <h1>Accounts</h1>
           <BackButton />
           {!hasAccount ? (
-            <div>No accounts for this user</div>
+            <div>No accounts for this user or unauthorised</div>
           ) : (
             <table border={1}>
               <tr>
@@ -64,18 +70,20 @@ const Accounts = (props) => {
               {accounts.map((acc) => {
                 return (
                   <tr key={acc.aid}>
-                    <td><Link
-                          to={`/accounts/transactions/all/${acc.aid}`}
-                          style={{ border: "none" }}
-                        >
-                          {acc.aid}
-                        </Link></td>
-                    <td>{Math.round(acc.balance*100)/100}</td>
+                    <td>
+                      <Link
+                        to={`/accounts/transactions/all/${acc.aid}`}
+                        style={{ border: "none" }}
+                      >
+                        {acc.aid}
+                      </Link>
+                    </td>
+                    <td>{Math.round(acc.balance * 100) / 100}</td>
                     <td>{acc.currency}</td>
                     {acc.isDeleted === false && <td>Yes</td>}
                     {acc.isDeleted === true && <td>No</td>}
                     <td>{acc.homeBranch}</td>
-                    {acc.isDeleted === false && (
+                    {acc.isDeleted === false && userDetails.isAdmin && (
                       <td>
                         <button
                           onClick={() => deleteUser(acc.aid)}
