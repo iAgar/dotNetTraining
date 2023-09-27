@@ -70,7 +70,7 @@ const Accounts = (props) => {
                         >
                           {acc.aid}
                         </Link></td>
-                    <td>{acc.balance}</td>
+                    <td>{Math.round(acc.balance*100)/100}</td>
                     <td>{acc.currency}</td>
                     {acc.isDeleted === false && <td>Yes</td>}
                     {acc.isDeleted === true && <td>No</td>}
