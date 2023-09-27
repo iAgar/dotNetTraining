@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "./userContext.js";
 import "./SignIn.css";
 import BackButton from "../Component/BackButton.js";
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const userDetails = useContext(UserContext).user;
@@ -39,6 +40,10 @@ const UserProfile = () => {
           PAN: <div class="form-input">{userDetails.proof} </div>{" "}
         </div>
         <br /> <br />
+      </div>
+
+      <div style={{ margin: "1rem auto" }}>
+        <Link to={`/accounts/${userDetails.userid}`}>View accounts </Link>
       </div>
     </div>
   );
