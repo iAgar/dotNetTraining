@@ -31,12 +31,12 @@ const Accounts = (props) => {
       })
       .catch((e) => {
         console.error(e);
-        if (userid !== userDetails.userid && !userDetails.isAdmin)
+        if (userid !== userDetails.user.userid && !userDetails.user.isAdmin)
           alert("Unauthorised");
         setHasAccount(false);
       })
       .finally(() => setLoading(false));
-  }, [userDetails.isAdmin, userDetails.token, userDetails.userid, userid]);
+  }, [userDetails.user.isAdmin, userDetails.token, userDetails.user.userid, userid]);
   const deleteUser = (aid) => {
     axios
       .delete(`https://localhost:7180/api/Accounts/delete/${aid}`, {
@@ -83,7 +83,7 @@ const Accounts = (props) => {
                     {acc.isDeleted === false && <td>Yes</td>}
                     {acc.isDeleted === true && <td>No</td>}
                     <td>{acc.homeBranch}</td>
-                    {acc.isDeleted === false && userDetails.isAdmin && (
+                    {acc.isDeleted === false && userDetails.user.isAdmin && (
                       <td>
                         <button
                           onClick={() => deleteUser(acc.aid)}

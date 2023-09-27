@@ -51,7 +51,7 @@ const SignUp = () => {
       <BackButton />
       <form onSubmit={handlesubmit} class="form-group form-label ">
         <div>
-          Username: <br />
+          User Name: <br />
           <input
             class="form-input"
             name="uname"

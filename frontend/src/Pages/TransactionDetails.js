@@ -51,7 +51,7 @@ const TransactionDetails = () => {
                     <th>Location</th>
                     <th>Debit or Credit</th>
                     <th>Transaction Type</th>
-                    <th>Remarks</th>
+                    <th>Receiver ID</th>
                   </tr>
                   {transactions.map((tr) => {
                     return (
